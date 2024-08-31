@@ -1,0 +1,138 @@
+/* Header styles */
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 590px;
+    background: url("./assets/bg.jpg") center/cover no-repeat;
+    position: relative; /* Added for overlay positioning */
+}
+
+.intro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+    z-index: 1; /* Ensure it stays behind the text */
+}
+
+.intro h1, .intro p, .intro a {
+    position: relative; /* Bring text in front of the overlay */
+    z-index: 2;
+}
+
+.intro h1 {
+    font-family: sans-serif;
+    font-size: 60px;
+    color: #FFFFFF; /* White for high contrast */
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 0;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Darker text shadow for better readability */
+}
+
+.intro p {
+    font-size: 20px;
+    color: #FFFFFF; /* White to stand out */
+    text-transform: uppercase;
+    margin: 20px 0;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5); /* Subtle shadow for contrast */
+}
+
+.intro a {
+    text-decoration: none;
+    background-color: #800080; /* Dark purple for contrast */
+    color: #FFFFFF; /* White text */
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    font-size: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); /* Added shadow for depth */
+}
+
+.intro a:hover {
+    background-color: #FFD700; /* Gold for a striking hover effect */
+    color: #800080; /* Purple text for contrast */
+}
+
+/* Marquee styles */
+marquee {
+    color: #FFFFFF; /* White for better visibility */
+    font-size: x-large;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 4px #000;
+}
+
+/* Menu section styles */
+.menu-section-heading {
+    text-align: center;
+    margin-top: 10px;
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, #800080, #e3a9c8);
+    color: #FFFFFF; /* White for consistency */
+    font-weight: 600;
+    padding: 10px;
+    border-radius: 8px;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7); /* Darker text shadow */
+}
+
+/* CSS for images */
+img {
+    width: 100%;
+    height: auto;
+}
+
+#exploreMenuSection img {
+    height: 250px;
+    width: 100%; /* Ensure images fit the container width */
+    object-fit: cover;
+}
+
+/* CSS for shadow effect */
+.shadow {
+    box-shadow: 0 0.5rem 1rem rgb(16, 40, 85) !important;
+    background-color: rgb(229, 241, 254);
+}
+
+/* Menu item card styles */
+.menu-item-card {
+    background-color: rgb(229, 241, 254);
+    border-radius: 10px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.menu-item-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2);
+}
+
+.menu-item-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+}
+
+.menu-card-title {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #2F4F4F; /* Darker text for better readability */
+    padding: 10px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .menu-card-title {
+        font-size: 1rem;
+    }
+}

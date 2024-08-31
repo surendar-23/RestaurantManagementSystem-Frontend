@@ -1,0 +1,36 @@
+<!-- Bootstrap CSS -->
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<header class="header">
+    <a class="logo"><i class="fa fa-utensils"></i> Restaurant </a>
+    <nav class="nav-items">
+        <a [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fa fa-home"></i> Home
+        </a>
+        <a [routerLink]="['/about-us']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fa fa-address-card"></i> About Us
+        </a>
+        <a [routerLink]="['/contact-us']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fa fa-id-badge"></i> Contact Us
+        </a>
+        <a [routerLink]="['/chef']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fa fa-pizza-slice"></i> Chef
+        </a>
+        <a [routerLink]="['/customer']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fa fa-user-circle"></i> Customer
+        </a>
+        <a [routerLink]="['/delivery-partner']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fa fa-truck"></i> Delivery Partner
+        </a>
+        <a [routerLink]="['/owner']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fa fa-user"></i> Owner
+        </a>
+        <a [routerLink]="['/supplier']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fa fa-user-tie"></i> Supplier
+        </a>
+        <a [routerLink]="['/waiter']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <i class="fa fa-users"></i> Waiter
+        </a>
+    </nav>
+</header>
