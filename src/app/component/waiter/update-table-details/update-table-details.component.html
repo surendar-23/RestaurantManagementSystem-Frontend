@@ -1,0 +1,21 @@
+<div class="update-table-details-container">
+    <h2>Update Table Details</h2>
+    <form [formGroup]="tableForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="tableId">Table ID:</label>
+            <input id="tableId" formControlName="tableId" type="number" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="number">Table Number:</label>
+            <input id="number" formControlName="number" type="number" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="seats">Seats:</label>
+            <input id="seats" formControlName="seats" type="number" class="form-control"/>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="tableForm.invalid">Update</button>
+    </form>
+</div>

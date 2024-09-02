@@ -1,0 +1,23 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<div *ngIf="orderDetails.length > 0" class="centered">
+
+    <table class="tbl">
+        <tr>
+            <th>ORDER DETAILS ID</th>
+            <th>ORDER DATE</th>
+            <th>TOTAL AMOUNT</th>
+        </tr>
+        <tr *ngFor="let order of orderDetails">
+            <td>{{ order?.id }}</td>
+            <td>{{ order?.orderDate }}</td>
+            <td>{{ order?.totalAmount }}</td>
+        </tr>
+    </table>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>

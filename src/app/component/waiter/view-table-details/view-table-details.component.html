@@ -1,0 +1,22 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<div *ngIf="tableDetails.length > 0" class="centered">
+    <table class="tbl">
+        <tr>
+            <th>TABLE ID</th>
+            <th>TABLE NUMBER</th>
+            <th>SEATS</th>
+        </tr>
+        <tr *ngFor="let table of tableDetails">
+            <td>{{ table?.id }}</td>
+            <td>{{ table?.number }}</td>
+            <td>{{ table?.seats }}</td>
+        </tr>
+    </table>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>

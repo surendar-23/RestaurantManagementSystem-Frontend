@@ -1,0 +1,25 @@
+<header class="header">
+    <a class="logo"><i class="fa fa-utensils"></i> Restaurant</a>
+    <nav class="nav-items">
+        <a (click)="gotourl('/waiter/home')" [class.selected]="url === '/waiter/home'"><i
+                class="fa fa-dashboard"></i>
+            Home</a>
+        <a (click)="gotourl('/waiter/create-order')"
+           [class.selected]="url === '/waiter/create-order'"> <i class="fa fa-edit"></i> Create Order</a>
+        <a (click)="gotourl('/waiter/view-current-orders')"
+           [class.selected]="url === '/waiter/view-current-orders'"><i class="fa fa-truck"></i> View Orders</a>
+        <a (click)="gotourl('/waiter/update-order-status')"
+           [class.selected]="url === '/waiter/update-order-status'"><i class="fa fa-th-list"></i> Update Order</a>
+        <a (click)="gotourl('/waiter/view-order-details')"
+           [class.selected]="url === '/waiter/view-order-details'"><i class="fa fa-truck"></i> View Order
+            Details</a>
+        <a (click)="gotourl('/waiter/update-table-details')"
+           [class.selected]="url === '/waiter/update-table-details'"><i class="fa fa-file-text"></i> Update Table</a>
+        <a (click)="gotourl('/waiter/view-table-details')"
+           [class.selected]="url === '/waiter/view-table-details'"><i class="fa fa-truck"></i> View Table
+            Details</a>
+        <a (click)="gotourl('/waiter/logout')"
+           [class.selected]="url === '/waiter/logout'"><i class="fa fa-sign-out-alt"></i> Logout</a>
+    </nav>
+</header>
+

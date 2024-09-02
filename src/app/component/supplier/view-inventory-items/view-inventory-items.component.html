@@ -1,0 +1,22 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<div *ngIf="inventoryItems.length > 0" class="centered">
+    <table class="tbl">
+        <tr>
+            <th>INVENTORY ID</th>
+            <th>NAME</th>
+            <th>QUANTITY</th>
+        </tr>
+        <tr *ngFor="let item of inventoryItems">
+            <td>{{ item?.id }}</td>
+            <td>{{ item?.name }}</td>
+            <td>{{ item?.quantity }}</td>
+        </tr>
+    </table>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>

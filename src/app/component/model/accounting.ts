@@ -1,11 +1,10 @@
-export interface Accounting {
-    id: number;
-    date: Date;
-    amount: number;
-    ownerId: number;
-    bills: Bill[];
-}
+import {Bill} from "./bill";
+import {Owner} from "./owner";
 
-export interface Bill {
-    id: number;
+export class Accounting {
+    id: number | undefined;
+    date: Date | undefined;
+    amount: number | undefined;
+    owner: Owner | undefined;
+    bills: Bill[] | undefined;
 }

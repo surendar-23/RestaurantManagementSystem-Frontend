@@ -1,22 +1,21 @@
 import {Component} from '@angular/core';
-import {Router, RouterLink, RouterLinkActive} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-app-header',
     standalone: true,
-    imports: [
-        RouterLink,
-        RouterLinkActive
-    ],
     templateUrl: './app-header.component.html',
     styleUrls: ['./app-header.component.css']
 })
 export class AppHeaderComponent {
-    constructor(private router: Router) {
+
+    url: string = '/';
+
+    constructor(private route: Router) {
     }
 
-    navigateToAboutUs() {
-        this.router.navigate(['/about-us']).then(success => {
+    gotourl(url: string): void {
+        this.route.navigate(["/" + url]).then(success => {
             if (success) {
                 console.log('Navigation successful!');
             } else {

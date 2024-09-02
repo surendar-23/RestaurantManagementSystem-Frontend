@@ -1,0 +1,36 @@
+<div class="create-order-container">
+    <h2>Create Order</h2>
+    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="orderDate">Order Date:</label>
+            <input id="orderDate" formControlName="orderDate" type="date" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="total">Total:</label>
+            <input id="total" formControlName="total" type="number" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="customerId">Customer ID:</label>
+            <input id="customerId" formControlName="customerId" type="number" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="restaurantId">Restaurant ID:</label>
+            <input id="restaurantId" formControlName="restaurantId" type="number" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="tableId">Table ID:</label>
+            <input id="tableId" formControlName="tableId" type="number" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="waiterId">Waiter ID:</label>
+            <input id="waiterId" formControlName="waiterId" type="number" class="form-control"/>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="orderForm.invalid">Create Order</button>
+    </form>
+</div>

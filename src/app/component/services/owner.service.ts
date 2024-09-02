@@ -1,7 +1,6 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Accounting} from "./model/accounting";
 
 @Injectable({
     providedIn: 'root'
@@ -15,13 +14,13 @@ export class OwnerService {
     }
 
 // Create Accounting Entry
-    createAccounting(body: Accounting): Observable<any> {
+    createAccounting(body: any): Observable<any> {
         return this.http.post(this.url + '/api/accounting', body);
     }
 
     // Get All Accounting Entries
-    getAccounting(): Observable<Accounting[]> {
-        return this.http.get<Accounting[]>(this.url + '/api/accounting');
+    getAccounting(): Observable<any> {
+        return this.http.get<any>(this.url + '/api/accounting');
     }
 
     // Delete Accounting Entry by ID
@@ -30,7 +29,7 @@ export class OwnerService {
     }
 
     // Update Accounting Entry by ID
-    updateAccounting(body: Accounting, id: number): Observable<any> {
+    updateAccounting(body: any, id: number): Observable<any> {
         return this.http.put(this.url + '/api/accounting/' + id, body);
     }
 
