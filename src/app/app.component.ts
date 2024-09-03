@@ -6,11 +6,15 @@ import {SupplierHeaderComponent} from "./component/supplier/supplier-header/supp
 import {SupplierHomeComponent} from "./component/supplier/supplier-home/supplier-home.component";
 import {filter} from "rxjs";
 import {WaiterHeaderComponent} from "./component/waiter/waiter-header/waiter-header.component";
+import {
+    DeliveryPartnerHeaderComponent
+} from "./component/delivery-partner/delivery-partner-header/delivery-partner-header.component";
+import {ChefHeaderComponent} from "./component/chef/chef-header/chef-header.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, FooterComponent, AppHeaderComponent, SupplierHeaderComponent, SupplierHomeComponent, WaiterHeaderComponent],
+    imports: [RouterOutlet, FooterComponent, AppHeaderComponent, SupplierHeaderComponent, SupplierHomeComponent, WaiterHeaderComponent, DeliveryPartnerHeaderComponent, ChefHeaderComponent],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })

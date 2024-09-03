@@ -1,0 +1,36 @@
+<br/><br/><br/><br/>
+<form [formGroup]="deliveryForm" (ngSubmit)="onSubmit()">
+    <div>
+        <label for="id">Delivery ID</label>
+        <input id="id" formControlName="id" type="number">
+    </div>
+    <div *ngIf="deliveryNotFound" class="error">
+        Delivery not found. Please check the ID.
+    </div>
+    <div>
+        <label for="deliveryTime">Delivery Time</label>
+        <input id="deliveryTime" formControlName="deliveryTime" type="datetime-local">
+    </div>
+    <div>
+        <label for="street">Street</label>
+        <input id="street" formControlName="street" type="text">
+    </div>
+    <div>
+        <label for="city">City</label>
+        <input id="city" formControlName="city" type="text">
+    </div>
+    <div>
+        <label for="state">State</label>
+        <input id="state" formControlName="state" type="text">
+    </div>
+    <div>
+        <label for="postalCode">Postal Code</label>
+        <input id="postalCode" formControlName="postalCode" type="text">
+    </div>
+    <div>
+        <label for="status">Status</label>
+        <input id="status" formControlName="status" type="text">
+    </div>
+    <button type="submit" [disabled]="deliveryForm.invalid">Update Delivery</button>
+</form>
+<br/><br/><br/><br/>

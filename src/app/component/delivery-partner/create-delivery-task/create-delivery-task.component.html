@@ -1,0 +1,48 @@
+<br/><br/><br/><br/>
+<div class="create-delivery-task-container">
+    <h2>Create Delivery Task</h2>
+    <form [formGroup]="deliveryForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="deliveryTime">Delivery Time:</label>
+            <input id="deliveryTime" formControlName="deliveryTime" type="datetime-local" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="street">Street:</label>
+            <input id="street" formControlName="street" type="text" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="city">City:</label>
+            <input id="city" formControlName="city" type="text" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="state">State:</label>
+            <input id="state" formControlName="state" type="text" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="postalCode">Postal Code:</label>
+            <input id="postalCode" formControlName="postalCode" type="text" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Status:</label>
+            <input id="status" formControlName="status" type="text" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="orderId">Order ID:</label>
+            <input id="orderId" formControlName="orderId" type="number" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="deliveryPartnerId">Delivery Partner ID:</label>
+            <input id="deliveryPartnerId" formControlName="deliveryPartnerId" type="number" class="form-control"/>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="deliveryForm.invalid">Create Delivery Task</button>
+    </form>
+</div>
+<br/><br/><br/><br/>

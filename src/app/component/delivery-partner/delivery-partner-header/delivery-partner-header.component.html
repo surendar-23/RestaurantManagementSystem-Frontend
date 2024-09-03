@@ -1,0 +1,29 @@
+<header class="header">
+    <a class="logo"><i class="fa fa-utensils"></i> Restaurant</a>
+    <nav class="nav-items">
+        <a (click)="gotourl('/delivery-partner/home')" [class.selected]="url === '/delivery-partner/home'"><i
+                class="fa fa-dashboard"></i>
+            Home</a>
+        <a (click)="gotourl('/delivery-partner/create-delivery-task')"
+           [class.selected]="url === '/delivery-partner/create-delivery-task'"><i class="fa fa-th-list"></i> Create
+            Delivery</a>
+        <a (click)="gotourl('/delivery-partner/update-delivery-status')"
+           [class.selected]="url === '/delivery-partner/update-delivery-status'"> <i class="fa fa-edit"></i> Update
+            Delivery Status</a>
+        <a (click)="gotourl('/delivery-partner/view-past-deliveries')"
+           [class.selected]="url === '/delivery-partner/view-past-deliveries'"><i class="fa fa-truck"></i> View
+            Deliveries</a>
+        <a (click)="gotourl('/delivery-partner/update-order-status')"
+           [class.selected]="url === '/delivery-partner/update-order-status'"><i class="fa fa-file-text"></i> Update
+            Order</a>
+        <a (click)="gotourl('/delivery-partner/view-assigned-orders')"
+           [class.selected]="url === '/delivery-partner/view-assigned-orders'"><i class="fa fa-truck"></i> View
+            Orders</a>
+        <a (click)="gotourl('/delivery-partner/view-order-details')"
+           [class.selected]="url === '/delivery-partner/view-order-details'"><i class="fa fa-truck"></i> View Order
+            Details</a>
+        <a (click)="gotourl('/delivery-partner/logout')"
+           [class.selected]="url === '/delivery-partner/logout'"><i class="fa fa-sign-out-alt"></i> Logout</a>
+    </nav>
+</header>
+

@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +11,25 @@ export class ChefService {
 
     constructor(
         private http: HttpClient,
+        private route: Router
     ) {
+    }
+
+    chefLogout(): void {
+        localStorage.clear();
+        this.route.navigate(['']).then(success => {
+            if (success) {
+                console.log('Navigation successful!');
+            } else {
+                console.log('Navigation failed!');
+            }
+        }).catch(err => {
+            console.error('Navigation error:', err);
+        });
+    }
+
+    getName(): any {
+        return localStorage.getItem("name");
     }
 
     getMenuItem(): Observable<any> {

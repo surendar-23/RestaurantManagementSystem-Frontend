@@ -1,0 +1,21 @@
+<br/><br/><br/><br/>
+<div *ngIf="feedbacks.length > 0" class="feedback-table">
+    <table class="tbl">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Comment</th>
+            <th>Rating</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let feedback of feedbacks">
+            <td>{{ feedback?.id }}</td>
+            <td>{{ feedback?.comment }}</td>
+            <td>{{ feedback?.rating }}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<p *ngIf="feedbacks.length === 0">No feedbacks available.</p>
+<br/><br/><br/><br/>

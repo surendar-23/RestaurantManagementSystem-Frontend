@@ -1,5 +1,5 @@
-import {Order} from "./order";
-import {DeliveryPartner} from "./deliveryPartner";
+import {Order} from './order';
+import {DeliveryPartner} from './deliveryPartner';
 
 export class Delivery {
     id: number | undefined;

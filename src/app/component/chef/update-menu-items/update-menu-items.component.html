@@ -1,0 +1,34 @@
+<br/>
+<br/>
+<br/>
+<br/>
+
+<div class="form-container">
+    <h2>Update Menu Item</h2>
+
+    <form [formGroup]="updateMenuItemForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="id">Menu Item ID</label>
+            <input type="number" id="id" formControlName="id" (change)="getMenuItemById()" required/>
+        </div>
+
+        <div class="form-group" *ngIf="!isLoading">
+            <label for="name">Name</label>
+            <input type="text" id="name" formControlName="name" required/>
+        </div>
+
+        <div class="form-group" *ngIf="!isLoading">
+            <label for="price">Price</label>
+            <input type="number" id="price" formControlName="price" required/>
+        </div>
+
+        <button type="submit" [disabled]="updateMenuItemForm.invalid || isLoading">Update Menu Item</button>
+    </form>
+
+    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+    <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>
