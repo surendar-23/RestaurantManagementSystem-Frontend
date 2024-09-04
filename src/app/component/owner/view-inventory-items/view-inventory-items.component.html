@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>Inventory Items</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading inventory items...</p>
+    </div>
+
+    <!-- Inventory Table -->
+    <table *ngIf="!loading && inventoryItems.length > 0" class="inventory-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of inventoryItems">
+            <td>{{ item.id }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.quantity }}</td>
+            <td>
+                <button class="btn btn-edit" [routerLink]="['/owner/update-inventory-item']">Edit</button>
+                <button class="btn btn-delete" (click)="deleteInventoryItem(item.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- No Inventory Items Message -->
+    <div *ngIf="!loading && inventoryItems.length === 0" class="no-entries">
+        <p>No inventory items found.</p>
+    </div>
+</div>

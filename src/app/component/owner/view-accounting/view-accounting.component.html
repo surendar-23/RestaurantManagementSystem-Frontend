@@ -1,0 +1,50 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <h2>Accounting Entries</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading accounting entries...</p>
+    </div>
+
+    <!-- Accounting Table -->
+    <table *ngIf="!loading && accountings.length > 0" class="accounting-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let accounting of accountings">
+            <td>{{ accounting.id }}</td>
+            <td>{{ accounting.date | date }}</td>
+            <td>{{ accounting.amount | currency }}</td>
+            <td>
+                <button class="btn btn-edit" [routerLink]="['/owner/update-accounting']">Edit</button>
+                <button class="btn btn-delete" (click)="deleteAccounting(accounting.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- No Accounting Entries Message -->
+    <div *ngIf="!loading && accountings.length === 0" class="no-entries">
+        <p>No accounting entries found.</p>
+    </div>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>

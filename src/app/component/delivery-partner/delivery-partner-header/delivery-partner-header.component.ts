@@ -1,17 +1,31 @@
 import {Component, OnInit} from '@angular/core';
 import {NavigationStart, Router} from '@angular/router';
 import {filter} from 'rxjs';
-import {DeliveryPartnerService} from "../../services/delivery-partner.service";
+import {DeliveryPartnerService} from '../../services/delivery-partner.service';
+import {RouterLink} from '@angular/router';
+import {NgForOf} from '@angular/common';
 
 @Component({
     selector: 'app-delivery-partner-header',
     standalone: true,
     templateUrl: './delivery-partner-header.component.html',
-    styleUrl: './delivery-partner-header.component.css'
+    styleUrls: ['./delivery-partner-header.component.css'],
+    imports: [RouterLink, NgForOf]
 })
 export class DeliveryPartnerHeaderComponent implements OnInit {
     url: string = '';
     name: string = '';
+
+    navItems = [
+        {path: '/delivery-partner/home', label: 'Home', icon: 'fas fa-home'},
+        {path: '/delivery-partner/create-delivery-task', label: 'Create Delivery', icon: 'fa fa-th-list'},
+        {path: '/delivery-partner/update-delivery-status', label: 'Update Delivery Status', icon: 'fa fa-edit'},
+        {path: '/delivery-partner/view-past-deliveries', label: 'View Deliveries', icon: 'fa fa-truck'},
+        {path: '/delivery-partner/update-order-status', label: 'Update Order', icon: 'fa fa-file-text'},
+        {path: '/delivery-partner/view-assigned-orders', label: 'View Orders', icon: 'fa fa-truck'},
+        {path: '/delivery-partner/view-order-details', label: 'View Order Details', icon: 'fa fa-truck'},
+        {path: '/delivery-partner/logout', label: 'Logout', icon: 'fa fa-sign-out-alt'}
+    ];
 
     constructor(
         private route: Router,
@@ -30,14 +44,13 @@ export class DeliveryPartnerHeaderComponent implements OnInit {
         });
     }
 
-
-    gotourl(link: string): void {
-        if (link === '/delivery-partner/logout') {
+    gotourl(path: string): void {
+        if (path === '/delivery-partner/logout') {
             this.deliveryService.deliveryPartnerLogout();
             return;
         }
 
-        this.route.navigate([link]).then(success => {
+        this.route.navigate([path]).then(success => {
             if (success) {
                 console.log('Navigation successful!');
             } else {

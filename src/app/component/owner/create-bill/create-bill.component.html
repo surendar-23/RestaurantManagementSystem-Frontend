@@ -1,0 +1,75 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <h2>Create New Bill</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <form [formGroup]="createBillForm" (ngSubmit)="onSubmit()">
+        <!-- Bill Date -->
+        <div class="form-group">
+            <label for="date">Bill Date</label>
+            <input
+                    type="date"
+                    id="date"
+                    class="form-control"
+                    formControlName="date"
+                    required
+            />
+        </div>
+
+        <!-- Amount -->
+        <div class="form-group">
+            <label for="amount">Amount</label>
+            <input
+                    type="number"
+                    id="amount"
+                    class="form-control"
+                    formControlName="amount"
+                    min="0.01"
+                    required
+            />
+        </div>
+
+        <!-- Description -->
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea
+                    id="description"
+                    class="form-control"
+                    formControlName="description"
+                    rows="3"
+            ></textarea>
+        </div>
+
+        <!-- Accounting ID -->
+        <div class="form-group">
+            <label for="accountingId">Accounting Entry</label>
+            <select
+                    id="accountingId"
+                    class="form-control"
+                    formControlName="accountingId"
+                    required
+            >
+                <option value="" disabled>Select Accounting Entry</option>
+                <option *ngFor="let accounting of accountingEntries" [value]="accounting.id">
+                    {{ accounting.id }} - {{ accounting.date | date }} - {{ accounting.amount | currency }}
+                </option>
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" [disabled]="createBillForm.invalid">
+            Create Bill
+        </button>
+    </form>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>

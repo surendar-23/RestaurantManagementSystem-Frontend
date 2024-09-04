@@ -1,0 +1,35 @@
+<br/><br/><br/><br/>
+<div class="container">
+    <h2>Create Table Entry</h2>
+    <form [formGroup]="tableForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label for="number">Table Number:</label>
+            <input type="number" class="form-control" id="number" formControlName="number">
+            <div *ngIf="submitted && tableForm.controls['number'].invalid" class="text-danger">
+                <div *ngIf="tableForm.controls['number'].errors?.['required']">Table number is required.</div>
+                <div *ngIf="tableForm.controls['number'].errors?.['min']">Table number must be greater than 0.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="seats">Number of Seats:</label>
+            <input type="number" class="form-control" id="seats" formControlName="seats">
+            <div *ngIf="submitted && tableForm.controls['seats'].invalid" class="text-danger">
+                <div *ngIf="tableForm.controls['seats'].errors?.['required']">Number of seats is required.</div>
+                <div *ngIf="tableForm.controls['seats'].errors?.['min']">Number of seats must be greater than 0.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="restaurantId">Restaurant ID:</label>
+            <input type="number" class="form-control" id="restaurantId" formControlName="restaurantId">
+            <div *ngIf="submitted && tableForm.controls['restaurantId'].invalid" class="text-danger">
+                <div *ngIf="tableForm.controls['restaurantId'].errors?.['required']">Restaurant ID is required.</div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Table</button>
+    </form>
+</div>
+<br/><br/><br/><br/>

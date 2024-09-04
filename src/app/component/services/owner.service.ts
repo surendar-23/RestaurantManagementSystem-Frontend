@@ -1,6 +1,7 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
+import {Router} from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -10,12 +11,34 @@ export class OwnerService {
 
     constructor(
         private http: HttpClient,
+        private route: Router
     ) {
+    }
+
+    getName(): any {
+        return localStorage.getItem("name");
+    }
+
+    ownerLogout(): void {
+        localStorage.clear();
+        this.route.navigate(['']).then(success => {
+            if (success) {
+                console.log('Navigation successful!');
+            } else {
+                console.log('Navigation failed!');
+            }
+        }).catch(err => {
+            console.error('Navigation error:', err);
+        });
     }
 
 // Create Accounting Entry
     createAccounting(body: any): Observable<any> {
         return this.http.post(this.url + '/api/accounting', body);
+    }
+
+    getAccountingById(id: any): Observable<any> {
+        return this.http.get(this.url + "/api/accounting/" + id);
     }
 
     // Get All Accounting Entries

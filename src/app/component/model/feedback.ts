@@ -1,8 +1,8 @@
-import {Order} from "./order";
+import {Order} from './order';
 
 export class Feedback {
-    id: number | undefined;
-    comment: string | undefined;
-    rating: number | undefined;
-    order: Order | undefined;
+    id?: number;
+    comment?: string;
+    rating?: number;
+    order?: Order;
 }

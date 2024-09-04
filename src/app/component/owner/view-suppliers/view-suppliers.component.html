@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>Suppliers</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading suppliers...</p>
+    </div>
+
+    <!-- Suppliers Table -->
+    <table *ngIf="!loading && suppliers.length > 0" class="suppliers-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Contact Information</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let supplier of suppliers">
+            <td>{{ supplier.id }}</td>
+            <td>{{ supplier.name }}</td>
+            <td>{{ supplier.contactInformation }}</td>
+            <td>
+                <button class="btn btn-edit" [routerLink]="['/owner/update-supplier']">Edit</button>
+                <button class="btn btn-delete" (click)="deleteSupplier(supplier.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- No Suppliers Message -->
+    <div *ngIf="!loading && suppliers.length === 0" class="no-entries">
+        <p>No suppliers found.</p>
+    </div>
+</div>

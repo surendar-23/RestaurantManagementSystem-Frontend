@@ -1,0 +1,54 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="container">
+    <h2>Update Accounting Details</h2>
+    <form [formGroup]="updateAccountingForm" (ngSubmit)="onSubmit()">
+
+        <!-- Accounting ID Input -->
+        <div class="form-section">
+            <label for="accountingId">Accounting ID</label>
+            <input
+                    type="number"
+                    id="accountingId"
+                    formControlName="accountingId"
+                    placeholder="Enter Accounting ID"
+                    (blur)="getAccountingDetails(updateAccountingForm.value.accountingId)"
+                    [class.invalid]="isSubmitted && updateAccountingForm.controls['accountingId'].invalid">
+            <div *ngIf="isSubmitted && updateAccountingForm.controls['accountingId'].invalid" class="error">
+                Accounting ID is required.
+            </div>
+        </div>
+
+
+        <!-- Amount Input -->
+        <div class="form-section" *ngIf="!loading">
+            <label for="amount">Amount</label>
+            <input
+                    type="number"
+                    id="amount"
+                    formControlName="amount"
+                    placeholder="Enter Amount"
+                    [class.invalid]="isSubmitted && updateAccountingForm.controls['amount'].invalid">
+            <div *ngIf="isSubmitted && updateAccountingForm.controls['amount'].invalid" class="error">
+                Valid amount is required.
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" [disabled]="loading">
+            {{ loading ? 'Updating...' : 'Update Accounting' }}
+        </button>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="error">
+            {{ errorMessage }}
+        </div>
+
+    </form>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>

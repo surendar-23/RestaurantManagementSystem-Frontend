@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs";
 import {HttpClient} from "@angular/common/http";
+import {Router} from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -10,7 +11,25 @@ export class CustomerService {
 
     constructor(
         private http: HttpClient,
+        private route: Router
     ) {
+    }
+
+    getName(): any {
+        return localStorage.getItem("name");
+    }
+
+    customerLogout(): void {
+        localStorage.clear();
+        this.route.navigate(['']).then(success => {
+            if (success) {
+                console.log('Navigation successful!');
+            } else {
+                console.log('Navigation failed!');
+            }
+        }).catch(err => {
+            console.error('Navigation error:', err);
+        });
     }
 
     getMenuItem(): Observable<any> {

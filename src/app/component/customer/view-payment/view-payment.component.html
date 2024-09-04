@@ -1,0 +1,34 @@
+<div class="payment-list-container">
+    <h2 class="text-center">Payments</h2>
+
+    <div class="search-container">
+        <input
+                type="text"
+                class="form-control"
+                placeholder="Search by Payment ID, Order ID, Date or Amount"
+                [(ngModel)]="searchTerm"
+        />
+    </div>
+
+    <table class="table table-striped table-hover mt-4">
+        <thead>
+        <tr>
+            <th>Payment ID</th>
+            <th>Order ID</th>
+            <th>Payment Date</th>
+            <th>Amount</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let payment of filterPayments()">
+            <td>{{ payment.id }}</td>
+            <td>{{ payment.order?.id }}</td>
+            <td>{{ payment.paymentDate | date: 'shortDate' }}</td>
+            <td>{{ payment.amount | currency }}</td>
+        </tr>
+        <tr *ngIf="filterPayments().length === 0">
+            <td colspan="4" class="text-center">No payments found.</td>
+        </tr>
+        </tbody>
+    </table>
+</div>

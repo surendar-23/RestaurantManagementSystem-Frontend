@@ -1,0 +1,45 @@
+<div class="container">
+    <h2>Create Inventory Entry</h2>
+    <form [formGroup]="inventoryForm" (ngSubmit)="onSubmit()">
+        <!-- Item Name -->
+        <div class="form-group">
+            <label for="name">Item Name:</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+            <div *ngIf="submitted && inventoryForm.controls['name'].invalid" class="text-danger">
+                <div *ngIf="inventoryForm.controls['name'].errors?.['required']">Item name is required.</div>
+            </div>
+        </div>
+
+        <!-- Quantity -->
+        <div class="form-group">
+            <label for="quantity">Quantity:</label>
+            <input type="number" class="form-control" id="quantity" formControlName="quantity">
+            <div *ngIf="submitted && inventoryForm.controls['quantity'].invalid" class="text-danger">
+                <div *ngIf="inventoryForm.controls['quantity'].errors?.['required']">Quantity is required.</div>
+                <div *ngIf="inventoryForm.controls['quantity'].errors?.['min']">Quantity must be at least 1.</div>
+            </div>
+        </div>
+
+        <!-- Restaurant ID -->
+        <div class="form-group">
+            <label for="restaurantId">Restaurant ID:</label>
+            <input type="number" class="form-control" id="restaurantId" formControlName="restaurantId">
+            <div *ngIf="submitted && inventoryForm.controls['restaurantId'].invalid" class="text-danger">
+                <div *ngIf="inventoryForm.controls['restaurantId'].errors?.['required']">Restaurant ID is required.
+                </div>
+            </div>
+        </div>
+
+        <!-- Supplier ID -->
+        <div class="form-group">
+            <label for="supplierId">Supplier ID:</label>
+            <input type="number" class="form-control" id="supplierId" formControlName="supplierId">
+            <div *ngIf="submitted && inventoryForm.controls['supplierId'].invalid" class="text-danger">
+                <div *ngIf="inventoryForm.controls['supplierId'].errors?.['required']">Supplier ID is required.</div>
+            </div>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary">Create Inventory Item</button>
+    </form>
+</div>

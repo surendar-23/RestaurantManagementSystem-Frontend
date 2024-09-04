@@ -1,0 +1,11 @@
+<nav class="navbar">
+    <a class="logo"><i class="fa fa-utensils"></i> Restaurant</a>
+    <ul>
+        <li *ngFor="let item of navItems">
+            <a [routerLink]="item.path">
+                <i [class]="item.icon"></i>
+                <span>{{ item.label }}</span>
+            </a>
+        </li>
+    </ul>
+</nav>

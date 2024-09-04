@@ -1,0 +1,34 @@
+<br/>
+<br/>
+<br/>
+<br/>
+<div class="update-bill-container">
+    <h2>Update Bill</h2>
+    <form [formGroup]="billForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="billId">Bill ID:</label>
+            <input id="billId" formControlName="billId" type="number" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="date">Date:</label>
+            <input id="date" formControlName="date" type="date" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input id="amount" formControlName="amount" type="number" step="0.01" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <textarea id="description" formControlName="description" class="form-control"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="billForm.invalid">Update</button>
+    </form>
+</div>
+<br/>
+<br/>
+<br/>
+<br/>

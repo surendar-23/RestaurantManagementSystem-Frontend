@@ -1,0 +1,28 @@
+<br/><br/><br/><br/>
+<div class="container">
+    <h2>Create Supplier</h2>
+    <form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label for="name">Supplier Name:</label>
+            <input type="text" class="form-control" id="name" formControlName="name">
+            <div *ngIf="submitted && supplierForm.controls['name'].invalid" class="text-danger">
+                <div *ngIf="supplierForm.controls['name'].errors?.['required']">Supplier name is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="contactInformation">Contact Information (Email):</label>
+            <input type="email" class="form-control" id="contactInformation" formControlName="contactInformation">
+            <div *ngIf="submitted && supplierForm.controls['contactInformation'].invalid" class="text-danger">
+                <div *ngIf="supplierForm.controls['contactInformation'].errors?.['required']">Email is required.</div>
+                <div *ngIf="supplierForm.controls['contactInformation'].errors?.['email']">Please enter a valid email
+                    address.
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Supplier</button>
+    </form>
+</div>
+<br/><br/><br/><br/>

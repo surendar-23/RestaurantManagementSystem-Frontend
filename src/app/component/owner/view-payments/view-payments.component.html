@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>Payments</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading payments...</p>
+    </div>
+
+    <!-- Payments Table -->
+    <table *ngIf="!loading && payments.length > 0" class="payments-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let payment of payments">
+            <td>{{ payment.id }}</td>
+            <td>{{ payment.paymentDate | date }}</td>
+            <td>{{ payment.amount | currency }}</td>
+            <td>
+                <button class="btn btn-edit" [routerLink]="['/owner/update-payment']">Edit</button>
+                <button class="btn btn-delete" (click)="deletePayment(payment.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- No Payments Message -->
+    <div *ngIf="!loading && payments.length === 0" class="no-entries">
+        <p>No payments found.</p>
+    </div>
+</div>

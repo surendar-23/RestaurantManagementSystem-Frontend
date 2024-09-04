@@ -1,0 +1,129 @@
+/* Overall form styling */
+form {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Input fields */
+input[type="text"],
+input[type="number"],
+select {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+    border-color: #007bff;
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333333;
+}
+
+/* Error messages */
+.text-danger {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: -8px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Submit button */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+}
+
+/* Optional: subtle animation on button click */
+button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* Optional: add icons to input fields */
+input[type="text"]::placeholder,
+input[type="number"]::placeholder {
+    font-size: 14px;
+    color: #a0a0a0;
+}
+
+/* Additional spacing for sections */
+.form-section {
+    margin-bottom: 20px;
+}
+
+/* Form header */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    form {
+        padding: 20px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    select {
+        padding: 10px 12px;
+    }
+
+    button[type="submit"] {
+        padding: 10px;
+        font-size: 16px;
+    }
+}
+
+/* Optional: add subtle animations to form fields */
+input[type="text"],
+input[type="number"],
+select {
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

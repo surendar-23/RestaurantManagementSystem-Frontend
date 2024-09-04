@@ -1,36 +1,11 @@
-<header class="header">
-    <a class="logo"><i class="fas fa-utensils"></i> Restaurant</a>
-    <nav class="nav-items">
-        <a (click)="gotourl('/chef/home')" [class.selected]="url === '/chef/home'">
-            <i class="fas fa-tachometer-alt"></i> Home
-        </a>
-        <a (click)="gotourl('/chef/update-menu-items')" [class.selected]="url === '/chef/update-menu-items'">
-            <i class="fas fa-edit"></i> Update Menu
-        </a>
-        <a (click)="gotourl('/chef/view-menu-items')" [class.selected]="url === '/chef/view-menu-items'">
-            <i class="fas fa-th-list"></i> View Menu
-        </a>
-        <a (click)="gotourl('/chef/update-inventory-status')"
-           [class.selected]="url === '/chef/update-inventory-status'">
-            <i class="fas fa-box"></i> Update Inventory
-        </a>
-        <a (click)="gotourl('/chef/view-inventory-items')" [class.selected]="url === '/chef/view-inventory-items'">
-            <i class="fas fa-box-open"></i> View Inventory
-        </a>
-        <a (click)="gotourl('/chef/update-order-status')" [class.selected]="url === '/chef/update-order-status'">
-            <i class="fas fa-clipboard-check"></i> Update Order
-        </a>
-        <a (click)="gotourl('/chef/view-orders')" [class.selected]="url === '/chef/view-orders'">
-            <i class="fas fa-list"></i> View Orders
-        </a>
-        <a (click)="gotourl('/chef/view-order-details')" [class.selected]="url === '/chef/view-order-details'">
-            <i class="fas fa-info-circle"></i> View Order Details
-        </a>
-        <a (click)="gotourl('/chef/view-feedbacks')" [class.selected]="url === '/chef/view-feedbacks'">
-            <i class="fas fa-comments"></i> View Feedbacks
-        </a>
-        <a (click)="gotourl('/chef/logout')" [class.selected]="url === '/chef/logout'">
-            <i class="fas fa-sign-out-alt"></i> Logout
-        </a>
-    </nav>
-</header>
+<nav class="navbar">
+    <a class="logo"><i class="fa fa-utensils"></i> Restaurant</a>
+    <ul>
+        <li *ngFor="let item of navItems">
+            <a [routerLink]="item.path" [class.selected]="url === item.path" (click)="gotourl(item.path)">
+                <i [class]="item.icon"></i>
+                <span>{{ item.label }}</span>
+            </a>
+        </li>
+    </ul>
+</nav>

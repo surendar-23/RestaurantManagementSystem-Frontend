@@ -1,0 +1,44 @@
+<div class="container">
+    <h2>Bill Entries</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading bills...</p>
+    </div>
+
+    <!-- Bills Table -->
+    <table *ngIf="!loading && bills.length > 0" class="bills-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let bill of bills">
+            <td>{{ bill.id }}</td>
+            <td>{{ bill.date | date }}</td>
+            <td>{{ bill.amount | currency }}</td>
+            <td>{{ bill.description }}</td>
+            <td>
+                <button class="btn btn-edit" [routerLink]="['/owner/update-bill']">Edit</button>
+                <button class="btn btn-delete" (click)="deleteBill(bill.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- No Bills Message -->
+    <div *ngIf="!loading && bills.length === 0" class="no-entries">
+        <p>No bills found.</p>
+    </div>
+</div>

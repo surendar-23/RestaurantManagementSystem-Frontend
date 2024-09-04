@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>Orders</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading orders...</p>
+    </div>
+
+    <!-- Orders Table -->
+    <table *ngIf="!loading && orders.length > 0" class="orders-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Order Date</th>
+            <th>Total</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let order of orders">
+            <td>{{ order.id }}</td>
+            <td>{{ order.orderDate }}</td>
+            <td>{{ order.total }}</td>
+            <td>
+                <button class="btn btn-edit" [routerLink]="['/owner/update-order']">Edit</button>
+                <button class="btn btn-delete" (click)="deleteOrder(order.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- No Orders Message -->
+    <div *ngIf="!loading && orders.length === 0" class="no-entries">
+        <p>No orders found.</p>
+    </div>
+</div>

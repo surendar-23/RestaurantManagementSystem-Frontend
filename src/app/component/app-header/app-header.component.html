@@ -1,30 +1,11 @@
-<header class="header">
-    <a class="logo"><i class="fa fa-utensils"></i> Restaurant </a>
-    <nav class="nav-items">
-        <a (click)="gotourl('')" [class.selected]="url === '/'"><i class="fa fa-home"></i> Home</a>
-
-        <a (click)="gotourl('about-us')" [class.selected]="url === '/about-us'"><i class="fa fa-address-card"></i> About
-            Us</a>
-
-        <a (click)="gotourl('contact-us')" [class.selected]="url === '/contact-us'"><i class="fa fa-id-badge"></i>
-            Contact Us</a>
-
-        <a (click)="gotourl('chef')" [class.selected]="url === '/chef'"><i class="fa fa-pizza-slice"></i> Chef</a>
-
-        <a (click)="gotourl('customer')" [class.selected]="url === '/customer'"><i class="fa fa-user-circle"></i>
-            Customer</a>
-
-        <a (click)="gotourl('delivery-partner')" [class.selected]="url === '/delivery-partner'"><i
-                class="fa fa-truck"></i> Delivery Partner</a>
-
-        <a (click)="gotourl('owner')" [class.selected]="url === '/owner'"><i
-                class="fa fa-user"></i> Owner</a>
-
-        <a (click)="gotourl('supplier')" [class.selected]="url === '/supplier'"><i
-                class="fa fa-user-tie"></i> Supplier</a>
-
-        <a (click)="gotourl('waiter')" [class.selected]="url === '/waiter'"><i
-                class="fa fa-users"></i> Waiter</a>
-
-    </nav>
-</header>
+<nav class="navbar">
+    <a class="logo"><i class="fa fa-utensils"></i> Restaurant</a>
+    <ul>
+        <li *ngFor="let item of navItems">
+            <a [routerLink]="item.path" [class.selected]="url === item.path">
+                <i [class]="item.icon"></i>
+                <span>{{ item.label }}</span>
+            </a>
+        </li>
+    </ul>
+</nav>

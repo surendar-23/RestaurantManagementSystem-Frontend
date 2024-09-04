@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>Tables</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading tables...</p>
+    </div>
+
+    <!-- Tables Table -->
+    <table *ngIf="!loading && tables.length > 0" class="tables-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Number</th>
+            <th>Seats</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let table of tables">
+            <td>{{ table.id }}</td>
+            <td>{{ table.number }}</td>
+            <td>{{ table.seats }}</td>
+            <td>
+                <button class="btn btn-edit" [routerLink]="['/owner/update-table']">Edit</button>
+                <button class="btn btn-delete" (click)="deleteTable(table.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- No Tables Message -->
+    <div *ngIf="!loading && tables.length === 0" class="no-entries">
+        <p>No tables found.</p>
+    </div>
+</div>

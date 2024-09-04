@@ -1,29 +1,10 @@
 <header class="header">
-    <a class="logo"><i class="fas fa-utensils"></i> Restaurant</a>
+    <a class="logo"><i class="fa fa-utensils"></i> Restaurant</a>
     <nav class="nav-items">
-        <a (click)="gotourl('/waiter/home')" [class.selected]="url === '/waiter/home'">
-            <i class="fas fa-tachometer-alt"></i> Home
-        </a>
-        <a (click)="gotourl('/waiter/create-order')" [class.selected]="url === '/waiter/create-order'">
-            <i class="fas fa-edit"></i> Create Order
-        </a>
-        <a (click)="gotourl('/waiter/view-current-orders')" [class.selected]="url === '/waiter/view-current-orders'">
-            <i class="fas fa-truck"></i> View Orders
-        </a>
-        <a (click)="gotourl('/waiter/update-order-status')" [class.selected]="url === '/waiter/update-order-status'">
-            <i class="fas fa-th-list"></i> Update Order
-        </a>
-        <a (click)="gotourl('/waiter/view-order-details')" [class.selected]="url === '/waiter/view-order-details'">
-            <i class="fas fa-truck"></i> View Order Details
-        </a>
-        <a (click)="gotourl('/waiter/update-table-details')" [class.selected]="url === '/waiter/update-table-details'">
-            <i class="fas fa-file-alt"></i> Update Table
-        </a>
-        <a (click)="gotourl('/waiter/view-table-details')" [class.selected]="url === '/waiter/view-table-details'">
-            <i class="fas fa-truck"></i> View Table Details
-        </a>
-        <a (click)="gotourl('/waiter/logout')" [class.selected]="url === '/waiter/logout'">
-            <i class="fas fa-sign-out-alt"></i> Logout
+        <a *ngFor="let item of navItems"
+           (click)="gotourl(item.path)"
+           [class.selected]="url === item.path">
+            <i [class]="item.icon"></i> {{ item.label }}
         </a>
     </nav>
 </header>

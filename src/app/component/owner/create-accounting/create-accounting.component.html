@@ -1,0 +1,42 @@
+<br/><br/><br/><br/>
+<div class="container">
+    <h2>Create Accounting Entry</h2>
+    <form [formGroup]="accountingForm" (ngSubmit)="onSubmit()">
+
+        <div class="form-group">
+            <label for="date">Accounting Date:</label>
+            <input type="date" class="form-control" id="date" formControlName="date">
+            <div *ngIf="submitted && accountingForm.controls['date'].invalid" class="text-danger">
+                <div *ngIf="accountingForm.controls['date'].errors?.['required']">Date is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="amount">Amount:</label>
+            <input type="number" class="form-control" id="amount" formControlName="amount">
+            <div *ngIf="submitted && accountingForm.controls['amount'].invalid" class="text-danger">
+                <div *ngIf="accountingForm.controls['amount'].errors?.['required']">Amount is required.</div>
+                <div *ngIf="accountingForm.controls['amount'].errors?.['min']">Amount must be greater than 0.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ownerId">Owner ID:</label>
+            <input type="number" class="form-control" id="ownerId" formControlName="ownerId">
+            <div *ngIf="submitted && accountingForm.controls['ownerId'].invalid" class="text-danger">
+                <div *ngIf="accountingForm.controls['ownerId'].errors?.['required']">Owner ID is required.</div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="billId">Bill ID:</label>
+            <input type="number" class="form-control" id="billId" formControlName="billId">
+            <div *ngIf="submitted && accountingForm.controls['billId'].invalid" class="text-danger">
+                <div *ngIf="accountingForm.controls['billId'].errors?.['required']">Bill ID is required.</div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Create Accounting Entry</button>
+    </form>
+</div>
+<br/><br/><br/><br/>

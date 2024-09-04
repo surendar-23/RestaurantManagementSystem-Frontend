@@ -1,8 +1,8 @@
-import {Order} from "./order";
+import {Order} from './order'; // Adjust path as necessary
 
 export class Payment {
-    id: number | undefined;
-    paymentDate: Date | undefined;
-    amount: number | undefined;
-    order: Order | undefined;
+    id?: number;
+    paymentDate?: Date;
+    amount?: number;
+    order?: Order;
 }

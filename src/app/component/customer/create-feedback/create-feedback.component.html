@@ -1,0 +1,32 @@
+<div class="feedback-form-container">
+    <h2>Submit Feedback</h2>
+    <form [formGroup]="feedbackForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="orderId">Order ID</label>
+            <input id="orderId" formControlName="orderId" type="text" class="form-control"/>
+            <div *ngIf="feedbackForm.get('orderId')?.invalid && feedbackForm.get('orderId')?.touched"
+                 class="text-danger">
+                Order ID is required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="comment">Comment</label>
+            <textarea id="comment" formControlName="comment" class="form-control"></textarea>
+            <div *ngIf="feedbackForm.get('comment')?.invalid && feedbackForm.get('comment')?.touched"
+                 class="text-danger">
+                Comment is required.
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="rating">Rating (1-5)</label>
+            <input id="rating" formControlName="rating" type="number" min="1" max="5" class="form-control"/>
+            <div *ngIf="feedbackForm.get('rating')?.invalid && feedbackForm.get('rating')?.touched" class="text-danger">
+                Rating must be between 1 and 5.
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="feedbackForm.invalid">Submit Feedback</button>
+    </form>
+</div>

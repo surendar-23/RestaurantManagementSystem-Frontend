@@ -1,23 +1,10 @@
 <header class="header">
-    <a class="logo"><i class="fa fa-utensils"></i> Restaurant</a>
+    <a class="logo"><i class="fas fa-utensils"></i> Restaurant</a>
     <nav class="nav-items">
-        <a (click)="gotourl('/supplier/home')" [class.selected]="url === '/supplier/home'"><i
-                class="fa fa-dashboard"></i>
-            Home</a>
-        <a (click)="gotourl('/supplier/view-inventory-items')"
-           [class.selected]="url === '/supplier/view-inventory-item'"><i class="fa fa-th-list"></i> View Inventory
-            Items</a>
-        <a (click)="gotourl('/supplier/update-inventory-item')"
-           [class.selected]="url === '/supplier/update-inventory-item'"> <i class="fa fa-edit"></i> Update
-            Inventory Item</a>
-        <a (click)="gotourl('/supplier/view-order-details')"
-           [class.selected]="url === '/supplier/view-order-details'"><i class="fa fa-file-text"></i> View Order
-            Details</a>
-        <a (click)="gotourl('/supplier/view-supply-details')"
-           [class.selected]="url === '/supplier/view-supply-details'"><i class="fa fa-truck"></i> View Supply
-            Details</a>
-        <a (click)="gotourl('/supplier/logout')"
-           [class.selected]="url === '/supplier/logout'"><i class="fa fa-sign-out-alt"></i> Logout</a>
+        <a *ngFor="let item of navItems"
+           (click)="gotourl(item.path)"
+           [class.selected]="url === item.path">
+            <i [class]="item.icon"></i> {{ item.label }}
+        </a>
     </nav>
 </header>
-
