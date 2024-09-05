@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ViewOrdersComponent } from './view-orders.component';
+import {ManageOrdersComponent} from './view-orders.component';
 
 describe('ViewOrdersComponent', () => {
-  let component: ViewOrdersComponent;
-  let fixture: ComponentFixture<ViewOrdersComponent>;
+    let component: ManageOrdersComponent;
+    let fixture: ComponentFixture<ManageOrdersComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ViewOrdersComponent]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [ManageOrdersComponent]
+        })
+            .compileComponents();
 
-    fixture = TestBed.createComponent(ViewOrdersComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(ManageOrdersComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

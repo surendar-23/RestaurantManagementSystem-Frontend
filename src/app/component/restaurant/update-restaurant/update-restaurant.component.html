@@ -1,0 +1,47 @@
+<div class="container">
+    <h2>Update Restaurant</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Restaurant ID Input -->
+    <div class="form-group">
+        <label for="restaurantId">Restaurant ID</label>
+        <input type="number" id="restaurantId" [(ngModel)]="restaurantId" class="form-control"
+               placeholder="Enter Restaurant ID">
+    </div>
+
+    <!-- Fetch Details Button -->
+    <button (click)="fetchRestaurantDetails()" class="btn btn-primary">Fetch Details</button>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading restaurant details...</p>
+    </div>
+
+    <!-- Restaurant Form -->
+    <form *ngIf="restaurant" (ngSubmit)="updateRestaurant()">
+        <div class="form-group">
+            <label for="restaurantName">Restaurant Name</label>
+            <input type="text" id="restaurantName" [(ngModel)]="restaurant.name" name="restaurantName"
+                   class="form-control" placeholder="Enter Restaurant Name">
+        </div>
+
+        <div class="form-group">
+            <label for="addressId">Address ID</label>
+            <input type="number" id="addressId" [(ngModel)]="restaurant.address.id" name="addressId"
+                   class="form-control" placeholder="Enter Address ID">
+        </div>
+
+        <div class="form-group">
+            <label for="ownerId">Owner ID</label>
+            <input type="number" id="ownerId" [(ngModel)]="restaurant.owner.id" name="ownerId" class="form-control"
+                   placeholder="Enter Owner ID">
+        </div>
+
+        <button type="submit" class="btn btn-success">Update Restaurant</button>
+    </form>
+</div>

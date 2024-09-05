@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ViewSuppliersComponent } from './view-suppliers.component';
+import {ManageSuppliersComponent} from './view-suppliers.component';
 
 describe('ViewSuppliersComponent', () => {
-  let component: ViewSuppliersComponent;
-  let fixture: ComponentFixture<ViewSuppliersComponent>;
+    let component: ManageSuppliersComponent;
+    let fixture: ComponentFixture<ManageSuppliersComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ViewSuppliersComponent]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [ManageSuppliersComponent]
+        })
+            .compileComponents();
 
-    fixture = TestBed.createComponent(ViewSuppliersComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(ManageSuppliersComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

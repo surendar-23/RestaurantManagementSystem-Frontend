@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ViewTableComponent } from './view-table.component';
+import {ManageTableComponent} from './view-table.component';
 
 describe('ViewTableComponent', () => {
-  let component: ViewTableComponent;
-  let fixture: ComponentFixture<ViewTableComponent>;
+    let component: ManageTableComponent;
+    let fixture: ComponentFixture<ManageTableComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ViewTableComponent]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [ManageTableComponent]
+        })
+            .compileComponents();
 
-    fixture = TestBed.createComponent(ViewTableComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(ManageTableComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

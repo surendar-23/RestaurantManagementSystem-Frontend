@@ -1,0 +1,59 @@
+<div class="container">
+    <h2>Create New Restaurant</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <form [formGroup]="createRestaurantForm" (ngSubmit)="onSubmit()">
+        <!-- Restaurant Name -->
+        <div class="form-group">
+            <label for="restaurantName">Restaurant Name</label>
+            <input
+                    type="text"
+                    id="restaurantName"
+                    class="form-control"
+                    formControlName="restaurantName"
+                    required
+            />
+        </div>
+
+        <!-- Address ID -->
+        <div class="form-group">
+            <label for="addressId">Address ID</label>
+            <select
+                    id="addressId"
+                    class="form-control"
+                    formControlName="addressId"
+                    required
+            >
+                <option value="" disabled>Select Address ID</option>
+                <option *ngFor="let address of addresses" [value]="address.id">
+                    {{ address.id }} - {{ address.street }}, {{ address.city }}
+                </option>
+            </select>
+        </div>
+
+        <!-- Owner ID -->
+        <div class="form-group">
+            <label for="ownerId">Owner ID</label>
+            <select
+                    id="ownerId"
+                    class="form-control"
+                    formControlName="ownerId"
+                    required
+            >
+                <option value="" disabled>Select Owner ID</option>
+                <option *ngFor="let owner of owners" [value]="owner.id">
+                    {{ owner.id }} - {{ owner.name }}
+                </option>
+            </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="btn btn-primary" [disabled]="createRestaurantForm.invalid">
+            Create Restaurant
+        </button>
+    </form>
+</div>

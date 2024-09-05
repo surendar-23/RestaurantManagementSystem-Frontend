@@ -1,23 +1,23 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ViewBillComponent } from './view-bill.component';
+import {ManageBillComponent} from './view-bill.component';
 
 describe('ViewBillComponent', () => {
-  let component: ViewBillComponent;
-  let fixture: ComponentFixture<ViewBillComponent>;
+    let component: ManageBillComponent;
+    let fixture: ComponentFixture<ManageBillComponent>;
 
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
-      imports: [ViewBillComponent]
-    })
-    .compileComponents();
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
+            imports: [ManageBillComponent]
+        })
+            .compileComponents();
 
-    fixture = TestBed.createComponent(ViewBillComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+        fixture = TestBed.createComponent(ManageBillComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

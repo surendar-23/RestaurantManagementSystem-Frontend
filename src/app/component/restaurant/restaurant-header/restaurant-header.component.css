@@ -1,0 +1,42 @@
+.header {
+    background-color: #343a40;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo {
+    color: white;
+    font-size: 24px;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.header .nav-items {
+    display: flex;
+}
+
+.header .nav-items a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+}
+
+.header .nav-items a:hover {
+    background-color: #495057;
+    border-radius: 5px;
+}
+
+.header .nav-items .selected {
+    background-color: #495057;
+    border-radius: 5px;
+}
+
+.header .nav-items i {
+    margin-right: 8px;
+}

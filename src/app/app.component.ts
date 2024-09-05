@@ -12,11 +12,12 @@ import {
 import {ChefHeaderComponent} from "./component/chef/chef-header/chef-header.component";
 import {CustomerHeaderComponent} from "./component/customer/customer-header/customer-header.component";
 import {OwnerHeaderComponent} from "./component/owner/owner-header/owner-header.component";
+import {RestaurantHeaderComponent} from "./component/restaurant/restaurant-header/restaurant-header.component";
 
 @Component({
     selector: 'app-root',
     standalone: true,
-    imports: [RouterOutlet, FooterComponent, AppHeaderComponent, SupplierHeaderComponent, SupplierHomeComponent, WaiterHeaderComponent, DeliveryPartnerHeaderComponent, ChefHeaderComponent, CustomerHeaderComponent, OwnerHeaderComponent],
+    imports: [RouterOutlet, FooterComponent, AppHeaderComponent, SupplierHeaderComponent, SupplierHomeComponent, WaiterHeaderComponent, DeliveryPartnerHeaderComponent, ChefHeaderComponent, CustomerHeaderComponent, OwnerHeaderComponent, RestaurantHeaderComponent],
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })

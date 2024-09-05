@@ -1,0 +1,42 @@
+<div class="container">
+    <h2>Manage Waiters</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading waiters...</p>
+    </div>
+
+    <!-- Waiters Table -->
+    <table *ngIf="!loading && waiters.length > 0" class="waiter-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Experience</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let waiter of waiters">
+            <td>{{ waiter.id }}</td>
+            <td>{{ waiter.name }}</td>
+            <td>{{ waiter.experience }} years</td>
+            <td>
+                <button class="btn btn-edit" [routerLink]="['/restaurant/update-waiters']">Edit</button>
+                <button class="btn btn-delete" (click)="deleteWaiter(waiter.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- No Waiters Message -->
+    <div *ngIf="!loading && waiters.length === 0" class="no-entries">
+        <p>No waiters found.</p>
+    </div>
+</div>

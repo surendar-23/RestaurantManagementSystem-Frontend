@@ -53,6 +53,33 @@ import {ManageTableComponent} from "./component/owner/view-table/view-table.comp
 import {UpdatePaymentComponent} from "./component/owner/update-payment/update-payment.component";
 import {ManagePaymentsComponent} from "./component/owner/view-payments/view-payments.component";
 import {ManageOrdersComponent} from "./component/owner/view-orders/view-orders.component";
+import {RestaurantHomeComponent} from "./component/restaurant/restaurant-home/restaurant-home.component";
+import {CreateRestaurantComponent} from "./component/restaurant/create-restaurant/create-restaurant.component";
+import {ManageRestaurantComponent} from "./component/restaurant/manage-restaurant/manage-restaurant.component";
+import {UpdateRestaurantComponent} from "./component/restaurant/update-restaurant/update-restaurant.component";
+import {CreateAddressComponent} from "./component/restaurant/create-address/create-address.component";
+import {ManageAddressComponent} from "./component/restaurant/manage-address/manage-address.component";
+import {UpdateAddressComponent} from "./component/restaurant/update-address/update-address.component";
+import {CreateCategoryComponent} from "./component/restaurant/create-category/create-category.component";
+import {ManageCategoryComponent} from "./component/restaurant/manage-category/manage-category.component";
+import {UpdateCategoryComponent} from "./component/restaurant/update-category/update-category.component";
+import {CreateMenuItemComponent} from "./component/restaurant/create-menu-item/create-menu-item.component";
+import {ManageMenuItemsComponent} from "./component/restaurant/manage-menu-items/manage-menu-items.component";
+import {CreateChefComponent} from "./component/restaurant/create-chef/create-chef.component";
+import {ManageChefsComponent} from "./component/restaurant/manage-chefs/manage-chefs.component";
+import {UpdateChefComponent} from "./component/restaurant/update-chef/update-chef.component";
+import {CreateWaiterComponent} from "./component/restaurant/create-waiter/create-waiter.component";
+import {ManageWaitersComponent} from "./component/restaurant/manage-waiters/manage-waiters.component";
+import {UpdateWaiterComponent} from "./component/restaurant/update-waiter/update-waiter.component";
+import {
+    CreateDeliveryPartnerComponent
+} from "./component/restaurant/create-delivery-partner/create-delivery-partner.component";
+import {
+    ManageDeliveryPartnersComponent
+} from "./component/restaurant/manage-delivery-partners/manage-delivery-partners.component";
+import {
+    UpdateDeliveryPartnerComponent
+} from "./component/restaurant/update-delivery-partner/update-delivery-partner.component";
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -148,7 +175,32 @@ const routes: Routes = [
         ]
     },
 
-
+    {
+        path: 'restaurant', children: [
+            {path: 'home', component: RestaurantHomeComponent},
+            {path: 'create-restaurant', component: CreateRestaurantComponent},
+            {path: 'manage-restaurants', component: ManageRestaurantComponent},
+            {path: 'update-restaurant', component: UpdateRestaurantComponent},
+            {path: 'create-address', component: CreateAddressComponent},
+            {path: 'manage-address', component: ManageAddressComponent},
+            {path: 'update-address', component: UpdateAddressComponent},
+            {path: 'create-category', component: CreateCategoryComponent},
+            {path: 'manage-category', component: ManageCategoryComponent},
+            {path: 'update-category', component: UpdateCategoryComponent},
+            {path: 'create-menu-item', component: CreateMenuItemComponent},
+            {path: 'manage-menu-item', component: ManageMenuItemsComponent},
+            {path: 'update-menu-item', component: UpdateMenuItemsComponent},
+            {path: 'create-chef', component: CreateChefComponent},
+            {path: 'manage-chefs', component: ManageChefsComponent},
+            {path: 'update-chef', component: UpdateChefComponent},
+            {path: 'create-waiter', component: CreateWaiterComponent},
+            {path: 'manage-waiters', component: ManageWaitersComponent},
+            {path: 'update-waiters', component: UpdateWaiterComponent},
+            {path: 'create-delivery-partner', component: CreateDeliveryPartnerComponent},
+            {path: 'manage-delivery-partners', component: ManageDeliveryPartnersComponent},
+            {path: 'update-delivery-partners', component: UpdateDeliveryPartnerComponent}
+        ]
+    }
 ];
 
 @NgModule({
