@@ -1,1 +1,42 @@
-<p>manage-menu-items works!</p>
+<div class="container">
+    <h2>Manage Menu Items</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading menu items...</p>
+    </div>
+
+    <!-- Menu Items Table -->
+    <table *ngIf="!loading && menuItems.length > 0" class="menu-item-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let menuItem of menuItems">
+            <td>{{ menuItem.id }}</td>
+            <td>{{ menuItem.name }}</td>
+            <td>{{ menuItem.price | currency }}</td>
+            <td>
+                <button class="btn btn-edit" [routerLink]="['/restaurant/update-menu-item']">Edit</button>
+                <button class="btn btn-delete" (click)="deleteMenuItem(menuItem.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- No Menu Items Message -->
+    <div *ngIf="!loading && menuItems.length === 0" class="no-entries">
+        <p>No menu items found.</p>
+    </div>
+</div>

@@ -1,1 +1,42 @@
-<p>manage-chefs works!</p>
+<div class="container">
+    <h2>Manage Chefs</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading chefs...</p>
+    </div>
+
+    <!-- Chefs Table -->
+    <table *ngIf="!loading && chefs.length > 0" class="chefs-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Experience</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let chef of chefs">
+            <td>{{ chef.id }}</td>
+            <td>{{ chef.name }}</td>
+            <td>{{ chef.experience }}</td>
+            <td>
+                <button class="btn btn-edit" [routerLink]="['/restaurant/update-chef']">Edit</button>
+                <button class="btn btn-delete" (click)="deleteChef(chef.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- No Chefs Message -->
+    <div *ngIf="!loading && chefs.length === 0" class="no-entries">
+        <p>No chefs found.</p>
+    </div>
+</div>

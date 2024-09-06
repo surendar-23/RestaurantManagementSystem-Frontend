@@ -1,1 +1,36 @@
-<p>create-chef works!</p>
+<div class="container">
+    <h2>Create New Chef</h2>
+
+    <!-- Error and Success Messages -->
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <!-- Form to Create Chef -->
+    <form (ngSubmit)="createChef()">
+        <div class="form-group">
+            <label for="chefName">Chef Name</label>
+            <input type="text" id="chefName" [(ngModel)]="chef.name" name="chefName" class="form-control"
+                   placeholder="Enter Chef Name" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="chefExperience">Experience (years)</label>
+            <input type="number" id="chefExperience" [(ngModel)]="chef.experience" name="chefExperience"
+                   class="form-control" placeholder="Enter Experience" min="0" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="restaurantId">Restaurant ID</label>
+            <input type="number" id="restaurantId" [(ngModel)]="chef.restaurantId" name="restaurantId"
+                   class="form-control" placeholder="Enter Restaurant ID" min="1" required/>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="loading">Create Chef</button>
+    </form>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Creating chef...</p>
+    </div>
+</div>

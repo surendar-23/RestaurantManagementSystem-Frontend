@@ -1,1 +1,43 @@
-<p>manage-delivery-partners works!</p>
+<div class="container">
+    <h2>Manage Delivery Partners</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading delivery partners...</p>
+    </div>
+
+    <!-- Delivery Partners Table -->
+    <table *ngIf="!loading && deliveryPartners.length > 0" class="delivery-partners-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Contact Number</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let partner of deliveryPartners">
+            <td>{{ partner.id }}</td>
+            <td>{{ partner.name }}</td>
+            <td>{{ partner.contactNumber }}</td>
+            <td>
+                <button class="btn btn-edit" [routerLink]="['/restaurant/update-delivery-partners']">Edit
+                </button>
+                <button class="btn btn-delete" (click)="deleteDeliveryPartner(partner.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- No Delivery Partners Message -->
+    <div *ngIf="!loading && deliveryPartners.length === 0" class="no-entries">
+        <p>No delivery partners found.</p>
+    </div>
+</div>

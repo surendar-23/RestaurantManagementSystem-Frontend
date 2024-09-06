@@ -1,1 +1,46 @@
-<p>create-menu-item works!</p>
+<div class="container">
+    <h2>Create New Menu Item</h2>
+
+    <!-- Error and Success Messages -->
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <!-- Form to Create Menu Item -->
+    <form (ngSubmit)="createMenuItem()">
+        <div class="form-group">
+            <label for="menuItemName">Menu Item Name</label>
+            <input type="text" id="menuItemName" [(ngModel)]="menuItem.name" name="menuItemName" class="form-control"
+                   placeholder="Enter Menu Item Name" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="menuItemPrice">Price</label>
+            <input type="number" id="menuItemPrice" [(ngModel)]="menuItem.price" name="menuItemPrice"
+                   class="form-control"
+                   placeholder="Enter Price" required/>
+        </div>
+
+        <div class="form-group">
+            <label for="categoryId">Category</label>
+            <select id="categoryId" [(ngModel)]="menuItem.category" name="categoryId" class="form-control" required>
+                <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="restaurantId">Restaurant</label>
+            <select id="restaurantId" [(ngModel)]="menuItem.restaurant" name="restaurantId" class="form-control"
+                    required>
+                <option *ngFor="let restaurant of restaurants" [value]="restaurant.id">{{ restaurant.name }}</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" [disabled]="loading">Create Menu Item</button>
+    </form>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Creating menu item...</p>
+    </div>
+</div>
