@@ -1,1 +1,40 @@
-<p>update-waiter works!</p>
+<div class="container">
+    <h2>Update Waiter Details</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Waiter ID Input -->
+    <div class="form-group">
+        <label for="waiterId">Waiter ID</label>
+        <input type="number" id="waiterId" [(ngModel)]="waiterId" class="form-control" placeholder="Enter Waiter ID">
+    </div>
+
+    <!-- Fetch Details Button -->
+    <button (click)="fetchWaiterDetails()" class="btn btn-primary">Fetch Details</button>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading waiter details...</p>
+    </div>
+
+    <!-- Waiter Form -->
+    <form *ngIf="waiter" (ngSubmit)="updateWaiter()">
+        <div class="form-group">
+            <label for="waiterName">Waiter Name</label>
+            <input type="text" id="waiterName" [(ngModel)]="waiter.name" name="waiterName" class="form-control"
+                   placeholder="Enter Waiter Name">
+        </div>
+
+        <div class="form-group">
+            <label for="experience">Experience (Years)</label>
+            <input type="number" id="experience" [(ngModel)]="waiter.experience" name="experience" class="form-control"
+                   placeholder="Enter Experience">
+        </div>
+
+        <button type="submit" class="btn btn-success">Update Waiter</button>
+    </form>
+</div>

@@ -1,1 +1,42 @@
-<p>manage-category works!</p>
+<div class="container">
+    <h2>Manage Categories</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading categories...</p>
+    </div>
+
+    <!-- Categories Table -->
+    <table *ngIf="!loading && categories.length > 0" class="category-table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let category of categories">
+            <td>{{ category.id }}</td>
+            <td>{{ category.name }}</td>
+            <td>{{ category.description }}</td>
+            <td>
+                <button class="btn btn-edit" [routerLink]="['/restaurant/update-category']">Edit</button>
+                <button class="btn btn-delete" (click)="deleteCategory(category.id)">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- No Categories Message -->
+    <div *ngIf="!loading && categories.length === 0" class="no-entries">
+        <p>No categories found.</p>
+    </div>
+</div>

@@ -27,7 +27,6 @@ export class RestaurantHeaderComponent implements OnInit {
         {path: '/restaurant/manage-waiters', label: 'Manage Waiters', icon: 'fas fa-tasks'},
         {path: '/restaurant/create-category', label: 'Create Category', icon: 'fas fa-tags'},
         {path: '/restaurant/manage-category', label: 'Manage Category', icon: 'fas fa-tasks'},
-        {path: '/restaurant/update-category', label: 'Update Category', icon: 'fas fa-edit'}
     ];
 
     navItems2 = [

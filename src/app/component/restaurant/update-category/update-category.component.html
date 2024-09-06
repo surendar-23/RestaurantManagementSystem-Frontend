@@ -1,1 +1,42 @@
-<p>update-category works!</p>
+<div class="container">
+    <h2>Update Category Details</h2>
+
+    <!-- Error Message -->
+    <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+    </div>
+
+    <!-- Category ID Input -->
+    <div class="form-group">
+        <label for="categoryId">Category ID</label>
+        <input type="number" id="categoryId" [(ngModel)]="categoryId" class="form-control"
+               placeholder="Enter Category ID">
+    </div>
+
+    <!-- Fetch Details Button -->
+    <button (click)="fetchCategoryDetails()" class="btn btn-primary">Fetch Details</button>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading category details...</p>
+    </div>
+
+    <!-- Category Form -->
+    <form *ngIf="category" (ngSubmit)="updateCategory()">
+        <div class="form-group">
+            <label for="categoryName">Category Name</label>
+            <input type="text" id="categoryName" [(ngModel)]="category.name" name="categoryName" class="form-control"
+                   placeholder="Enter Category Name">
+        </div>
+
+        <div class="form-group">
+            <label for="categoryDescription">Category Description</label>
+            <textarea id="categoryDescription" [(ngModel)]="category.description" name="categoryDescription"
+                      class="form-control"
+                      placeholder="Enter Category Description"></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-success">Update Category</button>
+    </form>
+</div>

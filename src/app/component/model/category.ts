@@ -1,4 +1,4 @@
-import {MenuItem} from "./menuItem";
+import {MenuItem} from './menuItem';
 
 export class Category {
     id: number | undefined;
