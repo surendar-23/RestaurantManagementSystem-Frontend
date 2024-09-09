@@ -80,11 +80,20 @@ import {
 import {
     UpdateDeliveryPartnerComponent
 } from "./component/restaurant/update-delivery-partner/update-delivery-partner.component";
+import {ForgotPasswordComponent} from "./component/forgot-password/forgot-password.component";
+import {UserLoginComponent} from "./component/user-login/user-login.component";
+import {UserSignupComponent} from "./component/user-signup/user-signup.component";
+import {ChangePasswordComponent} from "./component/change-password/change-password.component";
+import {AuthGuard} from "./auth.guard";
 
 const routes: Routes = [
     {path: '', component: HomeComponent},
     {path: 'about-us', component: AboutUsComponent},
     {path: 'contact-us', component: ContactUsComponent},
+    {path: 'forgot-password', component: ForgotPasswordComponent},
+    {path: 'user-login', component: UserLoginComponent},
+    {path: 'user-signup', component: UserSignupComponent},
+    {path: 'change-password', component: ChangePasswordComponent},
 
     {
         path: 'supplier', children: [

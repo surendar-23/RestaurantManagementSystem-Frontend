@@ -1,12 +1,19 @@
-<app-app-header></app-app-header>
+<!-- Dynamic headers based on the role -->
+<ng-container [ngSwitch]="authService.getUserRole()">
+    <app-supplier-header *ngSwitchCase="'supplier'"></app-supplier-header>
+    <app-waiter-header *ngSwitchCase="'waiter'"></app-waiter-header>
+    <app-delivery-partner-header *ngSwitchCase="'delivery-partner'"></app-delivery-partner-header>
+    <app-chef-header *ngSwitchCase="'chef'"></app-chef-header>
+    <app-customer-header *ngSwitchCase="'customer'"></app-customer-header>
+    <app-owner-header *ngSwitchCase="'owner'"></app-owner-header>
+    <app-restaurant-header *ngSwitchCase="'restaurant'"></app-restaurant-header>
+    <app-app-header *ngSwitchDefault></app-app-header>
+</ng-container>
 
-<!--<app-supplier-header></app-supplier-header>-->
-<!--<app-waiter-header></app-waiter-header>-->
-<!--<app-delivery-partner-header></app-delivery-partner-header>-->
-<!--<app-chef-header></app-chef-header>-->
-<!--<app-customer-header></app-customer-header>-->
-<!--<app-owner-header></app-owner-header>-->
-<!--<app-restaurant-header></app-restaurant-header>-->
 
+<!-- Router outlet to display the content based on current route -->
 <router-outlet></router-outlet>
+
+
+<!-- Footer component -->
 <app-footer></app-footer>

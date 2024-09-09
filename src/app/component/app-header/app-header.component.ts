@@ -21,24 +21,19 @@ export class AppHeaderComponent {
         {path: '/', label: 'Home', icon: 'fas fa-home'},
         {path: '/about-us', label: 'About Us', icon: 'fas fa-address-card'},
         {path: '/contact-us', label: 'Contact Us', icon: 'fas fa-id-badge'},
-        {path: '/chef', label: 'Chef', icon: 'fas fa-pizza-slice'},
-        {path: '/customer', label: 'Customer', icon: 'fas fa-user-circle'},
-        {path: '/delivery-partner', label: 'Delivery Partner', icon: 'fas fa-truck'},
-        {path: '/owner', label: 'Owner', icon: 'fas fa-user'},
-        {path: '/restaurant', label: 'Restaurant', icon: 'fas fa-store'},
-        {path: '/supplier', label: 'Supplier', icon: 'fas fa-user-tie'},
-        {path: '/waiter', label: 'Waiter', icon: 'fas fa-users'}
+        {path: '/user-login', label: 'Login', icon: 'fas fa-user-circle'},
+        {path: '/user-signup', label: 'Sign Up', icon: 'fas fa-user-circle'}
     ];
 
     constructor(private route: Router) {
-        this.url = this.route.url;  // Initialize the url based on the current route
+        this.url = this.route.url;
     }
 
     gotourl(url: string): void {
         this.route.navigate(["/" + url]).then(success => {
             if (success) {
                 console.log('Navigation successful!');
-                this.url = "/" + url;  // Update the selected URL after navigation
+                this.url = "/" + url;
             } else {
                 console.log('Navigation failed!');
             }
