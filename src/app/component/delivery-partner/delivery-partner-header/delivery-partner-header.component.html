@@ -1,5 +1,5 @@
 <nav class="navbar">
-    <a class="logo"><i class="fa fa-utensils"></i> Restaurant</a>
+    <a class="logo" routerLink="/deliver-partner/home">Delivery Partner Dashboard</a>
     <ul>
         <li *ngFor="let item of navItems">
             <a [routerLink]="item.path" [class.selected]="url === item.path" (click)="gotourl(item.path)">

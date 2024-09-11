@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {Router} from "@angular/router";
+import {Component, OnInit} from '@angular/core';
+import {Router, NavigationEnd} from "@angular/router";
 import {RouterLink} from "@angular/router";
 import {NgForOf} from "@angular/common";
 
@@ -13,7 +13,7 @@ import {NgForOf} from "@angular/common";
     ],
     styleUrls: ['./app-header.component.css']
 })
-export class AppHeaderComponent {
+export class AppHeaderComponent implements OnInit {
 
     url: string = '/';
 
@@ -25,15 +25,23 @@ export class AppHeaderComponent {
         {path: '/user-signup', label: 'Sign Up', icon: 'fas fa-user-circle'}
     ];
 
-    constructor(private route: Router) {
-        this.url = this.route.url;
+    constructor(private router: Router) {
+    }
+
+    ngOnInit(): void {
+        // Subscribe to router events to update the URL
+        this.router.events.subscribe(event => {
+            if (event instanceof NavigationEnd) {
+                this.url = event.urlAfterRedirects;
+            }
+        });
     }
 
     gotourl(url: string): void {
-        this.route.navigate(["/" + url]).then(success => {
+        this.router.navigate([url]).then(success => {
             if (success) {
                 console.log('Navigation successful!');
-                this.url = "/" + url;
+                this.url = url;
             } else {
                 console.log('Navigation failed!');
             }

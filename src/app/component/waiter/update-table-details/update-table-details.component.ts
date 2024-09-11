@@ -26,7 +26,7 @@ export class UpdateTableDetailsComponent implements OnInit {
 
     initializeForm() {
         this.tableForm = this.fb.group({
-            tableId: [null, Validators.required],
+            tableId: [null, Validators.required, Validators.min(1)],
             number: [null, [Validators.required, Validators.min(1)]],
             seats: [null, [Validators.required, Validators.min(1)]]
         });

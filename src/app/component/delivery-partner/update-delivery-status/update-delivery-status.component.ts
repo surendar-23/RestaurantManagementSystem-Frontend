@@ -1,22 +1,17 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {DeliveryPartnerService} from '../../services/delivery-partner.service';
-import {Router} from '@angular/router';
-import {NgIf} from "@angular/common";
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {Router} from "@angular/router";
+import {DeliveryPartnerService} from "../../services/delivery-partner.service";
 
 @Component({
     selector: 'app-update-delivery-status',
-    templateUrl: './update-delivery-status.component.html',
     standalone: true,
-    imports: [
-        ReactiveFormsModule,
-        NgIf
-    ],
+    imports: [ReactiveFormsModule],
+    templateUrl: './update-delivery-status.component.html',
     styleUrls: ['./update-delivery-status.component.css']
 })
 export class UpdateDeliveryStatusComponent implements OnInit {
     deliveryForm!: FormGroup;
-    deliveryNotFound: boolean = false;
 
     constructor(
         private fb: FormBuilder,
@@ -26,80 +21,78 @@ export class UpdateDeliveryStatusComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.initializeForm();
+    }
+
+    initializeForm() {
         this.deliveryForm = this.fb.group({
-            id: ['', Validators.required],
+            id: [null, [Validators.required, Validators.min(1)]],
             deliveryTime: ['', Validators.required],
             street: ['', Validators.required],
             city: ['', Validators.required],
             state: ['', Validators.required],
             postalCode: ['', Validators.required],
-            status: ['', Validators.required]
+            status: ['', Validators.required],
         });
 
-        this.onIdChange();
-    }
-
-    onIdChange(): void {
+        // Listen for changes to the id field
         this.deliveryForm.get('id')?.valueChanges.subscribe(id => {
             if (id) {
-                this.deliveryPartnerService.getDeliveryById(id).subscribe({
-                    next: delivery => {
-                        if (delivery) {
-                            this.deliveryNotFound = false;
-                            this.deliveryForm.patchValue({
-                                deliveryTime: delivery.deliveryTime,
-                                street: delivery.street,
-                                city: delivery.city,
-                                state: delivery.state,
-                                postalCode: delivery.postalCode,
-                                status: delivery.status
-                            });
-                        } else {
-                            this.deliveryNotFound = true;
-                            this.deliveryForm.reset();
-                        }
-                    },
-                    error: err => {
-                        console.error('Error fetching delivery:', err);
-                        this.deliveryNotFound = true;
-                        this.deliveryForm.reset();
-                    }
-                });
+                this.loadDeliveryDetails(id);
             }
         });
     }
 
-    onSubmit(): void {
-        if (this.deliveryForm.valid) {
-            const formValue = this.deliveryForm.value;
-            const deliveryId = formValue.id;
+    loadDeliveryDetails(id: number) {
+        this.deliveryPartnerService.getDeliveryById(id).subscribe(
+            (delivery) => {
+                this.deliveryForm.patchValue({
+                    deliveryTime: delivery.deliveryTime,
+                    street: delivery.street,
+                    city: delivery.city,
+                    state: delivery.state,
+                    postalCode: delivery.postalCode,
+                    status: delivery.status
+                });
+            },
+            (error) => {
+                console.error('Error loading delivery:', error);
+                this.deliveryForm.reset({
+                    id: id,
+                    deliveryTime: '',
+                    street: '',
+                    city: '',
+                    state: '',
+                    postalCode: '',
+                    status: ''
+                });
+                alert('Delivery not found or error occurred.');
+            }
+        );
+    }
 
-            this.deliveryPartnerService.updateDelivery({
-                deliveryTime: formValue.deliveryTime,
-                street: formValue.street,
-                city: formValue.city,
-                state: formValue.state,
-                postalCode: formValue.postalCode,
-                status: formValue.status
-            }, deliveryId).subscribe({
-                next: () => {
-                    console.log('Delivery updated successfully!');
-                    this.router.navigate(['/delivery-partner/home']).then(success => {
+    onSubmit() {
+        if (this.deliveryForm.valid) {
+            const updateData = this.deliveryForm.value;
+            const deliveryId = updateData.id;
+            this.deliveryPartnerService.updateDelivery(updateData, deliveryId).subscribe(
+                () => {
+                    alert('Delivery updated successfully!');
+                    this.router.navigate(['/delivery-partner/view-past-deliveries']).then(success => {
                         if (success) {
-                            console.log('Navigation is successful!');
-                            alert("Delivery Updated Successfully!");
+                            console.log('Navigation successful!');
                         } else {
-                            console.log('Navigation has failed!');
+                            console.log('Navigation failed!');
                         }
-                    })
-                        .catch(err => {
-                            console.error('Navigation error:', err);
-                        });
+                    }).catch(err => {
+                        console.error('Navigation error:', err);
+                    });
                 },
-                error: err => {
-                    console.error('Error updating delivery:', err);
+                (error) => {
+                    console.error('Error updating delivery:', error);
+                    alert('Error updating delivery.');
                 }
-            });
+            );
         }
     }
 }

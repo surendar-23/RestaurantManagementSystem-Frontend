@@ -40,9 +40,9 @@ export class CreateDeliveryTaskComponent implements OnInit {
     onSubmit() {
         if (this.deliveryForm.valid) {
             this.deliveryPartnerService.createDelivery(this.deliveryForm.value).subscribe(
-                (response) => {
+                () => {
                     alert('Delivery task created successfully!');
-                    this.router.navigate(['/delivery-partner/home']).then(success => {
+                    this.router.navigate(['/delivery-partner/view-past-deliveries']).then(success => {
                         if (success) {
                             console.log('Navigation successful!');
                         } else {

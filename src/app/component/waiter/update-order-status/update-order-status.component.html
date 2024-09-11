@@ -6,17 +6,17 @@
     <h2>Update Order Status</h2>
     <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
-            <label for="orderId">Order ID : </label>
+            <label for="orderId">Order ID:</label>
             <input id="orderId" formControlName="orderId" type="number" class="form-control"/>
         </div>
 
         <div class="form-group">
-            <label for="orderDate">Order Date : </label>
+            <label for="orderDate">Order Date:</label>
             <input id="orderDate" formControlName="orderDate" type="date" class="form-control"/>
         </div>
 
         <div class="form-group">
-            <label for="total">Total : </label>
+            <label for="total">Total:</label>
             <input id="total" formControlName="total" type="number" class="form-control"/>
         </div>
 

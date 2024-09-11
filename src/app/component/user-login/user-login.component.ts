@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from '@angular/router';
-import {UserService} from '../services/user.service'; // Assuming the service is in /services
+import {UserService} from '../services/user.service';
 import {AuthService} from '../services/auth.service';
 import {take} from 'rxjs/operators';
 import {HttpErrorResponse} from '@angular/common/http';
@@ -23,20 +23,19 @@ export class UserLoginComponent implements OnInit {
 
     constructor(
         private route: Router,
-        private userService: UserService,  // Call UserService for backend API
-        private authService: AuthService   // Call AuthService to manage user state
+        private userService: UserService,
+        private authService: AuthService
     ) {
     }
 
     ngOnInit(): void {
     }
 
-    // Login function
     login(): void {
         if (!this.validateInputs()) return;
 
         const body = {
-            emailId: this.emailID,  // Adjust to match the backend's "emailId" field
+            emailId: this.emailID,
             password: this.password,
         };
 
@@ -44,11 +43,11 @@ export class UserLoginComponent implements OnInit {
             (res: any) => {
                 if (res?.userId) {
                     alert('Login successful');
-                    this.authService.setLoggedIn(true);  // Set login status
-                    this.authService.setUserRole(res.role);  // Set user role
+                    this.authService.setLoggedIn(true);
+                    this.authService.setUserRole(res.role);
 
                     this.storeUserDetails(res);
-                    this.navigateUser(res.role);  // Navigate based on role
+                    this.navigateUser(res.role);
                 }
             },
             (err: HttpErrorResponse) => {
@@ -58,8 +57,10 @@ export class UserLoginComponent implements OnInit {
         );
     }
 
-    // Validate input fields
     validateInputs(): boolean {
+        this.errormessage = '';
+        this.errormessagep = '';
+
         if (this.emailID === '' || !this.emailID.includes('@')) {
             this.errormessage = 'Please enter a valid email';
             return false;
@@ -68,19 +69,15 @@ export class UserLoginComponent implements OnInit {
             this.errormessagep = 'Please enter your password';
             return false;
         }
-        this.errormessage = '';
-        this.errormessagep = '';
         return true;
     }
 
-    // Store user details
     storeUserDetails(res: any): void {
         localStorage.setItem('userId', res.userId);
         localStorage.setItem('role', res.role);
         localStorage.setItem('userName', `${res.firstName} ${res.lastName}`);
     }
 
-    // Navigate based on user role
     navigateUser(role: string): void {
         const roleRoutes: { [key: string]: string } = {
             owner: '/owner/home',
@@ -98,19 +95,23 @@ export class UserLoginComponent implements OnInit {
         });
     }
 
-    // Error handling
     handleError(err: HttpErrorResponse): void {
         let errorMessage = 'Something went wrong during login. Please try again.';
-        if (err.status === 404) {
-            errorMessage = 'The requested resource was not found.';
-        } else if (err.status === 400) {
-            errorMessage = 'Bad request. Please check your input.';
-        } else if (err.status === 401) {
-            errorMessage = 'Unauthorized. Please check your credentials.';
-        } else if (err.error && typeof err.error === 'string') {
-            if (err.error.startsWith('User not found with')) {
-                errorMessage = 'User email/password is invalid';
-            }
+        switch (err.status) {
+            case 404:
+                errorMessage = 'The requested resource was not found.';
+                break;
+            case 400:
+                errorMessage = 'Bad request. Please check your input.';
+                break;
+            case 401:
+                errorMessage = 'Unauthorized. Please check your credentials.';
+                break;
+            default:
+                if (err.error && typeof err.error === 'string' && err.error.startsWith('User not found with')) {
+                    errorMessage = 'User email/password is invalid';
+                }
+                break;
         }
         alert(errorMessage);
     }

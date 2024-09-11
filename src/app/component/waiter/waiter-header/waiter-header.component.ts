@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavigationStart, Router} from '@angular/router';
+import {NavigationStart, Router, RouterLinkActive} from '@angular/router';
 import {filter} from 'rxjs';
 import {WaiterService} from '../../services/waiter.service';
 import {RouterLink} from '@angular/router';
@@ -10,7 +10,7 @@ import {NgForOf} from '@angular/common';
     standalone: true,
     templateUrl: './waiter-header.component.html',
     styleUrls: ['./waiter-header.component.css'],
-    imports: [RouterLink, NgForOf]
+    imports: [RouterLink, NgForOf, RouterLinkActive]
 })
 export class WaiterHeaderComponent implements OnInit {
     url: string = '';

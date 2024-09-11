@@ -84,7 +84,7 @@ import {ForgotPasswordComponent} from "./component/forgot-password/forgot-passwo
 import {UserLoginComponent} from "./component/user-login/user-login.component";
 import {UserSignupComponent} from "./component/user-signup/user-signup.component";
 import {ChangePasswordComponent} from "./component/change-password/change-password.component";
-import {AuthGuard} from "./auth.guard";
+
 
 const routes: Routes = [
     {path: '', component: HomeComponent},

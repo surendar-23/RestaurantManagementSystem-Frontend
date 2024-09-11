@@ -16,12 +16,12 @@ html {
 }
 
 .about-page {
-    background-color: #fdfdfd;
+    background-color: #f9f5ff; /* Light lavender background */
     padding: 40px 0;
 }
 
 .about-section {
-    background-color: #deb887;
+    background-color: #e1bee7; /* Soft lavender for the section */
     color: #fff;
     padding: 40px;
     text-align: center;
@@ -41,7 +41,7 @@ html {
 }
 
 .welcome {
-    background-color: #e5f1fe;
+    background-color: #ede7f6; /* Light lavender for welcome section */
     padding: 60px 20px;
     border-radius: 10px;
 }
@@ -84,7 +84,7 @@ img {
 .button {
     display: inline-block;
     padding: 12px 30px;
-    background-color: #4a275a;
+    background-color: #7e57c2; /* Medium lavender */
     color: white;
     border: none;
     font-size: 1.2rem;
@@ -95,7 +95,7 @@ img {
 }
 
 .button:hover {
-    background-color: #6d3c85;
+    background-color: #6d3c85; /* Darker lavender for hover effect */
 }
 
 /* Responsive Design */

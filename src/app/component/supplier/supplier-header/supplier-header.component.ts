@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavigationStart, Router} from '@angular/router';
+import {NavigationStart, Router, RouterLinkActive} from '@angular/router';
 import {filter} from 'rxjs';
 import {SupplierService} from '../../services/supplier.service';
 import {RouterLink} from '@angular/router';
@@ -10,7 +10,7 @@ import {NgForOf} from '@angular/common';
     standalone: true,
     templateUrl: './supplier-header.component.html',
     styleUrls: ['./supplier-header.component.css'],
-    imports: [RouterLink, NgForOf]
+    imports: [RouterLink, NgForOf, RouterLinkActive]
 })
 export class SupplierHeaderComponent implements OnInit {
     url: string = '';

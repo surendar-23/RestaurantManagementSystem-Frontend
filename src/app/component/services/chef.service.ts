@@ -29,7 +29,7 @@ export class ChefService {
     }
 
     getName(): any {
-        return localStorage.getItem("name");
+        return localStorage.getItem("firstName");
     }
 
     getMenuItem(): Observable<any> {

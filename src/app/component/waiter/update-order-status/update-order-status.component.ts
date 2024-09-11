@@ -8,7 +8,7 @@ import {WaiterService} from "../../services/waiter.service";
     standalone: true,
     imports: [ReactiveFormsModule],
     templateUrl: './update-order-status.component.html',
-    styleUrl: './update-order-status.component.css'
+    styleUrls: ['./update-order-status.component.css']  // Fixed here
 })
 export class UpdateOrderStatusComponent implements OnInit {
     orderForm!: FormGroup;
@@ -26,12 +26,12 @@ export class UpdateOrderStatusComponent implements OnInit {
 
     initializeForm() {
         this.orderForm = this.fb.group({
-            orderId: [null, Validators.required],  // Ensure this field is initialized
+            orderId: [null, [Validators.required, Validators.min(1)]],
             orderDate: ['', Validators.required],
             total: [0, [Validators.required, Validators.min(1)]],
         });
 
-        // Listen for changes to the inventoryItemId field
+        // Listen for changes to the orderId field
         this.orderForm.get('orderId')?.valueChanges.subscribe(id => {
             if (id) {
                 this.loadOrderItem(id);
@@ -44,7 +44,6 @@ export class UpdateOrderStatusComponent implements OnInit {
             (order) => {
                 // Convert the date to the required format
                 const formattedDate = new Date(order.orderDate).toISOString().split('T')[0];
-
                 this.orderForm.patchValue({
                     orderDate: formattedDate,
                     total: order.total,
@@ -62,7 +61,6 @@ export class UpdateOrderStatusComponent implements OnInit {
         );
     }
 
-
     onSubmit() {
         if (this.orderForm.valid) {
             const updateData = this.orderForm.value;
@@ -70,7 +68,7 @@ export class UpdateOrderStatusComponent implements OnInit {
             this.wService.updateOrder(updateData, itemId).subscribe(
                 () => {
                     alert('Order updated successfully!');
-                    this.router.navigate(['/waiter']).then(success => {
+                    this.router.navigate(['/delivery-partner/view-assigned-orders']).then(success => {
                         if (success) {
                             console.log('Navigation successful!');
                         } else {

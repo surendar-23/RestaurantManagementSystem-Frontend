@@ -1,12 +1,12 @@
 .tbl {
-    border: 1px solid black;
+    border: 1px solid #d1c4e9; /* Light lavender border */
     border-collapse: collapse;
     width: 80%;
     margin-top: 20px;
 }
 
 th, td {
-    border: 1px solid black;
+    border: 1px solid #d1c4e9; /* Light lavender border */
     padding: 8px;
     text-align: left;
     font-family: Arial, sans-serif;
@@ -14,8 +14,14 @@ th, td {
 }
 
 th {
-    background-color: #f2f2f2;
+    background-color: #e1bee7; /* Light lavender for the table header */
     font-weight: bold;
+    color: #4a148c; /* Darker lavender for text */
+}
+
+td {
+    background-color: #f3e5f5; /* Light lavender for table cells */
+    color: #6a1b9a; /* Dark lavender for text */
 }
 
 .centered {

@@ -1,12 +1,13 @@
 .tbl {
-    border: 1px solid black;
+    border: 1px solid #d1c4e9; /* Light lavender border */
     border-collapse: collapse; /* Ensures there is no space between table borders */
     width: 80%; /* Set table width to 80% of the parent container */
     margin-top: 20px; /* Add some space above the table */
+    background-color: #f3e5f5; /* Light lavender background for the table */
 }
 
 th, td {
-    border: 1px solid black;
+    border: 1px solid #d1c4e9; /* Light lavender border */
     padding: 8px; /* Add padding for better readability */
     text-align: left; /* Align text to the left in table cells */
     font-family: Arial, sans-serif; /* Use a clean and readable font */
@@ -14,8 +15,9 @@ th, td {
 }
 
 th {
-    background-color: #f2f2f2; /* Light gray background for headers */
+    background-color: #e1bee7; /* Slightly darker lavender background for headers */
     font-weight: bold; /* Make headers bold */
+    color: #4a148c; /* Darker lavender text for headers */
 }
 
 .centered {

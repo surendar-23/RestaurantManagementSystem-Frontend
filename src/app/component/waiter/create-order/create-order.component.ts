@@ -28,10 +28,10 @@ export class CreateOrderComponent implements OnInit {
         this.orderForm = this.fb.group({
             orderDate: ['', Validators.required],
             total: [0, [Validators.required, Validators.min(1)]],
-            customerId: [null, Validators.required],
-            restaurantId: [null, Validators.required],
-            tableId: [null, Validators.required],
-            waiterId: [null, Validators.required]
+            customerId: [null, [Validators.required, Validators.min(1)]],
+            restaurantId: [null, [Validators.required, Validators.min(1)]],
+            tableId: [null, [Validators.required, Validators.min(1)]],
+            waiterId: [null, [Validators.required, Validators.min(1)]]
         });
     }
 
@@ -40,13 +40,23 @@ export class CreateOrderComponent implements OnInit {
             this.waiterService.createOrder(this.orderForm.value).subscribe(
                 (response) => {
                     alert('Order created successfully!');
-                    this.router.navigate(['/orders']);
+                    this.router.navigate(['/waiter/view-current-orders']).then(success => {
+                        if (success) {
+                            console.log('Navigation successful!');
+                        } else {
+                            console.log('Navigation failed!');
+                        }
+                    }).catch(err => {
+                        console.error('Navigation error:', err);
+                    });
                 },
                 (error) => {
                     console.error('Error creating order:', error);
                     alert('Error creating order.');
                 }
             );
+        } else {
+            alert('Please fill all required fields.');
         }
     }
 }
