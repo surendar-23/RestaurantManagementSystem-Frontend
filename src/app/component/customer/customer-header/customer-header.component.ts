@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavigationStart, Router, RouterLink} from "@angular/router";
+import {NavigationStart, Router, RouterLink, RouterLinkActive} from "@angular/router";
 import {NgForOf} from "@angular/common";
 import {CustomerService} from "../../services/customer.service";
 import {filter} from "rxjs";
@@ -11,7 +11,8 @@ import {filter} from "rxjs";
     templateUrl: './customer-header.component.html',
     imports: [
         RouterLink,
-        NgForOf
+        NgForOf,
+        RouterLinkActive
     ],
     styleUrls: ['./customer-header.component.css']
 })

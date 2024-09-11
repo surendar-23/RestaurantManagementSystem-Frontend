@@ -1,35 +1,37 @@
-.menu-table {
-    display: flex;
-    justify-content: center;
-    margin-top: 20px;
-}
-
 .tbl {
-    border: 1px solid black;
-    border-collapse: collapse;
-    width: 80%;
+    border: 1px solid #d1c4e9; /* Light lavender border */
+    border-collapse: collapse; /* Ensures there is no space between table borders */
+    width: 80%; /* Set table width to 80% of the parent container */
+    margin-top: 20px; /* Add some space above the table */
+    background-color: #f3e5f5; /* Light lavender background for the table */
 }
 
 th, td {
-    border: 1px solid black;
-    padding: 8px;
-    text-align: left;
-    font-family: Arial, sans-serif;
-    font-size: 14px;
+    border: 1px solid #d1c4e9; /* Light lavender border for cells */
+    padding: 8px; /* Add padding for better readability */
+    text-align: left; /* Align text to the left in table cells */
+    font-family: Arial, sans-serif; /* Use a clean and readable font */
+    font-size: 14px; /* Set font size for table content */
 }
 
 th {
-    background-color: #f2f2f2;
-    font-weight: bold;
+    background-color: #e1bee7; /* Light lavender for headers */
+    font-weight: bold; /* Make headers bold */
+    color: #4a148c; /* Darker lavender for header text */
+}
+
+.centered {
+    display: flex;
+    justify-content: center; /* Center the table horizontally */
 }
 
 @media screen and (max-width: 768px) {
     .tbl {
-        width: 100%;
+        width: 100%; /* Make table full-width on smaller screens */
     }
 
     th, td {
-        font-size: 12px;
-        padding: 6px;
+        font-size: 12px; /* Reduce font size on smaller screens */
+        padding: 6px; /* Reduce padding on smaller screens */
     }
 }

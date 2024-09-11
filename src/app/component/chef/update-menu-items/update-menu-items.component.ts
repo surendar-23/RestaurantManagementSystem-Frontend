@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Router} from '@angular/router';  // Import Router for navigation
 import {ChefService} from '../../services/chef.service';
 import {MenuItem} from "../../model/menuItem";
 import {NgIf} from "@angular/common";
@@ -20,9 +21,13 @@ export class UpdateMenuItemsComponent {
     errorMessage: string = '';
     successMessage: string = '';
 
-    constructor(private fb: FormBuilder, private chefService: ChefService) {
+    constructor(
+        private fb: FormBuilder,
+        private chefService: ChefService,
+        private router: Router // Inject Router service for navigation
+    ) {
         this.updateMenuItemForm = this.fb.group({
-            id: ['', [Validators.required]],
+            id: ['', [Validators.required, Validators.min(1)]], // Ensure ID is greater than 0
             name: ['', [Validators.required]],
             price: ['', [Validators.required, Validators.min(0)]]
         });
@@ -56,6 +61,15 @@ export class UpdateMenuItemsComponent {
                 () => {
                     this.successMessage = 'MenuItem updated successfully!';
                     this.isLoading = false;
+                    this.router.navigate(['/chef/view-menu-items']).then(success => {
+                        if (success) {
+                            console.log('Navigation successful!');
+                        } else {
+                            console.log('Navigation failed!');
+                        }
+                    }).catch(err => {
+                        console.error('Navigation error:', err);
+                    }); // Navigate on success
                 },
                 (error) => {
                     this.errorMessage = 'Failed to update MenuItem. Please try again.';

@@ -24,7 +24,7 @@ export class CreateFeedbackComponent implements OnInit {
         private router: Router
     ) {
         this.feedbackForm = this.formBuilder.group({
-            orderId: ['', Validators.required],
+            orderId: ['', [Validators.required, Validators.min(1)]],
             comment: ['', Validators.required],
             rating: ['', [Validators.required, Validators.min(1), Validators.max(5)]]
         });

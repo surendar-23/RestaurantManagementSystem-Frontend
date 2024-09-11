@@ -37,7 +37,6 @@ export class UserSignupComponent implements OnInit {
         {value: 'chef', viewValue: 'Chef'},
         {value: 'customer', viewValue: 'Customer'},
         {value: 'delivery-partner', viewValue: 'Delivery Partner'},
-        {value: 'restaurant', viewValue: 'Restaurant'},
         {value: 'supplier', viewValue: 'Supplier'},
         {value: 'waiter', viewValue: 'Waiter'}
     ];

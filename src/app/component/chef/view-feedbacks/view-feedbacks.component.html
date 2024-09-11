@@ -1,11 +1,12 @@
 <br/><br/><br/><br/>
-<div *ngIf="feedbacks.length > 0" class="feedback-table">
+<div *ngIf="feedbacks.length > 0" class="centered">
     <table class="tbl">
         <thead>
         <tr>
             <th>ID</th>
             <th>Comment</th>
             <th>Rating</th>
+            <th>Customer Name</th>
         </tr>
         </thead>
         <tbody>
@@ -13,6 +14,7 @@
             <td>{{ feedback?.id }}</td>
             <td>{{ feedback?.comment }}</td>
             <td>{{ feedback?.rating }}</td>
+            <td>{{ feedback?.order?.customer?.name }}</td>
         </tr>
         </tbody>
     </table>

@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {NavigationStart, Router} from "@angular/router";
-import {filter} from "rxjs";
-import {ChefService} from "../../services/chef.service";
-import {RouterLink} from "@angular/router";
+import {NavigationStart, Router, RouterLink, RouterLinkActive} from '@angular/router';
+import {filter} from 'rxjs';
+import {ChefService} from '../../services/chef.service';
 import {NgForOf} from "@angular/common";
 
 @Component({
@@ -10,7 +9,11 @@ import {NgForOf} from "@angular/common";
     standalone: true,
     templateUrl: './chef-header.component.html',
     styleUrls: ['./chef-header.component.css'],
-    imports: [RouterLink, NgForOf]
+    imports: [
+        RouterLinkActive,
+        RouterLink,
+        NgForOf
+    ]
 })
 export class ChefHeaderComponent implements OnInit {
     url: string = '';
@@ -30,36 +33,41 @@ export class ChefHeaderComponent implements OnInit {
     ];
 
     constructor(
-        private route: Router,
-        private cService: ChefService,
+        private router: Router,
+        private chefService: ChefService
     ) {
-        if (this.cService.getName() !== null) {
-            this.name = this.cService.getName();
+        const chefName = this.chefService.getName();
+        if (chefName) {
+            this.name = chefName;
         }
     }
 
     ngOnInit(): void {
-        this.route.events.pipe(
-            filter(event => event instanceof NavigationStart)
-        ).subscribe((event: any) => {
-            this.url = event?.url;
-        });
+        // Track current URL for navigation highlighting
+        this.router.events
+            .pipe(filter((event) => event instanceof NavigationStart))
+            .subscribe((event: any) => {
+                this.url = event.url;
+            });
     }
 
     gotourl(path: string): void {
         if (path === '/chef/logout') {
-            this.cService.chefLogout();
+            this.chefService.chefLogout();
             return;
         }
 
-        this.route.navigate([path]).then(success => {
-            if (success) {
-                console.log('Navigation successful!');
-            } else {
-                console.log('Navigation failed!');
+        this.router.navigate([path]).then(
+            (success) => {
+                if (success) {
+                    console.log('Navigation successful!');
+                } else {
+                    console.log('Navigation failed!');
+                }
+            },
+            (error) => {
+                console.error('Navigation error:', error);
             }
-        }).catch(err => {
-            console.error('Navigation error:', err);
-        });
+        );
     }
 }

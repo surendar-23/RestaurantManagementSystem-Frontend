@@ -69,7 +69,7 @@ export class UpdateInventoryItemComponent implements OnInit {
             this.supplierService.updateInventoryItem(updateData, itemId).subscribe(
                 () => {
                     alert('Inventory item updated successfully!');
-                    this.router.navigate(['/supplier']).then(success => {
+                    this.router.navigate(['/chef/view-inventory-items']).then(success => {
                         if (success) {
                             console.log('Navigation successful!');
                         } else {

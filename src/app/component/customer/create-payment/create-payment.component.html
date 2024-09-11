@@ -1,5 +1,6 @@
+<br/><br/><br/><br/>
 <div class="payment-form-container">
-    <h2 class="text-center">Create Payment</h2>
+    <h2>Create Payment</h2>
     <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="paymentDate">Payment Date</label>
@@ -26,7 +27,7 @@
             </div>
         </div>
 
-        <button type="submit" class="btn btn-primary btn-block mt-4" [disabled]="paymentForm.invalid">Create Payment
-        </button>
+        <button type="submit" class="btn" [disabled]="paymentForm.invalid">Create Payment</button>
     </form>
 </div>
+<br/><br/><br/><br/>

@@ -1,34 +1,74 @@
-.navbar {
-    background-color: #343a40;
-    padding: 10px;
-}
-
-.navbar ul {
-    list-style-type: none;
+/* Navbar container */
+.header {
+    background-color: #4a148c; /* Deep lavender */
+    padding: 15px 30px;
     display: flex;
-    justify-content: space-around;
-    margin: 0;
-    padding: 0;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'Arial', sans-serif;
 }
 
-.navbar li {
-    display: inline-block;
-}
-
-.navbar a {
-    color: white;
+/* Logo styling */
+.logo {
+    color: #ffffff; /* White text for logo */
+    font-size: 24px;
+    font-weight: bold;
     text-decoration: none;
-    font-size: 16px;
-    padding: 10px 15px;
     display: flex;
     align-items: center;
 }
 
-.navbar a:hover {
-    background-color: #495057;
-    border-radius: 5px;
+/* Navbar list */
+.header .nav-items {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
 }
 
-.navbar i {
-    margin-right: 8px;
+/* Navbar items */
+.header .nav-items a {
+    color: #ffffff; /* White for link text */
+    text-decoration: none;
+    font-size: 16px;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Navbar link hover */
+.header .nav-items a:hover {
+    background-color: #7e57c2; /* Lighter lavender on hover */
+    color: #ffffff;
+}
+
+/* Icons inside navbar */
+.header .nav-items i {
+    margin-right: 10px;
+}
+
+/* Selected link styling */
+.header .nav-items a.selected {
+    background-color: #7e57c2; /* Selected link with medium lavender */
+    font-weight: bold;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+    }
+
+    .header .nav-items {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .header .nav-items a {
+        justify-content: center;
+        width: 100%;
+    }
 }
