@@ -1,16 +1,16 @@
 <header class="header">
-    <a class="logo"><i class="fa fa-utensils"></i> Restaurant</a>
-    <nav class="nav-items">
+    <a class="logo" routerLink="/restaurant/home">Restaurant Dashboard</a>
+    <div class="nav-items">
         <a *ngFor="let item of navItems"
            (click)="gotourl(item.path)"
            [class.selected]="url === item.path">
             <i [class]="item.icon"></i> {{ item.label }}
         </a>
-    </nav>
+    </div>
 </header>
 
 <header class="header">
-    <a class="logo"></a>
+    <a class="logo" routerLink="/restaurant/home"></a>
     <nav class="nav-items">
         <a *ngFor="let item of navItems2"
            (click)="gotourl(item.path)"

@@ -1,29 +1,30 @@
-/* Container for the inventory items */
-.container {
+/* Container for the view items */
+.view-items-container {
     max-width: 900px;
     margin: 40px auto;
-    padding: 20px;
-    background-color: #ffffff;
+    padding: 30px;
+    background-color: #f3e5f5; /* Light lavender background */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
 }
 
 /* Heading */
-h2 {
+.view-items-container h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #007bff;
+    color: #6a1b9a; /* Dark lavender for heading */
     font-weight: 700;
     font-size: 28px;
 }
 
 /* Error message styling */
-.error-message {
-    color: #d9534f;
+.error-text {
+    color: #d9534f; /* Red for error messages */
     text-align: center;
     margin-bottom: 20px;
     font-weight: 600;
+    font-size: 16px;
 }
 
 /* Loading spinner styling */
@@ -36,9 +37,9 @@ h2 {
 }
 
 .spinner {
-    border: 4px solid #f3f3f3;
+    border: 4px solid #f3f3f3; /* Light background for spinner */
     border-radius: 50%;
-    border-top: 4px solid #007bff;
+    border-top: 4px solid #6a1b9a; /* Dark lavender for spinner */
     width: 40px;
     height: 40px;
     animation: spin 1s linear infinite;
@@ -55,39 +56,46 @@ h2 {
 }
 
 /* Table styling */
-.inventory-table {
+.items-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 
-.inventory-table th, .inventory-table td {
+.items-table th, .items-table td {
     padding: 12px 15px;
-    border: 1px solid #e0e0e0;
+    border: 1px solid #d1c4e9; /* Light lavender border */
     text-align: center;
+    font-size: 16px;
 }
 
 /* Button styling */
 .btn {
-    padding: 6px 12px;
+    padding: 8px 15px;
     margin: 0 5px;
     border: none;
-    border-radius: 4px;
+    border-radius: 5px;
     color: #ffffff;
     cursor: pointer;
     font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, opacity 0.3s ease;
 }
 
 .btn-edit {
-    background-color: #007bff;
+    background-color: #6a1b9a; /* Dark lavender */
 }
 
 .btn-delete {
-    background-color: #d9534f;
+    background-color: #d9534f; /* Red for delete */
 }
 
 .btn:hover {
     opacity: 0.8;
+}
+
+.btn:active {
+    transform: scale(0.98);
 }
 
 /* No entries message styling */

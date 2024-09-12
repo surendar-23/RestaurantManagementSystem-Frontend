@@ -1,134 +1,81 @@
-/* Overall form styling */
-form {
+/* Container styling */
+.create-item-container {
     max-width: 600px;
-    margin: 40px auto;
-    padding: 30px;
-    background-color: #ffffff;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #f3e5f5; /* Light lavender background */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
 }
 
-/* Input fields */
-input[type="text"],
-input[type="number"],
-input[type="date"],
-select {
-    width: 100%;
-    padding: 12px 15px;
-    margin: 10px 0;
-    border: 2px solid #e0e0e0;
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #f9f9f9;
-    transition: border-color 0.3s ease;
+/* Form heading */
+.create-item-container h2 {
+    text-align: center;
+    color: #6a1b9a; /* Dark lavender for heading */
+    margin-bottom: 20px;
+    font-weight: 700;
+    font-size: 28px;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus,
-input[type="date"]:focus,
-select:focus {
-    border-color: #007bff;
-    outline: none;
-    background-color: #ffffff;
+/* Form group styling */
+.form-group {
+    margin-bottom: 15px;
 }
 
-/* Labels */
-label {
+/* Label styling */
+.form-group label {
     display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #333333;
-}
-
-/* Error messages */
-.error {
-    color: #d9534f;
-    font-size: 14px;
-    margin-top: -8px;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    color: #6a1b9a; /* Dark lavender for label text */
     font-weight: 500;
 }
 
-/* Submit button */
-button[type="submit"] {
+/* Input and textarea styling */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #d1c4e9; /* Light lavender border */
+    background-color: #f9f9f9;
+    color: #4a148c; /* Darker lavender text color */
+    box-sizing: border-box;
+    transition: border-color 0.3s;
+}
+
+.form-control:focus {
+    border-color: #6a1b9a; /* Dark lavender border on focus */
+    outline: none;
+}
+
+/* Error message styling */
+.error-text {
+    color: #d9534f; /* Red for error messages */
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* Button styling */
+.btn-primary {
+    display: block;
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #7e57c2; /* Medium lavender */
     border: none;
     border-radius: 5px;
-    color: white;
-    font-size: 18px;
-    font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    margin-top: 20px;
+    transition: background-color 0.3s;
 }
 
-button[type="submit"]:hover {
-    background-color: #0056b3;
+.btn-primary:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
 }
 
-/* Optional: subtle animation on button click */
-button[type="submit"]:active {
-    transform: scale(0.98);
-}
-
-/* Optional: add icons to input fields */
-input[type="text"]::placeholder,
-input[type="number"]::placeholder,
-input[type="date"]::placeholder {
-    font-size: 14px;
-    color: #a0a0a0;
-}
-
-/* Additional spacing for sections */
-.form-section {
-    margin-bottom: 20px;
-}
-
-/* Form header */
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #007bff;
-    font-weight: 700;
-    font-size: 24px;
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-    form {
-        padding: 20px;
-    }
-
-    input[type="text"],
-    input[type="number"],
-    input[type="date"],
-    select {
-        padding: 10px 12px;
-    }
-
-    button[type="submit"] {
-        padding: 10px;
-        font-size: 16px;
-    }
-}
-
-/* Optional: add subtle animations to form fields */
-input[type="text"],
-input[type="number"],
-input[type="date"],
-select {
-    animation: fadeIn 0.4s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.btn-primary:hover {
+    background-color: #6a1b9a; /* Dark lavender on hover */
 }

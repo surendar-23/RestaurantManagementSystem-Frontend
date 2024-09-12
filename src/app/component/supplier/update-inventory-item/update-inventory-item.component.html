@@ -7,21 +7,20 @@
     <form [formGroup]="inventoryItemForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="inventoryItemId">Inventory Item Id:</label>
-            <input id="inventoryItemId" formControlName="inventoryItemId" type="number" class="form-control"/>
+            <input id="inventoryItemId" formControlName="inventoryItemId" type="number"/>
         </div>
         <div class="form-group">
             <label for="name">Name:</label>
-            <input id="name" formControlName="name" type="text" class="form-control"/>
+            <input id="name" formControlName="name" type="text"/>
         </div>
-
         <div class="form-group">
             <label for="quantity">Quantity:</label>
-            <input id="quantity" formControlName="quantity" type="number" class="form-control"/>
+            <input id="quantity" formControlName="quantity" type="number"/>
         </div>
-
-        <button type="submit" class="btn btn-primary" [disabled]="inventoryItemForm.invalid">Update</button>
+        <button type="submit" [disabled]="inventoryItemForm.invalid">Update</button>
     </form>
 </div>
+
 <br/>
 <br/>
 <br/>

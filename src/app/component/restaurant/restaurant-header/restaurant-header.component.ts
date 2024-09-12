@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {NavigationStart, Router} from '@angular/router';
+import {NavigationStart, Router, RouterLink} from '@angular/router';
 import {filter} from 'rxjs';
 import {OwnerService} from "../../services/owner.service";
 import {NgForOf} from "@angular/common";
@@ -9,7 +9,8 @@ import {NgForOf} from "@angular/common";
     templateUrl: './restaurant-header.component.html',
     standalone: true,
     imports: [
-        NgForOf
+        NgForOf,
+        RouterLink
     ],
     styleUrls: ['./restaurant-header.component.css']
 })

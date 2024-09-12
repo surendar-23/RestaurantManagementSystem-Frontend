@@ -1,86 +1,135 @@
-/* Container styling */
-.container {
+/* Overall form styling */
+form {
     max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 40px auto;
+    padding: 30px;
+    background-color: #f3e5f5; /* Light lavender background */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
 }
 
-/* Form heading */
+/* Input fields */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+textarea,
+select {
+    width: 100%;
+    padding: 12px 15px;
+    margin: 10px 0;
+    border: 2px solid #d1c4e9; /* Light lavender border */
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f9f9f9;
+    color: #4a148c; /* Dark lavender text for input */
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+input[type="date"]:focus,
+select:focus,
+textarea:focus {
+    border-color: #6a1b9a; /* Dark lavender on focus */
+    outline: none;
+    background-color: #ffffff;
+}
+
+/* Labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #6a1b9a; /* Dark lavender for label text */
+}
+
+/* Error messages */
+.text-danger {
+    color: #d9534f;
+    font-size: 14px;
+    margin-top: -8px;
+    margin-bottom: 10px;
+    font-weight: 500;
+}
+
+/* Submit button */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    background-color: #7e57c2; /* Medium lavender */
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    background-color: #6a1b9a; /* Dark lavender */
+}
+
+/* Optional: subtle animation on button click */
+button[type="submit"]:active {
+    transform: scale(0.98);
+}
+
+/* Placeholder styling */
+input[type="text"]::placeholder,
+input[type="number"]::placeholder,
+input[type="date"]::placeholder,
+textarea::placeholder {
+    font-size: 14px;
+    color: #a0a0a0;
+}
+
+/* Form header */
 h2 {
     text-align: center;
-    color: #007bff;
     margin-bottom: 20px;
-    font-weight: bold;
+    color: #6a1b9a; /* Dark lavender for header */
+    font-weight: 700;
     font-size: 24px;
 }
 
-/* Form group styling */
-.form-group {
-    margin-bottom: 15px;
+/* Responsiveness */
+@media (max-width: 768px) {
+    form {
+        padding: 20px;
+    }
+
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select,
+    textarea {
+        padding: 10px 12px;
+    }
+
+    button[type="submit"] {
+        padding: 10px;
+        font-size: 16px;
+    }
 }
 
-/* Label styling */
-label {
-    font-weight: 500;
-    margin-bottom: 5px;
-    display: block;
-    color: #333333;
+/* Optional: add subtle animations to form fields */
+input[type="text"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    animation: fadeIn 0.4s ease-in-out;
 }
 
-/* Input and textarea styling */
-.form-control {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 4px;
-    border: 1px solid #dddddd;
-    box-sizing: border-box;
-    transition: border-color 0.3s;
-}
-
-.form-control:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-/* Error message styling */
-.error-message {
-    color: #d9534f;
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: 600;
-}
-
-.error-text {
-    color: #d9534f;
-    font-size: 14px;
-    margin-top: 5px;
-}
-
-/* Button styling */
-.btn-primary {
-    display: block;
-    width: 100%;
-    padding: 12px;
-    font-size: 16px;
-    color: #ffffff;
-    background-color: #007bff;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s;
-}
-
-.btn-primary:disabled {
-    background-color: #6c757d;
-    cursor: not-allowed;
-}
-
-.btn-primary:hover {
-    background-color: #0056b3;
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }

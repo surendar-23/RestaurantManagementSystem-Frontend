@@ -3,7 +3,7 @@ form {
     max-width: 600px;
     margin: 40px auto;
     padding: 30px;
-    background-color: #ffffff;
+    background-color: #f3e5f5; /* Light lavender background */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
@@ -17,10 +17,11 @@ select {
     width: 100%;
     padding: 12px 15px;
     margin: 10px 0;
-    border: 2px solid #e0e0e0;
+    border: 2px solid #d1c4e9; /* Light lavender border */
     border-radius: 5px;
     font-size: 16px;
     background-color: #f9f9f9;
+    color: #4a148c; /* Dark lavender text for input */
     transition: border-color 0.3s ease;
 }
 
@@ -28,7 +29,7 @@ input[type="text"]:focus,
 input[type="number"]:focus,
 input[type="date"]:focus,
 select:focus {
-    border-color: #007bff;
+    border-color: #6a1b9a; /* Dark lavender on focus */
     outline: none;
     background-color: #ffffff;
 }
@@ -38,11 +39,11 @@ label {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: #333333;
+    color: #6a1b9a; /* Dark lavender for label text */
 }
 
 /* Error messages */
-.error {
+.text-danger {
     color: #d9534f;
     font-size: 14px;
     margin-top: -8px;
@@ -54,7 +55,7 @@ label {
 button[type="submit"] {
     width: 100%;
     padding: 12px;
-    background-color: #007bff;
+    background-color: #7e57c2; /* Medium lavender */
     border: none;
     border-radius: 5px;
     color: white;
@@ -65,7 +66,7 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #6a1b9a; /* Dark lavender */
 }
 
 /* Optional: subtle animation on button click */
@@ -81,16 +82,11 @@ input[type="date"]::placeholder {
     color: #a0a0a0;
 }
 
-/* Additional spacing for sections */
-.form-section {
-    margin-bottom: 20px;
-}
-
 /* Form header */
 h2 {
     text-align: center;
     margin-bottom: 20px;
-    color: #007bff;
+    color: #6a1b9a; /* Dark lavender for header */
     font-weight: 700;
     font-size: 24px;
 }

@@ -1,20 +1,20 @@
 <br/><br/><br/><br/>
-<div class="container">
-    <h2>Inventory Items</h2>
+<div class="view-items-container">
+    <h2>View Inventory Items</h2>
 
     <!-- Error Message -->
-    <div *ngIf="errorMessage" class="error-message">
+    <div *ngIf="errorMessage" class="error-text">
         {{ errorMessage }}
     </div>
 
     <!-- Loading Spinner -->
     <div *ngIf="loading" class="loading-spinner">
         <div class="spinner"></div>
-        <p>Loading inventory items...</p>
+        <p>Loading items...</p>
     </div>
 
     <!-- Inventory Table -->
-    <table *ngIf="!loading && inventoryItems.length > 0" class="inventory-table">
+    <table *ngIf="!loading && inventoryItems.length > 0" class="items-table">
         <thead>
         <tr>
             <th>ID</th>
@@ -38,7 +38,7 @@
 
     <!-- No Inventory Items Message -->
     <div *ngIf="!loading && inventoryItems.length === 0" class="no-entries">
-        <p>No inventory items found.</p>
+        <p>No items found.</p>
     </div>
 </div>
 <br/><br/><br/><br/>
