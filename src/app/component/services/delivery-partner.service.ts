@@ -71,4 +71,9 @@ export class DeliveryPartnerService {
     updateDeliveryStatus(status: string, deliveryId: number): Observable<any> {
         return this.http.put(`${this.url}/api/deliveries/${deliveryId}`, {status});
     }
+
+    getDeliveryPartners(): Observable<any> {
+        return this.http.get(this.url + "/api/users/delivery-partners");
+    }
+
 }

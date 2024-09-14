@@ -1,6 +1,6 @@
 <br/><br/><br/><br/>
 <div class="container">
-    <h2>Suppliers</h2>
+    <h2>Manage Suppliers</h2>
 
     <!-- Error Message -->
     <div *ngIf="errorMessage" class="error-message">
@@ -19,18 +19,22 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Contact Information</th>
+            <th>Phone Number</th>
+            <th>Location</th>
+            <th>Email</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let supplier of suppliers">
-            <td>{{ supplier.id }}</td>
-            <td>{{ supplier.name }}</td>
-            <td>{{ supplier.contactInformation }}</td>
+            <td>{{ supplier.userId }}</td>
+            <td>{{ supplier.firstName }} {{ supplier.lastName }}</td>
+            <td>{{ supplier.phoneNumber }}</td>
+            <td>{{ supplier.address }}, {{ supplier.district }}, {{ supplier.state }}, {{ supplier.zipCode }}</td>
+            <td>{{ supplier.emailId }}</td>
             <td>
                 <button class="btn btn-edit" [routerLink]="['/owner/update-supplier']">Edit</button>
-                <button class="btn btn-delete" (click)="deleteSupplier(supplier.id)">Delete</button>
+                <button class="btn btn-delete" (click)="deleteSupplier(supplier.userId)">Delete</button>
             </td>
         </tr>
         </tbody>
@@ -41,4 +45,5 @@
         <p>No suppliers found.</p>
     </div>
 </div>
+
 <br/><br/><br/><br/>

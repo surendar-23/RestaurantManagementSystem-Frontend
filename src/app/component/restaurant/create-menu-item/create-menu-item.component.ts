@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {OwnerService} from '../../services/owner.service';
-import {MenuItem} from "../../model/menuItem";
+import {MenuItem} from '../../model/menuItem';
+import {User} from '../../model/user';
+import {Category} from '../../model/category';
 import {FormsModule} from '@angular/forms';
 import {NgForOf, NgIf} from '@angular/common';
 
@@ -20,8 +22,11 @@ export class CreateMenuItemComponent {
     successMessage: string | undefined;
     errorMessage: string | undefined;
     loading: boolean = false;
-    categories: any[] = []; // List of categories for dropdown
-    restaurants: any[] = []; // List of restaurants for dropdown
+    categories: Category[] = []; // List of categories for dropdown
+    restaurants: User[] = []; // List of restaurants for dropdown
+
+    selectedCategoryId: number | undefined;
+    selectedRestaurantId: number | undefined;
 
     constructor(private ownerService: OwnerService) {
         this.loadCategories();
@@ -33,11 +38,17 @@ export class CreateMenuItemComponent {
         this.successMessage = undefined;
         this.errorMessage = undefined;
 
+        // Set the menuItem properties using the selected IDs
+        this.menuItem.category = this.categories.find(cat => cat.id === this.selectedCategoryId);
+        this.menuItem.restaurant = this.restaurants.find(rest => rest.userId === this.selectedRestaurantId);
+
         this.ownerService.createMenuItem(this.menuItem).subscribe(
             (response) => {
                 this.successMessage = 'Menu item created successfully!';
                 this.loading = false;
                 this.menuItem = new MenuItem(); // Reset form
+                this.selectedCategoryId = undefined;
+                this.selectedRestaurantId = undefined;
             },
             (error) => {
                 this.errorMessage = 'Failed to create menu item. Please try again.';
@@ -58,7 +69,7 @@ export class CreateMenuItemComponent {
     }
 
     private loadRestaurants() {
-        this.ownerService.getAllRestaurants().subscribe(
+        this.ownerService.getRestaurants().subscribe(
             response => {
                 this.restaurants = response;
             },

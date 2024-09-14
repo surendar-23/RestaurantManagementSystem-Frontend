@@ -1,8 +1,8 @@
-import {Restaurant} from "./restaurant";
+import {User} from "./user";
 
 export class Table {
-    id: number | undefined;
-    number: number | undefined;
-    seats: number | undefined;
-    restaurant: Restaurant | undefined;
+    id?: number;
+    number?: number;
+    seats?: number;
+    restaurant?: User;
 }

@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {OwnerService} from '../../services/owner.service'; // Assuming this service handles API calls for waiters
+import {OwnerService} from '../../services/owner.service'; // Service for API calls
 import {Router, RouterLink} from '@angular/router';
 import {NgForOf, NgIf} from '@angular/common';
 
@@ -45,10 +45,10 @@ export class ManageWaitersComponent implements OnInit {
     // Delete waiter by ID
     deleteWaiter(id: number): void {
         if (confirm('Are you sure you want to delete this waiter?')) {
-            this.ownerService.deleteWaiter(id).subscribe(
+            this.ownerService.deleteUser(id).subscribe(
                 response => {
                     console.log('Waiter deleted successfully!', response);
-                    this.getAllWaiters(); // Refresh the list after deletion
+                    this.getAllWaiters();
                 },
                 error => {
                     console.error('Error deleting waiter:', error);

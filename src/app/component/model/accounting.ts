@@ -1,10 +1,10 @@
 import {Bill} from "./bill";
-import {Owner} from "./owner";
+import {User} from "./user";
 
 export class Accounting {
-    id: number | undefined;
-    date: Date | undefined;
-    amount: number | undefined;
-    owner: Owner | undefined;
-    bills: Bill[] | undefined;
+    id?: number;
+    date?: Date;
+    amount?: number;
+    owner?: User;
+    bills?: Bill[];
 }

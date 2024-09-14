@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import {Router} from '@angular/router';
 import {OwnerService} from "../../services/owner.service";
-import {Router} from "@angular/router";
 import {NgIf} from "@angular/common";
-import {FormsModule} from "@angular/forms";
 
 @Component({
     selector: 'app-update-restaurant',
@@ -10,61 +10,108 @@ import {FormsModule} from "@angular/forms";
     standalone: true,
     imports: [
         NgIf,
-        FormsModule
+        ReactiveFormsModule
     ],
     styleUrls: ['./update-restaurant.component.css']
 })
-export class UpdateRestaurantComponent {
-    restaurantId: number | undefined;
-    restaurant: any | undefined;
-    loading: boolean = false;
-    errorMessage: string | undefined;
+export class UpdateRestaurantComponent implements OnInit {
+    idForm: FormGroup;
+    restaurantForm: FormGroup;
+    loading = false;
+    errorMessage: string | null = null;
+    successMessage: string | null = null;
+    restaurantId: number | null = null;
 
-    constructor(private ownerService: OwnerService, private router: Router) {
+    constructor(
+        private userService: OwnerService,
+        private fb: FormBuilder,
+        private router: Router
+    ) {
+        this.idForm = this.fb.group({
+            restaurantId: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
+        });
+
+        this.restaurantForm = this.fb.group({
+            name: ['', [Validators.required]],
+            phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+            address: ['', [Validators.required]],
+            district: ['', [Validators.required]],
+            state: ['', [Validators.required]],
+            zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
+            emailId: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(8)]]
+        });
     }
 
-    // Fetch Restaurant Details by ID
-    fetchRestaurantDetails(): void {
-        if (this.restaurantId) {
-            this.loading = true;
-            this.ownerService.getRestaurantById(this.restaurantId).subscribe(
-                response => {
-                    this.loading = false;
-                    this.restaurant = response;
-                },
-                error => {
-                    this.loading = false;
-                    this.errorMessage = 'Failed to load restaurant details. Please try again later.';
-                    console.error('Error fetching restaurant details:', error);
-                }
-            );
-        } else {
-            this.errorMessage = 'Please enter a valid Restaurant ID.';
-        }
+    ngOnInit(): void {
     }
 
-    // Update Restaurant
-    updateRestaurant(): void {
-        if (this.restaurant && this.restaurant.id) {
-            this.ownerService.updateRestaurant(this.restaurant, this.restaurant.id).subscribe(
-                response => {
-                    console.log('Restaurant updated successfully!', response);
-                    alert('Restaurant updated successfully!');
-                    this.router.navigate(['/restaurant/manage-restaurants']).then(success => {
-                        if (success) {
-                            console.log('Navigation successful!');
-                        } else {
-                            console.log('Navigation failed!');
-                        }
-                    }).catch(err => {
-                        console.error('Navigation error:', err);
-                    }); // Redirect to a different page if necessary
-                },
-                error => {
-                    this.errorMessage = 'Failed to update restaurant. Please try again later.';
-                    console.error('Error updating restaurant:', error);
-                }
-            );
+    onIdSubmit(): void {
+        if (this.idForm.invalid) {
+            return;
         }
+
+        this.restaurantId = +this.idForm.value.restaurantId;
+        this.loadRestaurant();
+    }
+
+    loadRestaurant(): void {
+        if (this.restaurantId === null) {
+            this.errorMessage = 'Invalid restaurant ID.';
+            return;
+        }
+
+        this.loading = true;
+        this.userService.getUserById(this.restaurantId).subscribe({
+            next: (data) => {
+                this.restaurantForm.patchValue({
+                    name: `${data.firstName} ${data.lastName}`,
+                    phoneNumber: data.phoneNumber,
+                    address: data.address,
+                    district: data.district,
+                    state: data.state,
+                    zipCode: data.zipCode,
+                    emailId: data.emailId,
+                    password: data.password
+                });
+                this.loading = false;
+            },
+            error: (err) => {
+                this.errorMessage = 'Error loading restaurant details.';
+                this.loading = false;
+            }
+        });
+    }
+
+    onSubmit(): void {
+        if (this.restaurantForm.invalid) {
+            return;
+        }
+
+        if (this.restaurantId === null) {
+            this.errorMessage = 'Restaurant ID is not set.';
+            return;
+        }
+
+        this.loading = true;
+        const formValue = this.restaurantForm.value;
+        const updatedRestaurant = {
+            ...formValue,
+            userId: this.restaurantId,
+            firstName: formValue.name.split(' ')[0],
+            lastName: formValue.name.split(' ')[1]
+        };
+
+        this.userService.updateUser(this.restaurantId, updatedRestaurant).subscribe({
+            next: () => {
+                this.loading = false;
+                alert('Updated restaurant details successfully'); // Show alert
+                setTimeout(() => this.router.navigate(['/restaurant/manage-restaurants']), 2000);
+            },
+            error: (err) => {
+                this.errorMessage = 'Error updating restaurant details.';
+                this.loading = false;
+            }
+        });
     }
 }

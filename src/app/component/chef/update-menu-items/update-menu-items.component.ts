@@ -1,9 +1,11 @@
 import {Component} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {Router} from '@angular/router';  // Import Router for navigation
+import {Router} from '@angular/router';
 import {ChefService} from '../../services/chef.service';
 import {MenuItem} from "../../model/menuItem";
-import {NgIf} from "@angular/common";
+import {Category} from "../../model/category";
+import {User} from "../../model/user";
+import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
     selector: 'app-update-menu-items',
@@ -11,7 +13,8 @@ import {NgIf} from "@angular/common";
     templateUrl: './update-menu-items.component.html',
     imports: [
         ReactiveFormsModule,
-        NgIf
+        NgIf,
+        NgForOf
     ],
     styleUrls: ['./update-menu-items.component.css']
 })
@@ -20,17 +23,24 @@ export class UpdateMenuItemsComponent {
     isLoading: boolean = false;
     errorMessage: string = '';
     successMessage: string = '';
+    categories: Category[] = []; // List of categories for dropdown
+    restaurants: User[] = []; // List of restaurants for dropdown
 
     constructor(
         private fb: FormBuilder,
         private chefService: ChefService,
-        private router: Router // Inject Router service for navigation
+        private router: Router
     ) {
         this.updateMenuItemForm = this.fb.group({
-            id: ['', [Validators.required, Validators.min(1)]], // Ensure ID is greater than 0
+            id: ['', [Validators.required, Validators.min(1)]],
             name: ['', [Validators.required]],
-            price: ['', [Validators.required, Validators.min(0)]]
+            price: ['', [Validators.required, Validators.min(0)]],
+            categoryId: ['', Validators.required],
+            restaurantId: ['', Validators.required]
         });
+
+        this.loadCategories();
+        this.loadRestaurants();
     }
 
     getMenuItemById(): void {
@@ -41,7 +51,9 @@ export class UpdateMenuItemsComponent {
                 (menuItem: MenuItem) => {
                     this.updateMenuItemForm.patchValue({
                         name: menuItem.name,
-                        price: menuItem.price
+                        price: menuItem.price,
+                        categoryId: menuItem.category?.id,
+                        restaurantId: menuItem.restaurant?.userId
                     });
                     this.isLoading = false;
                 },
@@ -69,7 +81,7 @@ export class UpdateMenuItemsComponent {
                         }
                     }).catch(err => {
                         console.error('Navigation error:', err);
-                    }); // Navigate on success
+                    });
                 },
                 (error) => {
                     this.errorMessage = 'Failed to update MenuItem. Please try again.';
@@ -77,5 +89,27 @@ export class UpdateMenuItemsComponent {
                 }
             );
         }
+    }
+
+    private loadCategories() {
+        this.chefService.getCategory().subscribe(
+            response => {
+                this.categories = response;
+            },
+            error => {
+                console.error('Error loading categories:', error);
+            }
+        );
+    }
+
+    private loadRestaurants() {
+        this.chefService.getRestaurants().subscribe(
+            response => {
+                this.restaurants = response;
+            },
+            error => {
+                console.error('Error loading restaurants:', error);
+            }
+        );
     }
 }

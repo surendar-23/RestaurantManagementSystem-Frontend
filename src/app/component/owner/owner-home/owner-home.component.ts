@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OwnerService} from "../../services/owner.service";
 import {NgOptimizedImage} from "@angular/common";
-import {Owner} from "../../model/owner";
+import {User} from "../../model/user";
 
 @Component({
     selector: 'app-owner-home',
@@ -19,7 +19,7 @@ export class OwnerHomeComponent implements OnInit {
         if (this.ownerService.getName() !== null) {
             this.name = this.ownerService.getName();
         }
-        //   this.ownerService.isOwnerPresent();
+        // this.ownerService.isOwnerPresent();
     }
 
     ngOnInit(): void {

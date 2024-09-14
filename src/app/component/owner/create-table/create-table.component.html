@@ -1,35 +1,42 @@
 <br/><br/><br/><br/>
 <div class="container">
-    <h2>Create Table Entry</h2>
-    <form [formGroup]="tableForm" (ngSubmit)="onSubmit()">
+    <h2>Create New Table </h2>
 
+    <!-- Error and Success Messages -->
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <form (ngSubmit)="createTable()">
         <div class="form-group">
-            <label for="number">Table Number:</label>
-            <input type="number" class="form-control" id="number" formControlName="number">
-            <div *ngIf="submitted && tableForm.controls['number'].invalid" class="text-danger">
-                <div *ngIf="tableForm.controls['number'].errors?.['required']">Table number is required.</div>
-                <div *ngIf="tableForm.controls['number'].errors?.['min']">Table number must be greater than 0.</div>
-            </div>
+            <label for="tableNumber">Table Number</label>
+            <input type="number" id="tableNumber" [(ngModel)]="table.number" name="tableNumber" class="form-control"
+                   placeholder="Enter Table Number" required/>
         </div>
 
         <div class="form-group">
-            <label for="seats">Number of Seats:</label>
-            <input type="number" class="form-control" id="seats" formControlName="seats">
-            <div *ngIf="submitted && tableForm.controls['seats'].invalid" class="text-danger">
-                <div *ngIf="tableForm.controls['seats'].errors?.['required']">Number of seats is required.</div>
-                <div *ngIf="tableForm.controls['seats'].errors?.['min']">Number of seats must be greater than 0.</div>
-            </div>
+            <label for="tableSeats">Table Seats </label>
+            <input type="number" id="tableSeats" [(ngModel)]="table.seats" name="tableSeats"
+                   class="form-control"
+                   placeholder="Enter Table Seats " required/>
         </div>
 
         <div class="form-group">
-            <label for="restaurantId">Restaurant ID:</label>
-            <input type="number" class="form-control" id="restaurantId" formControlName="restaurantId">
-            <div *ngIf="submitted && tableForm.controls['restaurantId'].invalid" class="text-danger">
-                <div *ngIf="tableForm.controls['restaurantId'].errors?.['required']">Restaurant ID is required.</div>
-            </div>
+            <label for="restaurantId">Restaurant</label>
+            <select id="restaurantId" [(ngModel)]="selectedRestaurantId" name="restaurantId" class="form-control"
+                    required>
+                <option *ngFor="let restaurant of restaurants"
+                        [value]="restaurant.userId">{{ restaurant.firstName }} {{ restaurant.lastName }}
+                </option>
+            </select>
         </div>
 
-        <button type="submit" class="btn btn-primary">Create Table</button>
+        <button type="submit" class="btn btn-primary" [disabled]="loading">Create Table</button>
     </form>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Creating table...</p>
+    </div>
 </div>
 <br/><br/><br/><br/>

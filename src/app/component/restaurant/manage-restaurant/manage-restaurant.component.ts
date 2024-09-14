@@ -1,6 +1,7 @@
+// manage-restaurant.component.ts
 import {Component, OnInit} from '@angular/core';
-import {OwnerService} from "../../services/owner.service";
-import {Router, RouterLink} from "@angular/router";
+import {OwnerService} from '../../services/owner.service';
+import {Router, RouterLink} from '@angular/router';
 import {NgForOf, NgIf} from "@angular/common";
 
 @Component({
@@ -9,8 +10,8 @@ import {NgForOf, NgIf} from "@angular/common";
     standalone: true,
     imports: [
         NgIf,
-        NgForOf,
-        RouterLink
+        RouterLink,
+        NgForOf
     ],
     styleUrls: ['./manage-restaurant.component.css']
 })
@@ -26,13 +27,14 @@ export class ManageRestaurantComponent implements OnInit {
         this.getAllRestaurants();
     }
 
-    // Fetch all restaurants
+    // Fetch all restaurants and filter by role "restaurant"
     getAllRestaurants(): void {
         this.loading = true;
         this.ownerService.getAllRestaurants().subscribe(
-            response => {
+            (response: any[]) => {
                 this.loading = false;
-                this.restaurants = response;
+                // Filter users with role = 'restaurant'
+                this.restaurants = response.filter(user => user.role === 'restaurant');
             },
             error => {
                 this.loading = false;
@@ -45,7 +47,7 @@ export class ManageRestaurantComponent implements OnInit {
     // Delete restaurant by ID
     deleteRestaurant(id: number): void {
         if (confirm('Are you sure you want to delete this restaurant?')) {
-            this.ownerService.deleteRestaurant(id).subscribe(
+            this.ownerService.deleteUser(id).subscribe(
                 response => {
                     console.log('Restaurant deleted successfully!', response);
                     this.getAllRestaurants(); // Refresh the list after deletion

@@ -1,10 +1,12 @@
-<br/>
-<br/>
-<br/>
-<br/>
-<div class="update-menu-item-container">
+<br/><br/><br/><br/>
+<div class="container">
     <h2>Update Menu Item</h2>
 
+    <!-- Error and Success Messages -->
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <!-- Form to Update Menu Item -->
     <form [formGroup]="updateMenuItemForm" (ngSubmit)="onSubmit()">
         <div class="form-group">
             <label for="id">Menu Item ID</label>
@@ -22,15 +24,31 @@
             <input type="number" id="price" formControlName="price" class="form-control" required/>
         </div>
 
+        <div class="form-group" *ngIf="!isLoading">
+            <label for="categoryId">Category</label>
+            <select id="categoryId" formControlName="categoryId" class="form-control" required>
+                <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+            </select>
+        </div>
+
+        <div class="form-group" *ngIf="!isLoading">
+            <label for="restaurantId">Restaurant</label>
+            <select id="restaurantId" formControlName="restaurantId" class="form-control" required>
+                <option *ngFor="let restaurant of restaurants"
+                        [value]="restaurant.userId">{{ restaurant.firstName }} {{ restaurant.lastName }}
+                </option>
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary" [disabled]="updateMenuItemForm.invalid || isLoading">Update Menu
             Item
         </button>
     </form>
 
-    <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
-    <p *ngIf="successMessage" class="success-message">{{ successMessage }}</p>
+    <!-- Loading Spinner -->
+    <div *ngIf="isLoading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Loading menu item...</p>
+    </div>
 </div>
-<br/>
-<br/>
-<br/>
-<br/>
+<br/><br/><br/><br/>

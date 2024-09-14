@@ -71,7 +71,7 @@ export class UpdateBillComponent implements OnInit {
             this.ownerService.updateBill(updateData, billId).subscribe(
                 () => {
                     alert('Bill updated successfully!');
-                    this.router.navigate(['/owner-dashboard']).then(success => {
+                    this.router.navigate(['/owner/view-bill']).then(success => {
                         if (success) {
                             console.log('Navigation successful!');
                         } else {

@@ -1,47 +1,53 @@
 <br/><br/><br/><br/>
-<div class="create-item-container">
-    <h2>Create Inventory Item</h2>
-    <form [formGroup]="inventoryForm" (ngSubmit)="onSubmit()">
-        <!-- Item Name -->
+<div class="container">
+    <h2>Create New Inventory Item</h2>
+
+    <!-- Error and Success Messages -->
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <!-- Form to Create Inventory Item -->
+    <form (ngSubmit)="createInventoryItem()">
         <div class="form-group">
-            <label for="name">Item Name:</label>
-            <input id="name" formControlName="name" type="text" class="form-control"/>
-            <div *ngIf="submitted && inventoryForm.controls['name'].invalid" class="error-text">
-                <div *ngIf="inventoryForm.controls['name'].errors?.['required']">Item name is required.</div>
-            </div>
+            <label for="itemName">Item Name</label>
+            <input type="text" id="itemName" [(ngModel)]="inventoryItem.name" name="itemName" class="form-control"
+                   placeholder="Enter Item Name" required/>
         </div>
 
-        <!-- Quantity -->
+
         <div class="form-group">
-            <label for="quantity">Quantity:</label>
-            <input id="quantity" formControlName="quantity" type="number" class="form-control"/>
-            <div *ngIf="submitted && inventoryForm.controls['quantity'].invalid" class="error-text">
-                <div *ngIf="inventoryForm.controls['quantity'].errors?.['required']">Quantity is required.</div>
-                <div *ngIf="inventoryForm.controls['quantity'].errors?.['min']">Quantity must be at least 1.</div>
-            </div>
+            <label for="quantity">Quantity</label>
+            <input type="number" id="quantity" [(ngModel)]="inventoryItem.quantity" name="quantity"
+                   class="form-control" placeholder="Enter Quantity" required/>
         </div>
 
-        <!-- Restaurant ID -->
         <div class="form-group">
-            <label for="restaurantId">Restaurant ID:</label>
-            <input id="restaurantId" formControlName="restaurantId" type="number" class="form-control"/>
-            <div *ngIf="submitted && inventoryForm.controls['restaurantId'].invalid" class="error-text">
-                <div *ngIf="inventoryForm.controls['restaurantId'].errors?.['required']">Restaurant ID is required.
-                </div>
-            </div>
+            <label for="restaurantId">Restaurant</label>
+            <select id="restaurantId" [(ngModel)]="selectedRestaurantId" name="restaurantId" class="form-control"
+                    required>
+                <option *ngFor="let restaurant of restaurants"
+                        [value]="restaurant.userId">{{ restaurant.firstName }} {{ restaurant.lastName }}
+                </option>
+            </select>
         </div>
 
-        <!-- Supplier ID -->
         <div class="form-group">
-            <label for="supplierId">Supplier ID:</label>
-            <input id="supplierId" formControlName="supplierId" type="number" class="form-control"/>
-            <div *ngIf="submitted && inventoryForm.controls['supplierId'].invalid" class="error-text">
-                <div *ngIf="inventoryForm.controls['supplierId'].errors?.['required']">Supplier ID is required.</div>
-            </div>
+            <label for="supplierId">Supplier</label>
+            <select id="supplierId" [(ngModel)]="selectedSupplierId" name="supplierId"
+                    class="form-control" required>
+                <option *ngFor="let supplier of suppliers" [value]="supplier.userId">
+                    {{ supplier.firstName }} {{ supplier.lastName }}
+                </option>
+            </select>
         </div>
 
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Create Inventory Item</button>
+        <button type="submit" class="btn btn-primary" [disabled]="loading">Create Inventory Item</button>
     </form>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Creating inventory item...</p>
+    </div>
 </div>
 <br/><br/><br/><br/>

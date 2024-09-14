@@ -1,6 +1,6 @@
-/* Container for the waiter management entries */
+/* Container for the restaurant management entries */
 .container {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 40px auto;
     padding: 20px;
     background-color: #f3e5f5; /* Light lavender background */
@@ -55,14 +55,14 @@ h2 {
 }
 
 /* Table styling */
-.waiter-table {
+.restaurant-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
     background-color: #ffffff; /* White background for table */
 }
 
-.waiter-table th, .waiter-table td {
+.restaurant-table th, .restaurant-table td {
     padding: 12px 15px;
     border: 1px solid #d1c4e9; /* Light lavender border */
     text-align: center;
@@ -71,7 +71,7 @@ h2 {
 }
 
 /* Table Header Styling */
-.waiter-table th {
+.restaurant-table th {
     background-color: #e1bee7; /* Slightly darker lavender background for headers */
     color: #4a148c; /* Dark lavender text */
     font-weight: bold;
@@ -86,6 +86,7 @@ h2 {
     color: #ffffff;
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.3s ease;
 }
 
 .btn-edit {
@@ -111,7 +112,7 @@ h2 {
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
-    .waiter-table th, .waiter-table td {
+    .restaurant-table th, .restaurant-table td {
         font-size: 12px; /* Smaller font size for mobile */
         padding: 10px; /* Adjust padding for mobile */
     }

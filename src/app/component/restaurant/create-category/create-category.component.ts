@@ -1,4 +1,3 @@
-// create-category.component.ts
 import {Component} from '@angular/core';
 import {OwnerService} from '../../services/owner.service';
 import {Category} from "../../model/category";

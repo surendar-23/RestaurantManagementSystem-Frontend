@@ -1,36 +1,48 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {SupplierService} from "../../services/supplier.service";
+import {OwnerService} from "../../services/owner.service";
 import {Router} from '@angular/router';
+import {InventoryItem} from "../../model/inventoryItem";
+import {User} from "../../model/user";
+import {NgForOf} from "@angular/common";
 
 @Component({
     selector: 'app-update-inventory-item',
     templateUrl: './update-inventory-item.component.html',
     styleUrls: ['./update-inventory-item.component.css'],
     imports: [
-        ReactiveFormsModule
+        ReactiveFormsModule,
+        NgForOf
     ],
     standalone: true
 })
 export class UpdateInventoryItemComponent implements OnInit {
     inventoryItemForm!: FormGroup;
+    restaurants: User[] = [];
+    suppliers: User[] = [];
 
     constructor(
         private fb: FormBuilder,
         private supplierService: SupplierService,
+        private ownerService: OwnerService,
         private router: Router
     ) {
     }
 
     ngOnInit(): void {
         this.initializeForm();
+        this.loadRestaurants();
+        this.loadSuppliers();
     }
 
     initializeForm() {
         this.inventoryItemForm = this.fb.group({
-            inventoryItemId: [null, Validators.required],  // Ensure this field is initialized
+            inventoryItemId: [null, Validators.required],
             name: ['', Validators.required],
             quantity: [0, [Validators.required, Validators.min(1)]],
+            restaurantId: [null, Validators.required], // Add restaurant to form
+            supplierId: [null, Validators.required] // Add supplier to form
         });
 
         // Listen for changes to the inventoryItemId field
@@ -43,21 +55,45 @@ export class UpdateInventoryItemComponent implements OnInit {
 
     loadInventoryItem(id: number) {
         this.supplierService.getInventoryItemById(id).subscribe(
-            (item) => {
+            (item: InventoryItem) => {
                 // Update form with retrieved item details
                 this.inventoryItemForm.patchValue({
                     name: item.name,
                     quantity: item.quantity,
+                    restaurantId: item?.restaurant?.userId, // Assuming item has restaurant userId
+                    supplierId: item?.supplier?.userId // Assuming item has supplier userId
                 });
             },
             (error) => {
                 console.error('Error loading inventory item:', error);
                 this.inventoryItemForm.reset({
-                    inventoryItemId: id,  // Keep the ID in the form, reset the others
+                    inventoryItemId: id,
                     name: '',
                     quantity: 0
                 });
                 alert('Inventory item not found or error occurred.');
+            }
+        );
+    }
+
+    loadRestaurants() {
+        this.ownerService.getRestaurants().subscribe(
+            (response) => {
+                this.restaurants = response;
+            },
+            (error) => {
+                console.error('Error loading restaurants:', error);
+            }
+        );
+    }
+
+    loadSuppliers() {
+        this.ownerService.getSuppliers().subscribe(
+            (response) => {
+                this.suppliers = response;
+            },
+            (error) => {
+                console.error('Error loading suppliers:', error);
             }
         );
     }

@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
+import {Router, RouterLink} from '@angular/router';
+import {NgForOf, NgIf} from '@angular/common';
 import {OwnerService} from '../../services/owner.service';
-import {NgIf, NgForOf} from '@angular/common';
-import {RouterLink} from '@angular/router';
 
 @Component({
     selector: 'app-view-suppliers',
@@ -15,14 +15,14 @@ export class ManageSuppliersComponent implements OnInit {
     loading: boolean = false;
     errorMessage: string | undefined;
 
-    constructor(private ownerService: OwnerService) {
+    constructor(private ownerService: OwnerService, private router: Router) {
     }
 
     ngOnInit(): void {
         this.getAllSuppliers();
     }
 
-    // Fetch all suppliers
+    // Fetch all Suppliers
     getAllSuppliers(): void {
         this.loading = true;
         this.ownerService.getSuppliers().subscribe(
@@ -38,12 +38,12 @@ export class ManageSuppliersComponent implements OnInit {
         );
     }
 
-    // Delete supplier by ID
+    // Delete Supplier by ID
     deleteSupplier(id: number): void {
         if (confirm('Are you sure you want to delete this supplier?')) {
-            this.ownerService.deleteSupplier(id).subscribe(
-                () => {
-                    console.log('Supplier deleted successfully!');
+            this.ownerService.deleteUser(id).subscribe(
+                response => {
+                    console.log('Supplier deleted successfully!', response);
                     this.getAllSuppliers(); // Refresh the list after deletion
                 },
                 error => {

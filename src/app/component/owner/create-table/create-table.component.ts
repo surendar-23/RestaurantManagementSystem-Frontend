@@ -1,82 +1,63 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
-import {OwnerService} from "../../services/owner.service";
-import {Router} from '@angular/router';
-import {NgForOf, NgIf} from "@angular/common";
+import {Component} from '@angular/core';
+import {OwnerService} from '../../services/owner.service';
+import {User} from '../../model/user';
+import {FormsModule} from '@angular/forms';
+import {NgForOf, NgIf} from '@angular/common';
+import {Table} from "../../model/table";
 
 @Component({
     selector: 'app-create-table',
     templateUrl: './create-table.component.html',
     standalone: true,
     imports: [
-        ReactiveFormsModule,
+        FormsModule,
         NgIf,
         NgForOf
     ],
     styleUrls: ['./create-table.component.css']
 })
-export class CreateTableComponent implements OnInit {
-    tableForm!: FormGroup;
-    submitted = false;
-    restaurants: any[] = []; // Array to store restaurant options
+export class CreateTableComponent {
+    table: Table = new Table();
+    successMessage: string | undefined;
+    errorMessage: string | undefined;
+    loading: boolean = false;
+    restaurants: User[] = [];
 
-    constructor(
-        private formBuilder: FormBuilder,
-        private ownerService: OwnerService,
-        private router: Router
-    ) {
+    selectedRestaurantId: number | undefined;
+
+    constructor(private ownerService: OwnerService) {
+        this.loadRestaurants();
     }
 
-    ngOnInit(): void {
-        this.tableForm = this.formBuilder.group({
-            number: ['', [Validators.required, Validators.min(1)]],
-            seats: ['', [Validators.required, Validators.min(1)]],
-            restaurantId: ['', Validators.required]
-        });
+    createTable() {
+        this.loading = true;
+        this.successMessage = undefined;
+        this.errorMessage = undefined;
 
-        // Fetch restaurants for the dropdown
-        this.ownerService.getAllRestaurants().subscribe(
-            response => {
-                this.restaurants = response;
+        // Set the menuItem properties using the selected IDs
+        this.table.restaurant = this.restaurants.find(rest => rest.userId === this.selectedRestaurantId);
+
+        this.ownerService.createTable(this.table).subscribe(
+            (response) => {
+                this.successMessage = 'Table created successfully!';
+                this.loading = false;
+                this.table = new Table(); // Reset form
+                this.selectedRestaurantId = undefined;
             },
-            error => {
-                console.error('Error fetching restaurants:', error);
+            (error) => {
+                this.errorMessage = 'Failed to create table. Please try again.';
+                this.loading = false;
             }
         );
     }
 
-    get f() {
-        return this.tableForm.controls;
-    }
-
-    onSubmit(): void {
-        this.submitted = true;
-
-        if (this.tableForm.invalid) {
-            return;
-        }
-
-        const tableData = {
-            number: this.tableForm.value.number,
-            seats: this.tableForm.value.seats,
-            restaurant: {id: this.tableForm.value.restaurantId}
-        };
-
-        this.ownerService.createTable(tableData).subscribe(
+    private loadRestaurants() {
+        this.ownerService.getRestaurants().subscribe(
             response => {
-                console.log('Table created successfully:', response);
-                this.router.navigate(['/owner/view-table']).then(success => {
-                    if (success) {
-                        console.log('Navigation successful!');
-                    } else {
-                        console.log('Navigation failed!');
-                    }
-                }).catch(err => {
-                    console.error('Navigation error:', err);
-                });
+                this.restaurants = response;
             },
             error => {
-                console.error('Error creating table:', error);
+                console.error('Error loading restaurants:', error);
             }
         );
     }

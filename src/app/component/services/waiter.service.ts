@@ -75,4 +75,18 @@ export class WaiterService {
     updateTable(body: any, id: any): Observable<any> {
         return this.http.put(this.url + "/api/table/" + id, body);
     }
+
+    getRestaurants(): Observable<any> {
+        return this.http.get(this.url + "/api/users/restaurants");
+    }
+
+    getCustomers(): Observable<any> {
+        return this.http.get(this.url + "/api/users/customers");
+    }
+
+    getWaiters(): Observable<any> {
+        return this.http.get(this.url + "/api/users/waiters");
+    }
+
+
 }

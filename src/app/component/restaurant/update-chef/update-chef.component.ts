@@ -1,71 +1,117 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
 import {Router} from '@angular/router';
-import {NgIf} from '@angular/common';
-import {FormsModule} from '@angular/forms';
-import {OwnerService} from '../../services/owner.service';
-import {Chef} from '../../model/chef'; // Assuming you have a Chef model
+import {OwnerService} from "../../services/owner.service";
+import {NgIf} from "@angular/common";
 
 @Component({
-    selector: 'app-update-chef',
+    selector: 'app-update-chef-details',
     templateUrl: './update-chef.component.html',
     standalone: true,
     imports: [
         NgIf,
-        FormsModule
+        ReactiveFormsModule
     ],
     styleUrls: ['./update-chef.component.css']
 })
-export class UpdateChefComponent {
-    chefId: number | undefined;
-    chef: Chef | undefined;
-    loading: boolean = false;
-    errorMessage: string | undefined;
+export class UpdateChefComponent implements OnInit {
+    idForm: FormGroup;
+    chefForm: FormGroup;
+    loading = false;
+    errorMessage: string | null = null;
+    successMessage: string | null = null;
+    chefId: number | null = null;
 
-    constructor(private ownerService: OwnerService, private router: Router) {
+    constructor(
+        private userService: OwnerService,
+        private fb: FormBuilder,
+        private router: Router
+    ) {
+        this.idForm = this.fb.group({
+            chefId: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
+        });
+
+        this.chefForm = this.fb.group({
+            name: ['', [Validators.required]],
+            phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+            address: ['', [Validators.required]],
+            district: ['', [Validators.required]],
+            state: ['', [Validators.required]],
+            zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
+            emailId: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(8)]]
+        });
     }
 
-    // Fetch Chef Details by ID
-    fetchChefDetails(): void {
-        if (this.chefId) {
-            this.loading = true;
-            this.ownerService.getChefById(this.chefId).subscribe(
-                response => {
-                    this.loading = false;
-                    this.chef = response;
-                },
-                error => {
-                    this.loading = false;
-                    this.errorMessage = 'Failed to load chef details. Please try again later.';
-                    console.error('Error fetching chef details:', error);
-                }
-            );
-        } else {
-            this.errorMessage = 'Please enter a valid Chef ID.';
-        }
+    ngOnInit(): void {
     }
 
-    // Update Chef
-    updateChef(): void {
-        if (this.chef && this.chef.id) {
-            this.ownerService.updateChef(this.chef, this.chef.id).subscribe(
-                response => {
-                    console.log('Chef updated successfully!', response);
-                    alert('Chef updated successfully!');
-                    this.router.navigate(['/restaurant/manage-chef']).then(success => {
-                        if (success) {
-                            console.log('Navigation successful!');
-                        } else {
-                            console.log('Navigation failed!');
-                        }
-                    }).catch(err => {
-                        console.error('Navigation error:', err);
-                    });
-                },
-                error => {
-                    this.errorMessage = 'Failed to update chef. Please try again later.';
-                    console.error('Error updating chef:', error);
-                }
-            );
+    onIdSubmit(): void {
+        if (this.idForm.invalid) {
+            return;
         }
+
+        this.chefId = +this.idForm.value.chefId;
+        this.loadChef();
+    }
+
+    loadChef(): void {
+        if (this.chefId === null) {
+            this.errorMessage = 'Invalid chef ID.';
+            return;
+        }
+
+        this.loading = true;
+        this.userService.getUserById(this.chefId).subscribe({
+            next: (data) => {
+                this.chefForm.patchValue({
+                    name: `${data.firstName} ${data.lastName}`,
+                    phoneNumber: data.phoneNumber,
+                    address: data.address,
+                    district: data.district,
+                    state: data.state,
+                    zipCode: data.zipCode,
+                    emailId: data.emailId,
+                    password: data.password
+                });
+                this.loading = false;
+            },
+            error: (err) => {
+                this.errorMessage = 'Error loading chef details.';
+                this.loading = false;
+            }
+        });
+    }
+
+    onSubmit(): void {
+        if (this.chefForm.invalid) {
+            return;
+        }
+
+        if (this.chefId === null) {
+            this.errorMessage = 'Chef ID is not set.';
+            return;
+        }
+
+        this.loading = true;
+        const formValue = this.chefForm.value;
+        const updatedChef = {
+            ...formValue,
+            userId: this.chefId,
+            firstName: formValue.name.split(' ')[0],
+            lastName: formValue.name.split(' ')[1]
+        };
+
+        this.userService.updateUser(this.chefId, updatedChef).subscribe({
+            next: () => {
+                this.loading = false;
+                alert('Updated Chef details successfully'); // Show alert
+                setTimeout(() => this.router.navigate(['/restaurant/manage-chefs']), 2000);
+            },
+            error: (err) => {
+                this.errorMessage = 'Error updating chef details.';
+                this.loading = false;
+            }
+        });
     }
 }

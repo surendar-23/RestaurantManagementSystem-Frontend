@@ -1,10 +1,10 @@
 import {Category} from "./category";
-import {Restaurant} from "./restaurant";
+import {User} from "./user";
 
 export class MenuItem {
-    id: number | undefined;
-    name: string | undefined;
-    price: number | undefined;
-    category: Category | undefined;
-    restaurant: Restaurant | undefined;
+    id?: number;
+    name?: string;
+    price?: number;
+    category?: Category;
+    restaurant?: User;
 }

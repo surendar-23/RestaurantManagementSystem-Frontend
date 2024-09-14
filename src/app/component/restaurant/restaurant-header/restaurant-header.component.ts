@@ -20,25 +20,17 @@ export class RestaurantHeaderComponent implements OnInit {
 
     navItems = [
         {path: '/restaurant/home', label: 'Home', icon: 'fas fa-home'},
-        {path: '/restaurant/create-address', label: 'Create Address', icon: 'fas fa-map-marker-alt'},
-        {path: '/restaurant/manage-address', label: 'Manage Address', icon: 'fas fa-address-book'},
-        {path: '/restaurant/create-restaurant', label: 'Create Restaurant', icon: 'fas fa-plus-circle'},
         {path: '/restaurant/manage-restaurants', label: 'Manage Restaurants', icon: 'fas fa-tasks'},
-        {path: '/restaurant/create-waiter', label: 'Create Waiter', icon: 'fas fa-user'},
         {path: '/restaurant/manage-waiters', label: 'Manage Waiters', icon: 'fas fa-tasks'},
         {path: '/restaurant/create-category', label: 'Create Category', icon: 'fas fa-tags'},
+        {path: '/restaurant/manage-category', label: 'Manage Category', icon: 'fas fa-tasks'},
+
     ];
 
     navItems2 = [
-
-        {path: '/restaurant/manage-category', label: 'Manage Category', icon: 'fas fa-tasks'},
-
         {path: '/restaurant/create-menu-item', label: 'Create Menu Item', icon: 'fas fa-utensils'},
         {path: '/restaurant/manage-menu-item', label: 'Manage Menu Items', icon: 'fas fa-tasks'},
-        {path: '/restaurant/create-chef', label: 'Create Chef', icon: 'fas fa-user-chef'},
         {path: '/restaurant/manage-chefs', label: 'Manage Chefs', icon: 'fas fa-tasks'},
-
-        {path: '/restaurant/create-delivery-partner', label: 'Create Delivery Partner', icon: 'fas fa-motorcycle'},
         {path: '/restaurant/manage-delivery-partners', label: 'Manage Delivery Partners', icon: 'fas fa-tasks'},
         {path: '/restaurant/logout', label: 'Logout', icon: 'fas fa-sign-out-alt'}
     ];

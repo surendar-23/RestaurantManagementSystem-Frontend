@@ -1,3 +1,4 @@
+<br/><br/><br/><br/>
 <div class="container">
     <h2>Manage Delivery Partners</h2>
 
@@ -18,19 +19,23 @@
         <tr>
             <th>ID</th>
             <th>Name</th>
-            <th>Contact Number</th>
+            <th>Phone Number</th>
+            <th>Location</th>
+            <th>Email</th>
             <th>Actions</th>
         </tr>
         </thead>
         <tbody>
         <tr *ngFor="let partner of deliveryPartners">
-            <td>{{ partner.id }}</td>
-            <td>{{ partner.name }}</td>
-            <td>{{ partner.contactNumber }}</td>
+            <td>{{ partner.userId }}</td>
+            <td>{{ partner.firstName }} {{ partner.lastName }}</td>
+            <td>{{ partner.phoneNumber }}</td>
+            <td>{{ partner.address }}, {{ partner.district }}, {{ partner.state }}, {{ partner.zipCode }}
+            </td>
+            <td>{{ partner.emailId }}</td>
             <td>
-                <button class="btn btn-edit" [routerLink]="['/restaurant/update-delivery-partners']">Edit
-                </button>
-                <button class="btn btn-delete" (click)="deleteDeliveryPartner(partner.id)">Delete</button>
+                <button class="btn btn-edit" [routerLink]="['/restaurant/update-delivery-partners']">Edit</button>
+                <button class="btn btn-delete" (click)="deleteDeliveryPartner(partner.userId)">Delete</button>
             </td>
         </tr>
         </tbody>
@@ -41,3 +46,4 @@
         <p>No delivery partners found.</p>
     </div>
 </div>
+<br/><br/><br/><br/>

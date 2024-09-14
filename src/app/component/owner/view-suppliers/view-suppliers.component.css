@@ -1,32 +1,32 @@
-/* Container for the suppliers */
+/* General Container Styling */
 .container {
-    max-width: 900px; /* Adjusted width to match ManageAccountingComponent */
-    margin: 40px auto; /* Adjusted margin to match ManageAccountingComponent */
-    padding: 20px;
+    max-width: 1100px;
+    margin: 40px auto;
+    padding: 30px;
     background-color: #f3e5f5; /* Light lavender background */
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
 }
 
-/* Heading */
+/* Heading Styling */
 h2 {
     text-align: center;
     margin-bottom: 20px;
     color: #6a1b9a; /* Dark lavender */
     font-weight: 700;
-    font-size: 28px; /* Adjusted font size to match ManageAccountingComponent */
+    font-size: 28px;
 }
 
-/* Error message styling */
+/* Error Message Styling */
 .error-message {
-    color: #d9534f; /* Red for error messages */
+    color: #d9534f; /* Red for errors */
     text-align: center;
     margin-bottom: 20px;
     font-weight: 600;
 }
 
-/* Loading spinner styling */
+/* Loading Spinner Styling */
 .loading-spinner {
     display: flex;
     flex-direction: column;
@@ -54,7 +54,7 @@ h2 {
     }
 }
 
-/* Table styling */
+/* Table Styling */
 .suppliers-table {
     width: 100%;
     border-collapse: collapse;
@@ -77,7 +77,7 @@ h2 {
     font-weight: bold;
 }
 
-/* Button styling */
+/* Button Styling */
 .btn {
     padding: 6px 12px;
     margin: 0 5px;
@@ -86,30 +86,31 @@ h2 {
     color: #ffffff;
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.3s ease;
 }
 
 .btn-edit {
-    background-color: #7e57c2; /* Medium lavender for Edit */
+    background-color: #6a1b9a; /* Dark lavender for Edit */
 }
 
 .btn-delete {
-    background-color: #d9534f; /* Red for Delete button */
+    background-color: #d9534f; /* Red for Delete */
 }
 
 .btn:hover {
     opacity: 0.8;
 }
 
-/* No entries message styling */
+/* No Entries Message Styling */
 .no-entries {
     text-align: center;
     margin-top: 40px;
-    color: #4a148c; /* Dark lavender */
+    color: #555555; /* Dark gray for no entries message */
     font-size: 18px;
     font-weight: 500;
 }
 
-/* Responsiveness */
+/* Responsive Design */
 @media screen and (max-width: 768px) {
     .suppliers-table th, .suppliers-table td {
         font-size: 12px; /* Smaller font size for mobile */

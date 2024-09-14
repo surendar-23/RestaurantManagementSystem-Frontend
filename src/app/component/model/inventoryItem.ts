@@ -1,11 +1,9 @@
-export interface InventoryItem {
-    id: number;
-    name: string;
-    quantity: number;
-    restaurant?: {
-        id: number;
-    };
-    supplier?: {
-        id: number;
-    };
+import {User} from "./user";
+
+export class InventoryItem {
+    id: number | undefined;
+    name: string | undefined;
+    quantity: number | undefined;
+    restaurant?: User;
+    supplier?: User
 }

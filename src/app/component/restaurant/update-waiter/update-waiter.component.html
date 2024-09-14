@@ -1,42 +1,71 @@
 <br/><br/><br/><br/>
 <div class="container">
-    <h2>Update Waiter Details</h2>
+    <h2>Update Waiter</h2>
 
     <!-- Error Message -->
-    <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
-    </div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 
-    <!-- Waiter ID Input -->
-    <div class="form-group">
-        <label for="waiterId">Waiter ID</label>
-        <input type="number" id="waiterId" [(ngModel)]="waiterId" class="form-control" placeholder="Enter Waiter ID">
-    </div>
-
-    <!-- Fetch Details Button -->
-    <button (click)="fetchWaiterDetails()" class="btn btn-primary">Fetch Details</button>
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
 
     <!-- Loading Spinner -->
     <div *ngIf="loading" class="loading-spinner">
         <div class="spinner"></div>
-        <p>Loading waiter details...</p>
+        <p>Loading...</p>
     </div>
 
-    <!-- Waiter Form -->
-    <form *ngIf="waiter" (ngSubmit)="updateWaiter()">
+    <!-- ID Input Form -->
+    <form [formGroup]="idForm" (ngSubmit)="onIdSubmit()">
         <div class="form-group">
-            <label for="waiterName">Waiter Name</label>
-            <input type="text" id="waiterName" [(ngModel)]="waiter.name" name="waiterName" class="form-control"
-                   placeholder="Enter Waiter Name">
+            <label for="waiterId">Waiter ID</label>
+            <input id="waiterId" formControlName="waiterId" class="form-control"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Fetch Details</button>
+    </form>
+
+    <!-- Restaurant Update Form -->
+    <form *ngIf="waiterId" [formGroup]="waiterForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" formControlName="name" class="form-control"/>
         </div>
 
         <div class="form-group">
-            <label for="experience">Experience (Years)</label>
-            <input type="number" id="experience" [(ngModel)]="waiter.experience" name="experience" class="form-control"
-                   placeholder="Enter Experience">
+            <label for="phoneNumber">Phone Number</label>
+            <input id="phoneNumber" formControlName="phoneNumber" class="form-control"/>
         </div>
 
-        <button type="submit" class="btn btn-success">Update Waiter</button>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input id="address" formControlName="address" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="district">District</label>
+            <input id="district" formControlName="district" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="state">State</label>
+            <input id="state" formControlName="state" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="zipCode">Zip Code</label>
+            <input id="zipCode" formControlName="zipCode" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="emailId">Email ID</label>
+            <input id="emailId" formControlName="emailId" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" formControlName="password" class="form-control"/>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
 <br/><br/><br/><br/>

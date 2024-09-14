@@ -20,9 +20,41 @@
             <input id="total" formControlName="total" type="number" class="form-control"/>
         </div>
 
+        <div class="form-group">
+            <label for="customerId">Customer</label>
+            <select id="customerId" formControlName="customerId" class="form-control" required>
+                <option *ngFor="let customer of customers" [value]="customer.userId">{{ customer.firstName }}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="restaurantId">Restaurant</label>
+            <select id="restaurantId" formControlName="restaurantId" class="form-control" required>
+                <option *ngFor="let restaurant of restaurants" [value]="restaurant.userId">
+                    {{ restaurant.firstName }} {{ restaurant.lastName }}
+                </option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="tableId">Table:</label>
+            <select id="tableId" formControlName="tableId" class="form-control">
+                <option *ngFor="let table of tables" [value]="table.id">{{ table.number }}</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="waiterId">Waiter:</label>
+            <select id="waiterId" formControlName="waiterId" class="form-control">
+                <option *ngFor="let waiter of waiters" [value]="waiter.userId">{{ waiter.firstName }}</option>
+            </select>
+        </div>
+
         <button type="submit" class="btn btn-primary" [disabled]="orderForm.invalid">Update</button>
     </form>
 </div>
+
+
 <br/>
 <br/>
 <br/>

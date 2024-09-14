@@ -1,9 +1,9 @@
-/* Container for the update delivery partner form */
+/* Container for the update restaurant form */
 .container {
     max-width: 600px;
     margin: 50px auto;
     padding: 20px;
-    background-color: #f3e5f5; /* Light lavender background for consistency */
+    background-color: #f3e5f5; /* Light lavender background */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
@@ -48,8 +48,8 @@ h2 {
     padding: 12px;
     border: 2px solid #d1c4e9; /* Light lavender border */
     border-radius: 5px;
-    background-color: #ffffff; /* White background for input fields */
-    color: #4a148c; /* Darker lavender text */
+    background-color: #ffffff; /* White background */
+    color: #4a148c; /* Dark lavender text */
     font-size: 16px;
     transition: border-color 0.3s ease;
 }
@@ -74,15 +74,15 @@ h2 {
 }
 
 .btn-primary {
-    background-color: #007bff; /* Blue for Fetch Details */
+    background-color: #6a1b9a; /* Dark lavender for Fetch Details */
 }
 
 .btn-success {
-    background-color: #5cb85c; /* Green for Update Delivery Partner */
+    background-color: #5cb85c; /* Green for Update Restaurant */
 }
 
 .btn-primary:hover {
-    background-color: #0056b3; /* Darker blue on hover */
+    background-color: #5e35b1; /* Slightly darker lavender */
 }
 
 .btn-success:hover {

@@ -32,14 +32,21 @@
             <input id="status" formControlName="status" type="text" class="form-control"/>
         </div>
 
+        <!-- Updated Order ID Dropdown -->
         <div class="form-group">
-            <label for="orderId">Order ID:</label>
-            <input id="orderId" formControlName="orderId" type="number" class="form-control"/>
+            <label for="orderId">Order :</label>
+            <select id="orderId" formControlName="orderId" class="form-control">
+                <option *ngFor="let order of orders" [value]="order.id">{{ order.orderDate }}</option>
+            </select>
         </div>
 
+        <!-- Updated Delivery Partner ID Dropdown -->
         <div class="form-group">
-            <label for="deliveryPartnerId">Delivery Partner ID:</label>
-            <input id="deliveryPartnerId" formControlName="deliveryPartnerId" type="number" class="form-control"/>
+            <label for="deliveryPartnerId">Delivery Partner Name:</label>
+            <select id="deliveryPartnerId" formControlName="deliveryPartnerId" class="form-control">
+                <option *ngFor="let partner of deliveryPartners" [value]="partner.userId">{{ partner.firstName }}
+                </option>
+            </select>
         </div>
 
         <button type="submit" class="btn btn-primary" [disabled]="deliveryForm.invalid">Create Delivery Task</button>

@@ -83,4 +83,14 @@ export class ChefService {
     getFeedbackById(id: any): Observable<any> {
         return this.http.get(this.url + "/api/feedback/" + id);
     }
+
+    getRestaurants(): Observable<any> {
+        return this.http.get(this.url + "/api/users/restaurants");
+    }
+
+    getCategory(): Observable<any> {
+        return this.http.get(this.url + "/api/category");
+    }
+
+
 }

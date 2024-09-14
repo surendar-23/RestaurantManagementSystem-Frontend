@@ -21,7 +21,7 @@ export class OwnerService {
 
     ownerLogout(): void {
         localStorage.clear();
-        this.route.navigate(['']).then(success => {
+        this.route.navigate(['/']).then(success => {
             if (success) {
                 console.log('Navigation successful!');
             } else {
@@ -52,48 +52,22 @@ export class OwnerService {
     }
 
     // Update Accounting Entry by ID
-    updateAccounting(body: any, id: number): Observable<any> {
-        return this.http.put(this.url + '/api/accounting/' + id, body);
+
+    updateAccounting(accountingData: any, id: number) {
+        return this.http.put(`${this.url}/api/accounting/${id}`, accountingData);
     }
 
-    createAddress(body: any): Observable<any> {
-        return this.http.post(this.url + "/api/address", body);
-    }
-
-    getAllAddress(): Observable<any> {
-        return this.http.get(this.url + "/api/address");
-    }
-
-    deleteAddress(id: any): Observable<any> {
-        return this.http.delete(this.url + "/api/address/" + id);
-    }
-
-    getAddressById(id: any): Observable<any> {
-        return this.http.get(this.url + "/api/address/" + id);
-    }
-
-    updateAddress(body: any, id: any): Observable<any> {
-        return this.http.put(this.url + "/api/address/" + id, body);
-    }
-
-    createRestaurant(body: any): Observable<any> {
-        return this.http.post(this.url + "/api/restaurants", body);
-    }
 
     getAllRestaurants(): Observable<any> {
-        return this.http.get(this.url + "/api/restaurants");
-    }
-
-    deleteRestaurant(id: any): Observable<any> {
-        return this.http.delete(this.url + "/api/restaurants/" + id);
+        return this.http.get(this.url + "/api/users/restaurants");
     }
 
     getRestaurantById(id: any): Observable<any> {
-        return this.http.get(this.url + "/api/restaurants/" + id);
+        return this.http.get(this.url + "/api/users/user/" + id);
     }
 
     updateRestaurant(body: any, id: any): Observable<any> {
-        return this.http.put(this.url + "/api/restaurants/" + id, body);
+        return this.http.put(this.url + "/api/users/user/" + id, body);
     }
 
     createBill(body: any): Observable<any> {
@@ -168,44 +142,32 @@ export class OwnerService {
         return this.http.get(this.url + "/api/feedback/" + id);
     }
 
-    createChef(body: any): Observable<any> {
-        return this.http.post(this.url + "/api/chef", body);
-    }
-
     getChef(): Observable<any> {
-        return this.http.get(this.url + "/api/chef");
+        return this.http.get(this.url + "/api/users");
     }
 
     deleteChef(id: any): Observable<any> {
-        return this.http.delete(this.url + "/api/chef/" + id);
+        return this.http.delete(this.url + "/api/users/user/" + id);
     }
 
     getChefById(id: any): Observable<any> {
-        return this.http.get(this.url + "/api/chef/" + id);
+        return this.http.get(this.url + "/api/users/user/" + id);
     }
 
     updateChef(body: any, id: any): Observable<any> {
-        return this.http.put(this.url + "/api/chef/" + id, body);
-    }
-
-    createDeliveryPartner(body: any): Observable<any> {
-        return this.http.post(this.url + "/api/delivery-partners", body);
-    }
-
-    getDeliveryPartners(): Observable<any> {
-        return this.http.get(this.url + "/api/delivery-partners");
+        return this.http.put(this.url + "/api/users/user/" + id, body);
     }
 
     deleteDeliveryPartner(id: any): Observable<any> {
-        return this.http.delete(this.url + "/api/delivery-partners/" + id);
+        return this.http.delete(this.url + "/api/users/user/" + id);
     }
 
     getDeliveryPartnerById(id: any): Observable<any> {
-        return this.http.get(this.url + "/api/delivery-partners/" + id);
+        return this.http.get(this.url + "/api/users/user/" + id);
     }
 
     updateDeliveryPartner(body: any, id: any): Observable<any> {
-        return this.http.put(this.url + "/api/delivery-partners/" + id, body);
+        return this.http.put(this.url + "/api/users/user/" + id, body);
     }
 
     createInventoryItem(body: any): Observable<any> {
@@ -230,6 +192,11 @@ export class OwnerService {
 
     createMenuItem(body: any): Observable<any> {
         return this.http.post(this.url + "/api/menuItem", body);
+    }
+
+
+    getRestaurants(): Observable<any> {
+        return this.http.get(this.url + "/api/users/role/restaurant");
     }
 
     getMenuItem(): Observable<any> {
@@ -260,24 +227,16 @@ export class OwnerService {
         return this.http.get(this.url + "/api/orders/" + id);
     }
 
-    createSupplier(body: any): Observable<any> {
-        return this.http.post(this.url + "/api/supplier", body);
-    }
-
-    getSuppliers(): Observable<any> {
-        return this.http.get(this.url + "/api/supplier");
-    }
-
     deleteSupplier(id: any): Observable<any> {
-        return this.http.delete(this.url + "/api/supplier/" + id);
+        return this.http.delete(this.url + "/api/users/user/" + id);
     }
 
     getSupplierById(id: any): Observable<any> {
-        return this.http.get(this.url + "/api/supplier/" + id);
+        return this.http.get(this.url + "/api/users/user/" + id);
     }
 
     updateSupplier(body: any, id: any): Observable<any> {
-        return this.http.put(this.url + "/api/supplier/" + id, body);
+        return this.http.put(this.url + "/api/users/user/" + id, body);
     }
 
     createTable(body: any): Observable<any> {
@@ -300,23 +259,80 @@ export class OwnerService {
         return this.http.put(this.url + "/api/table/" + id, body);
     }
 
-    createWaiter(body: any): Observable<any> {
-        return this.http.post(this.url + "/api/waiter", body);
-    }
-
-    getWaiters(): Observable<any> {
-        return this.http.get(this.url + "/api/waiter");
-    }
-
     deleteWaiter(id: any): Observable<any> {
-        return this.http.delete(this.url + "/api/waiter/" + id);
+        return this.http.delete(this.url + "/api/users/user/" + id);
     }
 
     getWaiterById(id: any): Observable<any> {
-        return this.http.get(this.url + "/api/waiter/" + id);
+        return this.http.get(this.url + "/api/users/user/" + id);
     }
 
     updateWaiter(body: any, id: any): Observable<any> {
-        return this.http.put(this.url + "/api/waiter/" + id, body);
+        return this.http.put(this.url + "/api/users/user/" + id, body);
+    }
+
+    // Get All Users
+    getUsers(): Observable<any> {
+        return this.http.get(`${this.url}/api/users`);
+    }
+
+    // Get User by ID
+    getUserById(id: number): Observable<any> {
+        return this.http.get(`${this.url}/api/users/${id}`);
+    }
+
+    // Register a new User
+    saveUser(user: any): Observable<any> {
+        return this.http.post(`${this.url}/api/users/register`, user);
+    }
+
+    // Login User
+    loginUser(user: any): Observable<any> {
+        return this.http.post(`${this.url}/api/users/login`, user);
+    }
+
+    // Update User
+    updateUser(id: number, user: any): Observable<any> {
+        return this.http.put(`${this.url}/api/users/${id}`, user);
+    }
+
+    // Delete User
+    deleteUser(id: number): Observable<any> {
+        return this.http.delete(`${this.url}/api/users/${id}`);
+    }
+
+    getWaiters(): Observable<any> {
+        return this.http.get(this.url + "/api/users/waiters");
+    }
+
+    getDeliveryPartners(): Observable<any> {
+        return this.http.get(this.url + "/api/users/delivery-partners");
+    }
+
+    getChefs(): Observable<any> {
+        return this.http.get(this.url + "/api/users/chefs");
+    }
+
+    getSuppliers(): Observable<any> {
+        return this.http.get(this.url + "/api/users/suppliers");
+    }
+
+    getOwners(): Observable<any> {
+        return this.http.get(this.url + "/api/users/owners");
+    }
+
+    // Forgot Password
+    forgotPassword(user: any): Observable<any> {
+        return this.http.post(`${this.url}/api/users/forgotpassword`, user);
+    }
+
+    // Change User Password
+    changeUserPassword(uid: number, newpassword: string): Observable<any> {
+        return this.http.post(`${this.url}/api/users/${uid}/${newpassword}`, {});
+    }
+
+    // Verify User Details
+    verifyUserDetails(user: any): Observable<any> {
+        return this.http.post(`${this.url}/api/users/verifydetails`, user);
     }
 }

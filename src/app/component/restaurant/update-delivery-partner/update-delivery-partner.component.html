@@ -1,43 +1,71 @@
 <br/><br/><br/><br/>
 <div class="container">
-    <h2>Update Delivery Partner Details</h2>
+    <h2>Update Delivery Partner</h2>
 
     <!-- Error Message -->
-    <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
-    </div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 
-    <!-- Delivery Partner ID Input -->
-    <div class="form-group">
-        <label for="deliveryPartnerId">Delivery Partner ID</label>
-        <input type="number" id="deliveryPartnerId" [(ngModel)]="deliveryPartnerId" class="form-control"
-               placeholder="Enter Delivery Partner ID">
-    </div>
-
-    <!-- Fetch Details Button -->
-    <button (click)="fetchDeliveryPartnerDetails()" class="btn btn-primary">Fetch Details</button>
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
 
     <!-- Loading Spinner -->
     <div *ngIf="loading" class="loading-spinner">
         <div class="spinner"></div>
-        <p>Loading delivery partner details...</p>
+        <p>Loading...</p>
     </div>
 
-    <!-- Delivery Partner Form -->
-    <form *ngIf="deliveryPartner" (ngSubmit)="updateDeliveryPartner()">
+    <!-- ID Input Form -->
+    <form [formGroup]="idForm" (ngSubmit)="onIdSubmit()">
         <div class="form-group">
-            <label for="deliveryPartnerName">Delivery Partner Name</label>
-            <input type="text" id="deliveryPartnerName" [(ngModel)]="deliveryPartner.name" name="deliveryPartnerName"
-                   class="form-control" placeholder="Enter Delivery Partner Name">
+            <label for="partnerId">Delivery Partner ID</label>
+            <input id="partnerId" formControlName="partnerId" class="form-control"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Fetch Details</button>
+    </form>
+
+    <!-- Restaurant Update Form -->
+    <form *ngIf="partnerId" [formGroup]="partnerForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" formControlName="name" class="form-control"/>
         </div>
 
         <div class="form-group">
-            <label for="deliveryPartnerContact">Contact Number</label>
-            <input type="text" id="deliveryPartnerContact" [(ngModel)]="deliveryPartner.contactNumber"
-                   name="deliveryPartnerContact" class="form-control" placeholder="Enter Contact Number">
+            <label for="phoneNumber">Phone Number</label>
+            <input id="phoneNumber" formControlName="phoneNumber" class="form-control"/>
         </div>
 
-        <button type="submit" class="btn btn-success">Update Delivery Partner</button>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input id="address" formControlName="address" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="district">District</label>
+            <input id="district" formControlName="district" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="state">State</label>
+            <input id="state" formControlName="state" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="zipCode">Zip Code</label>
+            <input id="zipCode" formControlName="zipCode" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="emailId">Email ID</label>
+            <input id="emailId" formControlName="emailId" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" formControlName="password" class="form-control"/>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
 <br/><br/><br/><br/>

@@ -1,38 +1,48 @@
 <br/><br/><br/><br/>
-<div class="create-order-container">
-    <h2>Create Order</h2>
-    <form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
+<div class="container">
+    <h2>Create New Order</h2>
+
+    <!-- Error and Success Messages -->
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+
+    <!-- Form to Create Order -->
+    <form [formGroup]="orderForm" (ngSubmit)="createOrder()">
         <div class="form-group">
-            <label for="orderDate">Order Date:</label>
-            <input id="orderDate" formControlName="orderDate" type="date" class="form-control"/>
+            <label for="orderDate">Order Date</label>
+            <input type="date" id="orderDate" formControlName="orderDate" class="form-control"
+                   placeholder="Select Order Date" required/>
         </div>
 
         <div class="form-group">
-            <label for="total">Total:</label>
-            <input id="total" formControlName="total" type="number" class="form-control"/>
+            <label for="total">Total Price</label>
+            <input type="number" id="total" formControlName="total" class="form-control" placeholder="Enter Total Price"
+                   required/>
         </div>
 
         <div class="form-group">
-            <label for="customerId">Customer ID:</label>
-            <input id="customerId" formControlName="customerId" type="number" class="form-control"/>
+            <label for="customerId">Customer</label>
+            <select id="customerId" formControlName="customerId" class="form-control" required>
+                <option *ngFor="let customer of customers" [value]="customer.userId">{{ customer.firstName }}</option>
+            </select>
         </div>
 
         <div class="form-group">
-            <label for="restaurantId">Restaurant ID:</label>
-            <input id="restaurantId" formControlName="restaurantId" type="number" class="form-control"/>
+            <label for="restaurantId">Restaurant</label>
+            <select id="restaurantId" formControlName="restaurantId" class="form-control" required>
+                <option *ngFor="let restaurant of restaurants"
+                        [value]="restaurant.userId">{{ restaurant.firstName }} {{ restaurant.lastName }}
+                </option>
+            </select>
         </div>
 
-        <div class="form-group">
-            <label for="tableId">Table ID:</label>
-            <input id="tableId" formControlName="tableId" type="number" class="form-control"/>
-        </div>
-
-        <div class="form-group">
-            <label for="waiterId">Waiter ID:</label>
-            <input id="waiterId" formControlName="waiterId" type="number" class="form-control"/>
-        </div>
-
-        <button type="submit" class="btn btn-primary" [disabled]="orderForm.invalid">Create Order</button>
+        <button type="submit" class="btn btn-primary" [disabled]="loading">Create Order</button>
     </form>
+
+    <!-- Loading Spinner -->
+    <div *ngIf="loading" class="loading-spinner">
+        <div class="spinner"></div>
+        <p>Creating order...</p>
+    </div>
 </div>
 <br/><br/><br/><br/>

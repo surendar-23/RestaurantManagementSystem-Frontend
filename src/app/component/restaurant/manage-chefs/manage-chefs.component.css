@@ -1,6 +1,6 @@
-/* General Container Styling */
+/* Container for the chef management entries */
 .container {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 40px auto;
     padding: 20px;
     background-color: #f3e5f5; /* Light lavender background */
@@ -86,6 +86,7 @@ h2 {
     color: #ffffff;
     cursor: pointer;
     font-size: 14px;
+    transition: background-color 0.3s ease;
 }
 
 .btn-edit {

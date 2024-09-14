@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {OwnerService} from "../../services/owner.service";
 import {Router} from "@angular/router";
 import {NgIf} from "@angular/common";
-import {FormsModule} from "@angular/forms";
+import {FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 
 @Component({
     selector: 'app-update-waiter',
@@ -10,61 +10,109 @@ import {FormsModule} from "@angular/forms";
     standalone: true,
     imports: [
         NgIf,
-        FormsModule
+        FormsModule,
+        ReactiveFormsModule
     ],
     styleUrls: ['./update-waiter.component.css']
 })
-export class UpdateWaiterComponent {
-    waiterId: number | undefined;
-    waiter: any | undefined;
-    loading: boolean = false;
-    errorMessage: string | undefined;
+export class UpdateWaiterComponent implements OnInit {
+    idForm: FormGroup;
+    waiterForm: FormGroup;
+    loading = false;
+    errorMessage: string | null = null;
+    successMessage: string | null = null;
+    waiterId: number | null = null;
 
-    constructor(private ownerService: OwnerService, private router: Router) {
+    constructor(
+        private userService: OwnerService,
+        private fb: FormBuilder,
+        private router: Router
+    ) {
+        this.idForm = this.fb.group({
+            waiterId: ['', [Validators.required, Validators.pattern('^[0-9]+$')]]
+        });
+
+        this.waiterForm = this.fb.group({
+            name: ['', [Validators.required]],
+            phoneNumber: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+            address: ['', [Validators.required]],
+            district: ['', [Validators.required]],
+            state: ['', [Validators.required]],
+            zipCode: ['', [Validators.required, Validators.pattern('^[0-9]{6}$')]],
+            emailId: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(8)]]
+        });
     }
 
-    // Fetch Waiter Details by ID
-    fetchWaiterDetails(): void {
-        if (this.waiterId) {
-            this.loading = true;
-            this.ownerService.getWaiterById(this.waiterId).subscribe(
-                response => {
-                    this.loading = false;
-                    this.waiter = response;
-                },
-                error => {
-                    this.loading = false;
-                    this.errorMessage = 'Failed to load waiter details. Please try again later.';
-                    console.error('Error fetching waiter details:', error);
-                }
-            );
-        } else {
-            this.errorMessage = 'Please enter a valid Waiter ID.';
-        }
+    ngOnInit(): void {
     }
 
-    // Update Waiter
-    updateWaiter(): void {
-        if (this.waiter && this.waiter.id) {
-            this.ownerService.updateWaiter(this.waiter, this.waiter.id).subscribe(
-                response => {
-                    console.log('Waiter updated successfully!', response);
-                    alert('Waiter updated successfully!');
-                    this.router.navigate(['/restaurant/manage-waiters']).then(success => {
-                        if (success) {
-                            console.log('Navigation successful!');
-                        } else {
-                            console.log('Navigation failed!');
-                        }
-                    }).catch(err => {
-                        console.error('Navigation error:', err);
-                    });
-                },
-                error => {
-                    this.errorMessage = 'Failed to update waiter. Please try again later.';
-                    console.error('Error updating waiter:', error);
-                }
-            );
+    onIdSubmit(): void {
+        if (this.idForm.invalid) {
+            return;
         }
+
+        this.waiterId = +this.idForm.value.waiterId;
+        this.loadWaiter();
+    }
+
+    loadWaiter(): void {
+        if (this.waiterId === null) {
+            this.errorMessage = 'Invalid restaurant ID.';
+            return;
+        }
+
+        this.loading = true;
+        this.userService.getUserById(this.waiterId).subscribe({
+            next: (data) => {
+                this.waiterForm.patchValue({
+                    name: `${data.firstName} ${data.lastName}`,
+                    phoneNumber: data.phoneNumber,
+                    address: data.address,
+                    district: data.district,
+                    state: data.state,
+                    zipCode: data.zipCode,
+                    emailId: data.emailId,
+                    password: data.password
+                });
+                this.loading = false;
+            },
+            error: (err) => {
+                this.errorMessage = 'Error loading restaurant details.';
+                this.loading = false;
+            }
+        });
+    }
+
+    onSubmit(): void {
+        if (this.waiterForm.invalid) {
+            return;
+        }
+
+        if (this.waiterId === null) {
+            this.errorMessage = 'Restaurant ID is not set.';
+            return;
+        }
+
+        this.loading = true;
+        const formValue = this.waiterForm.value;
+        const updatedWaiter = {
+            ...formValue,
+            userId: this.waiterId,
+            firstName: formValue.name.split(' ')[0],
+            lastName: formValue.name.split(' ')[1]
+        };
+
+        this.userService.updateUser(this.waiterId, updatedWaiter).subscribe({
+            next: () => {
+                this.loading = false;
+                alert('Updated waiter details successfully'); // Show alert
+                setTimeout(() => this.router.navigate(['/restaurant/manage-waiters']), 2000);
+            },
+            error: (err) => {
+                this.errorMessage = 'Error updating restaurant details.';
+                this.loading = false;
+            }
+        });
     }
 }

@@ -29,7 +29,7 @@ export class ManageChefsComponent implements OnInit {
     // Fetch all chefs
     getAllChefs(): void {
         this.loading = true;
-        this.ownerService.getChef().subscribe(
+        this.ownerService.getChefs().subscribe(
             response => {
                 this.loading = false;
                 this.chefs = response;
@@ -45,7 +45,7 @@ export class ManageChefsComponent implements OnInit {
     // Delete chef by ID
     deleteChef(id: number): void {
         if (confirm('Are you sure you want to delete this chef?')) {
-            this.ownerService.deleteChef(id).subscribe(
+            this.ownerService.deleteUser(id).subscribe(
                 response => {
                     console.log('Chef deleted successfully!', response);
                     this.getAllChefs(); // Refresh the list after deletion

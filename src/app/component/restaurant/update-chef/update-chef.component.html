@@ -1,43 +1,71 @@
 <br/><br/><br/><br/>
 <div class="container">
-    <h2>Update Chef Details</h2>
+    <h2>Update Chef</h2>
 
     <!-- Error Message -->
-    <div *ngIf="errorMessage" class="error-message">
-        {{ errorMessage }}
-    </div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
 
-    <!-- Chef ID Input -->
-    <div class="form-group">
-        <label for="chefId">Chef ID</label>
-        <input type="number" id="chefId" [(ngModel)]="chefId" class="form-control"
-               placeholder="Enter Chef ID">
-    </div>
-
-    <!-- Fetch Details Button -->
-    <button (click)="fetchChefDetails()" class="btn btn-primary">Fetch Details</button>
+    <!-- Success Message -->
+    <div *ngIf="successMessage" class="success-message">{{ successMessage }}</div>
 
     <!-- Loading Spinner -->
     <div *ngIf="loading" class="loading-spinner">
         <div class="spinner"></div>
-        <p>Loading chef details...</p>
+        <p>Loading...</p>
     </div>
 
-    <!-- Chef Form -->
-    <form *ngIf="chef" (ngSubmit)="updateChef()">
+    <!-- ID Input Form -->
+    <form [formGroup]="idForm" (ngSubmit)="onIdSubmit()">
         <div class="form-group">
-            <label for="chefName">Chef Name</label>
-            <input type="text" id="chefName" [(ngModel)]="chef.name" name="chefName" class="form-control"
-                   placeholder="Enter Chef Name">
+            <label for="chefId">Chef ID</label>
+            <input id="chefId" formControlName="chefId" class="form-control"/>
+        </div>
+        <button type="submit" class="btn btn-primary">Fetch Details</button>
+    </form>
+
+    <!-- Restaurant Update Form -->
+    <form *ngIf="chefId" [formGroup]="chefForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input id="name" formControlName="name" class="form-control"/>
         </div>
 
         <div class="form-group">
-            <label for="chefExperience">Chef Experience</label>
-            <input type="number" id="chefExperience" [(ngModel)]="chef.experience" name="chefExperience"
-                   class="form-control" placeholder="Enter Chef Experience">
+            <label for="phoneNumber">Phone Number</label>
+            <input id="phoneNumber" formControlName="phoneNumber" class="form-control"/>
         </div>
 
-        <button type="submit" class="btn btn-success">Update Chef</button>
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input id="address" formControlName="address" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="district">District</label>
+            <input id="district" formControlName="district" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="state">State</label>
+            <input id="state" formControlName="state" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="zipCode">Zip Code</label>
+            <input id="zipCode" formControlName="zipCode" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="emailId">Email ID</label>
+            <input id="emailId" formControlName="emailId" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input id="password" type="password" formControlName="password" class="form-control"/>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Update</button>
     </form>
 </div>
 <br/><br/><br/><br/>

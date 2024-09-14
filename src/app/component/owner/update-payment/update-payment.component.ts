@@ -63,7 +63,7 @@ export class UpdatePaymentComponent implements OnInit {
             this.ownerService.updatePayment(updateData, updateData.id).subscribe(
                 () => {
                     alert('Payment updated successfully!');
-                    this.router.navigate(['/payment-dashboard']).then(success => {
+                    this.router.navigate(['/owner/view-payments']).then(success => {
                         if (success) {
                             console.log('Navigation successful!');
                         } else {

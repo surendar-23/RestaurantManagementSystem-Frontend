@@ -28,7 +28,6 @@ export class OwnerHeaderComponent implements OnInit {
         {path: '/owner/view-bill', label: 'View Bill', icon: 'fas fa-file-invoice'},
         {path: '/owner/create-inventory-item', label: 'Create Inventory', icon: 'fas fa-boxes'},
         {path: '/owner/view-inventory-items', label: 'View Inventory', icon: 'fas fa-boxes'},
-        {path: '/owner/create-supplier', label: 'Create Supplier', icon: 'fas fa-truck-loading'},
 
     ];
 

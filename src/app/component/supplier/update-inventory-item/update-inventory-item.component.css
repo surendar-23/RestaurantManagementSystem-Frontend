@@ -1,58 +1,56 @@
-/* General form styling */
-form {
+.update-inventory-item-container {
     max-width: 600px;
-    margin: 40px auto;
+    margin: 50px auto;
     padding: 30px;
-    background-color: #f3e5f5; /* Light lavender background */
+    background-color: #f3e5f5;
     border-radius: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
 }
 
-/* Input fields */
-input[type="number"],
-input[type="text"] {
-    width: 100%;
-    padding: 12px 15px;
-    margin: 10px 0;
-    border: 2px solid #d1c4e9; /* Light lavender border */
-    border-radius: 5px;
-    font-size: 16px;
-    background-color: #f9f9f9;
-    color: #4a148c; /* Darker lavender text */
-    transition: border-color 0.3s ease;
+.update-inventory-item-container h2 {
+    text-align: center;
+    color: #6a1b9a;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-size: 24px;
 }
 
-input[type="number"]:focus,
-input[type="text"]:focus {
-    border-color: #6a1b9a; /* Dark lavender on focus */
+.update-inventory-item-container .form-group {
+    margin-bottom: 20px;
+}
+
+.update-inventory-item-container .form-group label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #6a1b9a;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.update-inventory-item-container .form-group input,
+.update-inventory-item-container .form-group select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 2px solid #d1c4e9;
+    border-radius: 5px;
+    transition: border-color 0.3s ease;
+    background-color: #f9f9f9;
+    color: #4a148c;
+}
+
+.update-inventory-item-container .form-group input:focus,
+.update-inventory-item-container .form-group select:focus {
+    border-color: #6a1b9a;
     outline: none;
     background-color: #ffffff;
 }
 
-/* Labels */
-label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: 600;
-    color: #6a1b9a; /* Dark lavender for labels */
-}
-
-/* Error messages */
-.error {
-    color: #d9534f;
-    font-size: 14px;
-    margin-top: -8px;
-    margin-bottom: 10px;
-    font-weight: 500;
-}
-
-/* Submit button */
-button[type="submit"],
-.btn {
+.update-inventory-item-container button[type="submit"] {
     width: 100%;
     padding: 12px;
-    background-color: #7e57c2; /* Medium lavender */
+    background-color: #7e57c2;
     border: none;
     border-radius: 5px;
     color: white;
@@ -62,76 +60,10 @@ button[type="submit"],
     transition: background-color 0.3s ease;
 }
 
-button[type="submit"]:hover,
-.btn:hover {
-    background-color: #6a1b9a; /* Dark lavender on hover */
+.update-inventory-item-container button[type="submit"]:hover {
+    background-color: #6a1b9a;
 }
 
-button[type="submit"]:active,
-.btn:active {
+.update-inventory-item-container button[type="submit"]:active {
     transform: scale(0.98);
-}
-
-button:disabled,
-.btn:disabled {
-    background-color: #e1bee7; /* Lighter lavender for disabled button */
-    cursor: not-allowed;
-}
-
-/* Header */
-h2 {
-    text-align: center;
-    margin-bottom: 20px;
-    color: #6a1b9a; /* Dark lavender */
-    font-weight: 700;
-    font-size: 24px;
-}
-
-/* Additional spacing for sections */
-.form-group,
-.form-section {
-    margin-bottom: 20px;
-}
-
-/* Error message styling */
-.error-message {
-    color: #d9534f;
-    margin-bottom: 20px;
-    text-align: center;
-    font-weight: 600;
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-    form {
-        padding: 20px;
-    }
-
-    input[type="number"],
-    input[type="text"] {
-        padding: 10px 12px;
-    }
-
-    button[type="submit"],
-    .btn {
-        padding: 10px;
-        font-size: 16px;
-    }
-}
-
-/* Optional: subtle animations to form fields */
-input[type="number"],
-input[type="text"] {
-    animation: fadeIn 0.4s ease-in-out;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(10px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
 }

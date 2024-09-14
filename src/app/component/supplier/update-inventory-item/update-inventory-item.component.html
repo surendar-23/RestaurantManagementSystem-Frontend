@@ -1,7 +1,4 @@
-<br/>
-<br/>
-<br/>
-<br/>
+<br/><br/><br/><br/>
 <div class="update-inventory-item-container">
     <h2>Update Inventory Item</h2>
     <form [formGroup]="inventoryItemForm" (ngSubmit)="onSubmit()">
@@ -17,11 +14,25 @@
             <label for="quantity">Quantity:</label>
             <input id="quantity" formControlName="quantity" type="number"/>
         </div>
+        <!-- Restaurant dropdown -->
+        <div class="form-group">
+            <label for="restaurantId">Restaurant:</label>
+            <select id="restaurantId" formControlName="restaurantId">
+                <option *ngFor="let restaurant of restaurants" [value]="restaurant.userId">
+                    {{ restaurant.firstName }} {{ restaurant.lastName }}
+                </option>
+            </select>
+        </div>
+        <!-- Supplier dropdown -->
+        <div class="form-group">
+            <label for="supplierId">Supplier:</label>
+            <select id="supplierId" formControlName="supplierId">
+                <option *ngFor="let supplier of suppliers" [value]="supplier.userId">
+                    {{ supplier.firstName }} {{ supplier.lastName }}
+                </option>
+            </select>
+        </div>
         <button type="submit" [disabled]="inventoryItemForm.invalid">Update</button>
     </form>
 </div>
-
-<br/>
-<br/>
-<br/>
-<br/>
+<br/><br/><br/><br/>

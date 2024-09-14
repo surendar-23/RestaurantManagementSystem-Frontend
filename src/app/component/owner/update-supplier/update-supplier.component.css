@@ -1,16 +1,16 @@
-/* Container for the update supplier form */
-.update-supplier-container {
+/* Container for the update restaurant form */
+.container {
     max-width: 600px;
-    margin: 40px auto;
+    margin: 50px auto;
     padding: 20px;
-    background-color: #f3e5f5; /* Light lavender background for consistency */
+    background-color: #f3e5f5; /* Light lavender background */
     border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     font-family: 'Roboto', sans-serif;
 }
 
 /* Heading */
-.update-supplier-container h2 {
+h2 {
     text-align: center;
     color: #6a1b9a; /* Dark lavender */
     margin-bottom: 20px;
@@ -18,12 +18,23 @@
     font-size: 28px;
 }
 
-/* Form group styling */
+/* Error message styling */
+.error-message {
+    color: #d9534f; /* Red for errors */
+    font-weight: 600;
+    background-color: #fbe3e4; /* Light red background */
+    border: 1px solid #d9534f;
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Form styling */
 .form-group {
     margin-bottom: 20px;
 }
 
-/* Form labels */
 .form-group label {
     display: block;
     margin-bottom: 8px;
@@ -32,29 +43,27 @@
 }
 
 /* Form input fields */
-.form-group input {
+.form-control {
     width: 100%;
-    padding: 12px 15px;
+    padding: 12px;
     border: 2px solid #d1c4e9; /* Light lavender border */
     border-radius: 5px;
+    background-color: #ffffff; /* White background */
+    color: #4a148c; /* Dark lavender text */
     font-size: 16px;
-    background-color: #ffffff; /* White background for input fields */
-    color: #4a148c; /* Darker lavender text */
     transition: border-color 0.3s ease;
 }
 
-/* Input fields focus state */
-.form-group input:focus {
+.form-control:focus {
     border-color: #6a1b9a; /* Dark lavender on focus */
     outline: none;
-    background-color: #ffffff;
 }
 
-/* Submit button styling */
+/* Button styling */
 .btn {
+    display: block;
     width: 100%;
     padding: 12px;
-    background-color: #6a1b9a; /* Dark lavender */
     border: none;
     border-radius: 5px;
     color: #ffffff;
@@ -64,25 +73,83 @@
     transition: background-color 0.3s ease;
 }
 
-/* Submit button hover state */
-.btn:hover {
-    background-color: #4a148c; /* Darker lavender on hover */
+.btn-primary {
+    background-color: #6a1b9a; /* Dark lavender for Fetch Details */
 }
 
-/* Disabled button styling */
+.btn-success {
+    background-color: #5cb85c; /* Green for Update Restaurant */
+}
+
+.btn-primary:hover {
+    background-color: #5e35b1; /* Slightly darker lavender */
+}
+
+.btn-success:hover {
+    background-color: #4cae4c; /* Darker green on hover */
+}
+
 .btn:disabled {
     background-color: #c0c0c0; /* Gray for disabled state */
     cursor: not-allowed;
 }
 
-/* Placeholder styling */
-.form-group input::placeholder {
-    font-size: 14px;
-    color: #a0a0a0;
+/* Loading spinner styling */
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
 }
 
-/* Optional: Add subtle animations to form fields */
-.form-group input {
+.spinner {
+    border: 4px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 4px solid #6a1b9a; /* Dark lavender */
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin-bottom: 10px;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+p {
+    color: #555;
+    font-size: 16px;
+}
+
+/* Responsive design adjustments */
+@media (max-width: 600px) {
+    .container {
+        padding: 15px;
+    }
+
+    .form-control {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 10px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+}
+
+/* Optional: subtle animations on form fields */
+.form-control {
     animation: fadeIn 0.4s ease-in-out;
 }
 
@@ -94,22 +161,5 @@
     to {
         opacity: 1;
         transform: translateY(0);
-    }
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-    .update-supplier-container {
-        padding: 20px;
-    }
-
-    .form-group input {
-        padding: 10px;
-        font-size: 14px;
-    }
-
-    .btn {
-        padding: 10px;
-        font-size: 16px;
     }
 }

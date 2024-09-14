@@ -32,6 +32,19 @@
             </div>
         </div>
 
+        <!-- Date Input -->
+        <div class="form-section" *ngIf="!loading">
+            <label for="date">Date</label>
+            <input
+                    type="date"
+                    id="date"
+                    formControlName="date"
+                    [class.invalid]="isSubmitted && updateAccountingForm.controls['date'].invalid">
+            <div *ngIf="isSubmitted && updateAccountingForm.controls['date'].invalid" class="error">
+                Date is required.
+            </div>
+        </div>
+
         <!-- Submit Button -->
         <button type="submit" [disabled]="loading">
             {{ loading ? 'Updating...' : 'Update Accounting' }}

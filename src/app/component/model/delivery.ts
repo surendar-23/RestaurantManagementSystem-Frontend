@@ -1,14 +1,14 @@
 import {Order} from './order';
-import {DeliveryPartner} from './deliveryPartner';
+import {User} from "./user";
 
 export class Delivery {
-    id: number | undefined;
-    deliveryTime: Date | undefined;
-    street: string | undefined;
-    city: string | undefined;
-    state: string | undefined;
-    postalCode: string | undefined;
-    status: string | undefined;
-    order: Order | undefined;
-    deliveryPartner: DeliveryPartner | undefined;
+    id?: number;
+    deliveryTime?: Date;
+    street?: string;
+    city?: string;
+    state?: string;
+    postalCode?: string;
+    status?: string;
+    order?: Order;
+    deliveryPartner?: User;
 }
