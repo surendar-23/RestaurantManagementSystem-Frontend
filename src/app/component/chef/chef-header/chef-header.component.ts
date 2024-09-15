@@ -26,8 +26,6 @@ export class ChefHeaderComponent implements OnInit {
         {path: '/chef/update-inventory-status', label: 'Update Inventory', icon: 'fas fa-box'},
         {path: '/chef/view-inventory-items', label: 'View Inventory', icon: 'fas fa-box-open'},
         {path: '/chef/update-order-status', label: 'Update Order', icon: 'fas fa-clipboard-check'},
-        {path: '/chef/view-orders', label: 'View Orders', icon: 'fas fa-list'},
-        {path: '/chef/view-order-details', label: 'View Order Details', icon: 'fas fa-info-circle'},
         {path: '/chef/view-feedbacks', label: 'View Feedbacks', icon: 'fas fa-comments'},
         {path: '/chef/logout', label: 'Logout', icon: 'fas fa-sign-out-alt'}
     ];

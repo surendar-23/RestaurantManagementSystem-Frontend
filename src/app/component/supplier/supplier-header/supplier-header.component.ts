@@ -21,7 +21,6 @@ export class SupplierHeaderComponent implements OnInit {
         {path: '/supplier/view-inventory-items', label: 'View Inventory Items', icon: 'fa fa-th-list'},
         {path: '/supplier/update-inventory-item', label: 'Update Inventory Item', icon: 'fa fa-edit'},
         {path: '/supplier/view-order-details', label: 'View Order Details', icon: 'fa fa-file-text'},
-        {path: '/supplier/view-supply-details', label: 'View Supply Details', icon: 'fa fa-truck'},
         {path: '/supplier/logout', label: 'Logout', icon: 'fa fa-sign-out-alt'}
     ];
 

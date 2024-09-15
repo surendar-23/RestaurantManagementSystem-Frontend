@@ -26,7 +26,6 @@ export class CustomerHeaderComponent implements OnInit {
         {path: '/customer/view-menu-items', label: 'View Menu', icon: 'fas fa-utensils'},
         {path: '/customer/create-order', label: 'Create Order', icon: 'fas fa-cart-plus'},
         {path: '/customer/view-orders', label: 'View Orders', icon: 'fas fa-list'},
-        {path: '/customer/view-order-details', label: 'Order Details', icon: 'fas fa-info-circle'},
         {path: '/customer/create-feedback', label: 'Create Feedback', icon: 'fas fa-comment-dots'},
         {path: '/customer/view-feedbacks', label: 'View Feedbacks', icon: 'fas fa-comments'},
         {path: '/customer/create-payment', label: 'Create Payment', icon: 'fas fa-credit-card'},

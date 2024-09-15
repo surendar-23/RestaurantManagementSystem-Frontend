@@ -37,7 +37,6 @@ export class OwnerHeaderComponent implements OnInit {
         {path: '/owner/view-table', label: 'View Tables', icon: 'fas fa-chair'},
         {path: '/owner/view-payments', label: 'View Payments', icon: 'fas fa-credit-card'},
         {path: '/owner/view-orders', label: 'View Orders', icon: 'fas fa-shopping-cart'},
-        {path: '/owner/view-order-details', label: 'View Order Details', icon: 'fas fa-info-circle'},
         {path: '/owner/view-feedbacks', label: 'View Feedbacks', icon: 'fas fa-comments'},
         {path: '/owner/logout', label: 'Logout', icon: 'fas fa-sign-out-alt'}
 

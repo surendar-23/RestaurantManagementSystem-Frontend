@@ -8,7 +8,6 @@ import {SupplierHomeComponent} from "./component/supplier/supplier-home/supplier
 import {UpdateInventoryItemComponent} from "./component/supplier/update-inventory-item/update-inventory-item.component";
 import {ViewInventoryItemsComponent} from "./component/supplier/view-inventory-items/view-inventory-items.component";
 import {ViewOrderDetailsComponent} from "./component/supplier/view-order-details/view-order-details.component";
-import {ViewSupplyOrdersComponent} from "./component/supplier/view-supply-orders/view-supply-orders.component";
 import {WaiterHomeComponent} from "./component/waiter/waiter-home/waiter-home.component";
 import {CreateOrderComponent} from "./component/waiter/create-order/create-order.component";
 import {UpdateOrderStatusComponent} from "./component/waiter/update-order-status/update-order-status.component";
@@ -73,7 +72,6 @@ import {
 import {ForgotPasswordComponent} from "./component/forgot-password/forgot-password.component";
 import {UserLoginComponent} from "./component/user-login/user-login.component";
 import {UserSignupComponent} from "./component/user-signup/user-signup.component";
-import {ChangePasswordComponent} from "./component/change-password/change-password.component";
 
 
 const routes: Routes = [
@@ -83,15 +81,13 @@ const routes: Routes = [
     {path: 'forgot-password', component: ForgotPasswordComponent},
     {path: 'user-login', component: UserLoginComponent},
     {path: 'user-signup', component: UserSignupComponent},
-    {path: 'change-password', component: ChangePasswordComponent},
 
     {
         path: 'supplier', children: [
             {path: 'home', component: SupplierHomeComponent},
             {path: 'update-inventory-item', component: UpdateInventoryItemComponent},
             {path: 'view-inventory-items', component: ViewInventoryItemsComponent},
-            {path: 'view-order-details', component: ViewOrderDetailsComponent},
-            {path: 'view-supply-details', component: ViewSupplyOrdersComponent}
+            {path: 'view-order-details', component: ViewOrderDetailsComponent}
         ]
     },
 
@@ -102,7 +98,6 @@ const routes: Routes = [
             {path: 'update-order-status', component: UpdateOrderStatusComponent},
             {path: 'update-table-details', component: UpdateTableDetailsComponent},
             {path: 'view-current-orders', component: ViewOrderDetailsComponent},
-            {path: 'view-order-details', component: ViewSupplyOrdersComponent},
             {path: 'view-table-details', component: ViewTableDetailsComponent},
         ]
     },
@@ -115,7 +110,6 @@ const routes: Routes = [
             {path: 'update-order-status', component: UpdateOrderStatusComponent},
             {path: 'view-assigned-orders', component: ViewOrderDetailsComponent},
             {path: 'view-past-deliveries', component: ViewPastDeliveriesComponent},
-            {path: 'view-order-details', component: ViewSupplyOrdersComponent},
         ]
     },
 
@@ -128,7 +122,6 @@ const routes: Routes = [
             {path: 'view-inventory-items', component: ViewInventoryItemsComponent},
             {path: 'update-order-status', component: UpdateOrderStatusComponent},
             {path: 'view-orders', component: ViewOrderDetailsComponent},
-            {path: 'view-order-details', component: ViewSupplyOrdersComponent},
             {path: 'view-feedbacks', component: ViewFeedbacksComponent},
         ]
     },
@@ -139,7 +132,6 @@ const routes: Routes = [
             {path: 'view-menu-items', component: ViewMenuItemsComponent},
             {path: 'create-order', component: CreateOrderComponent},
             {path: 'view-orders', component: ViewOrderDetailsComponent},
-            {path: 'view-order-details', component: ViewSupplyOrdersComponent},
             {path: 'create-feedback', component: CreateFeedbackComponent},
             {path: 'view-feedbacks', component: ViewFeedbacksComponent},
             {path: 'create-payment', component: CreatePaymentComponent},
@@ -168,7 +160,6 @@ const routes: Routes = [
             {path: 'view-payments', component: ManagePaymentsComponent},
             {path: 'update-order', component: UpdateOrderStatusComponent},
             {path: 'view-orders', component: ManageOrdersComponent},
-            {path: 'view-order-details', component: ViewSupplyOrdersComponent},
             {path: 'view-feedbacks', component: ViewFeedbacksComponent},
         ]
     },

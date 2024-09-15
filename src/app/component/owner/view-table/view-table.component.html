@@ -25,9 +25,9 @@
         </thead>
         <tbody>
         <tr *ngFor="let table of tables">
-            <td>{{ table.id }}</td>
-            <td>{{ table.number }}</td>
-            <td>{{ table.seats }}</td>
+            <td>{{ table?.id }}</td>
+            <td>{{ table?.number }}</td>
+            <td>{{ table?.seats }}</td>
             <td>
                 <button class="btn btn-edit" [routerLink]="['/owner/update-table']">Edit</button>
                 <button class="btn btn-delete" (click)="deleteTable(table.id)">Delete</button>

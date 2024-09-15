@@ -19,9 +19,7 @@ export class WaiterHeaderComponent implements OnInit {
     navItems = [
         {path: '/waiter/home', label: 'Home', icon: 'fas fa-home'},
         {path: '/waiter/create-order', label: 'Create Order', icon: 'fas fa-edit'},
-        {path: '/waiter/view-current-orders', label: 'View Orders', icon: 'fas fa-truck'},
         {path: '/waiter/update-order-status', label: 'Update Order', icon: 'fas fa-th-list'},
-        {path: '/waiter/view-order-details', label: 'View Order Details', icon: 'fas fa-truck'},
         {path: '/waiter/update-table-details', label: 'Update Table', icon: 'fas fa-file-alt'},
         {path: '/waiter/view-table-details', label: 'View Table Details', icon: 'fas fa-truck'},
         {path: '/waiter/logout', label: 'Logout', icon: 'fas fa-sign-out-alt'}

@@ -22,8 +22,6 @@ export class DeliveryPartnerHeaderComponent implements OnInit {
         {path: '/delivery-partner/update-delivery-status', label: 'Update Delivery Status', icon: 'fa fa-edit'},
         {path: '/delivery-partner/view-past-deliveries', label: 'View Deliveries', icon: 'fa fa-truck'},
         {path: '/delivery-partner/update-order-status', label: 'Update Order', icon: 'fa fa-file-text'},
-        {path: '/delivery-partner/view-assigned-orders', label: 'View Orders', icon: 'fa fa-truck'},
-        {path: '/delivery-partner/view-order-details', label: 'View Order Details', icon: 'fa fa-truck'},
         {path: '/delivery-partner/logout', label: 'Logout', icon: 'fa fa-sign-out-alt'}
     ];
 
